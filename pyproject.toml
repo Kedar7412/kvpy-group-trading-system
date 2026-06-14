@@ -1,0 +1,35 @@
+[project]
+name = "asset-scorer"
+version = "0.1.0"
+description = "Systematic multi-factor scoring engine for tradable assets with calibrated confidence."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "ccxt>=4.0",
+    "yfinance>=0.2",
+    "rich>=13.0",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+asset-scorer = "asset_scorer.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"asset_scorer.web" = ["static/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

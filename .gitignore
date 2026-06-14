@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual envs
+.venv/
+venv/
+
+# Databases / generated reports
+*.db
+*.sqlite
+*.sqlite3
+report*.json
+
+# OS / editor
+.DS_Store
