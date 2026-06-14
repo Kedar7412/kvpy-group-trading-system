@@ -28,7 +28,7 @@ import pandas as pd
 from ..config import AppConfig
 from ..scoring import (
     BubbleDetector, compute_flexible_weights, compute_regime, longs_allowed,
-    recommend, regime_state_at,
+    recommend, regime_state_at, same_regime_dates,
 )
 from ..calibration import ConfidenceModel as _ConfidenceModel
 
@@ -145,9 +145,22 @@ class WalkForwardBacktester:
         for i in rebal:
             t = dates[i]
             train_end = dates[i - H]  # last date whose forward return is realized
+            label_t = regime_state_at(regime_df, t).label
 
-            nf_train = {f: norm[f].loc[:train_end] for f in factors}
-            fr_train = fwd.loc[:train_end]
+            # Regime-conditional weights: learn from same-regime history only.
+            sel = None
+            if self.config.weights.regime_conditional:
+                sel = same_regime_dates(
+                    regime_df, label_t, upto=train_end,
+                    min_samples=self.config.weights.regime_min_samples,
+                )
+            if sel is not None:
+                sel = sel[sel <= train_end]
+                nf_train = {f: norm[f].reindex(sel) for f in factors}
+                fr_train = fwd.reindex(sel)
+            else:
+                nf_train = {f: norm[f].loc[:train_end] for f in factors}
+                fr_train = fwd.loc[:train_end]
             flex = compute_flexible_weights(nf_train, fr_train, self.config.weights)
             weights = flex.weights
 
@@ -183,8 +196,8 @@ class WalkForwardBacktester:
             )
             fwd_t = fwd.loc[t]
             ranks = score_t.rank(ascending=False, method="min")
-            regime_label = regime_state_at(regime_df, t).label
-            longs_ok = longs_allowed(regime_label)
+            longs_ok = longs_allowed(label_t)
+            regime_label = label_t
 
             date_rows = []
             for sym in feat_t.index:

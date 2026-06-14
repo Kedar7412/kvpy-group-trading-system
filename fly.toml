@@ -1,0 +1,21 @@
+# Deploy on Fly.io:  fly launch --no-deploy  (then edit app name)  ->  fly deploy
+app = "asset-scorer"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  ASSET_SCORER_DB = "/data/asset_scores.db"
+  ASSET_SCORER_HOST = "0.0.0.0"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[mounts]]
+  source = "data"
+  destination = "/data"

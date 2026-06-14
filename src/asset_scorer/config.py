@@ -53,6 +53,8 @@ class WeightConfig:
     prior_strength: float = 0.5  # 0 => pure IC, large => stick to priors
     ic_floor: float = 0.0  # negative ICs are clamped (don't bet against a factor)
     min_weight: float = 0.02  # never let a factor go fully to zero
+    regime_conditional: bool = True   # estimate weights from same-regime history
+    regime_min_samples: int = 50      # below this, fall back to all-history weights
 
 
 @dataclass(frozen=True)

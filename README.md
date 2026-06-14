@@ -147,6 +147,24 @@ the backtest adds a **regime-gated long book** that holds cash in risk-off. On a
 wider 18-asset universe this lifted the out-of-sample IC and gave the
 regime-gated book a materially better Sharpe than the naive long book.
 
+Weights are also **regime-conditional**: factor weights are estimated from
+*same-regime* history (with an all-history fallback when samples are thin), so
+the model leans on whatever has actually worked in the current kind of market.
+
+## Deployment (public scorecard URL)
+The app serves the dashboard at `/` and a public, verifiable scorecard at
+`/scorecard`. It's container- and PaaS-ready and **auto-seeds** a demo on first
+boot so the page is never empty:
+
+```bash
+docker build -t asset-scorer . && docker run -p 8000:8000 -v data:/data asset-scorer
+# or Render (render.yaml) / Fly (fly.toml) / Procfile hosts
+```
+
+`serve` reads `PORT`, `ASSET_SCORER_HOST`, and `ASSET_SCORER_DB` from the
+environment. Schedule `asset-scorer daily` to append real calls so the record
+compounds. Full instructions in [DEPLOY.md](DEPLOY.md).
+
 ## The bullshit detector (predictive bubble model)
 
 The anti-bubble logic is a **calibrated model** that predicts the probability of

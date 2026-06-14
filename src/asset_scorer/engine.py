@@ -34,6 +34,7 @@ from .scoring import (
     longs_allowed,
     recommend,
     regime_state_at,
+    same_regime_dates,
 )
 
 
@@ -233,8 +234,13 @@ class ScoringEngine:
         H = self.config.calibration.forward_horizon
         factor_order = p.factor_order
 
-        # Flexible IC weights.
-        flex = compute_flexible_weights(p.norm_panels, p.forward_returns, self.config.weights)
+        # Market regime (point-in-time): used both to gate longs and to make the
+        # factor weights regime-conditional (learn what works in *this* market).
+        regime_df = compute_regime(p.close_panel, self.config.regime)
+        current_label = (
+            str(regime_df["label"].iloc[-1]) if len(regime_df) else "neutral"
+        )
+        flex = self._regime_weights(p, factor_order, regime_df, current_label)
 
         # Predictive bubble detector (the bullshit detector).
         detector = BubbleDetector(self.config.bubble)
@@ -257,8 +263,7 @@ class ScoringEngine:
         bt = evaluate_scores(final_panel, p.forward_returns)
         as_of = self._resolve_as_of(final_panel)
 
-        # Market regime (point-in-time) gates FAVORED longs.
-        regime_df = compute_regime(p.close_panel, self.config.regime)
+        # Regime at the scored date gates FAVORED longs.
         regime_label = regime_state_at(regime_df, as_of).label
         longs_ok = longs_allowed(regime_label)
 
@@ -303,6 +308,22 @@ class ScoringEngine:
         )
 
     # -- helpers ----------------------------------------------------------
+    # -- helpers ----------------------------------------------------------
+    def _regime_weights(self, p, factor_order, regime_df, label):
+        """Estimate flexible weights, optionally from same-regime history only."""
+        wcfg = self.config.weights
+        dates = None
+        if wcfg.regime_conditional:
+            dates = same_regime_dates(
+                regime_df, label, min_samples=wcfg.regime_min_samples
+            )
+        if dates is None:
+            return compute_flexible_weights(p.norm_panels, p.forward_returns, wcfg)
+        sel = p.forward_returns.index.intersection(dates)
+        nf = {f: p.norm_panels[f].reindex(sel) for f in factor_order}
+        fr = p.forward_returns.reindex(sel)
+        return compute_flexible_weights(nf, fr, wcfg)
+
     @staticmethod
     def _stack_features(norm_panels, factor_order):
         cols = {f: norm_panels[f].stack(future_stack=True) for f in factor_order}

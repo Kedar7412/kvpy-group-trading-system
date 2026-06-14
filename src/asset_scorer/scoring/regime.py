@@ -99,3 +99,26 @@ def regime_state_at(regime_df: pd.DataFrame, date) -> RegimeState:
 def longs_allowed(label: str) -> bool:
     """FAVORED longs are only sensible in risk_on / neutral regimes."""
     return label in (RISK_ON, NEUTRAL)
+
+
+def same_regime_dates(
+    regime_df: pd.DataFrame,
+    label: str,
+    upto=None,
+    min_samples: int = 50,
+):
+    """Dates sharing the given regime label (optionally up to a cutoff).
+
+    Returns ``None`` when there are too few same-regime observations, signalling
+    the caller to fall back to all-history weighting. This is what makes the
+    weights *regime-conditional*: in a risk-off market we learn factor weights
+    from past risk-off markets, not from the whole history.
+    """
+    if regime_df is None or regime_df.empty or "label" not in regime_df:
+        return None
+    df = regime_df if upto is None else regime_df.loc[:upto]
+    dates = df.index[df["label"] == label]
+    if len(dates) < min_samples:
+        return None
+    return dates
+

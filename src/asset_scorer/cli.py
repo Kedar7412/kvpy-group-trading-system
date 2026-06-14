@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import dataclasses
 import json
+import os
 import sys
 
 from rich.console import Console
@@ -555,6 +556,34 @@ def _cmd_verify(args: argparse.Namespace, console: Console) -> int:
     return 0
 
 
+def _seed_if_empty(db: str, console: Console) -> None:
+    """Populate a fresh DB with synthetic sealed calls so a freshly deployed
+    public scorecard isn't empty. Real data comes later via scheduled `daily`.
+    """
+    from .backtest import WalkForwardBacktester
+    from .config import DEFAULT_UNIVERSES
+    from .storage import ScoreStore
+
+    store = ScoreStore(db)
+    if store.asset_classes():
+        return  # already has data
+    console.print("[cyan]Seeding demo scorecard (synthetic, offline)…[/]")
+    base = AppConfig()
+    for ac in ["crypto", "equity", "commodity"]:
+        cfg = dataclasses.replace(
+            base, asset_class=ac, universe=DEFAULT_UNIVERSES[ac],
+            data=dataclasses.replace(base.data, history_limit=450),
+        )
+        prov = MarketDataProvider(cfg.data)
+        data = {s: prov._synthesize(s) for s in cfg.universe}
+        try:
+            WalkForwardBacktester(cfg).run(
+                ScoringEngine(cfg), data, store=store, persist=True, source="seed"
+            )
+        except Exception as exc:
+            console.print(f"[yellow]seed {ac} skipped: {exc}[/]")
+
+
 def _cmd_serve(args: argparse.Namespace, console: Console) -> int:
     try:
         import uvicorn
@@ -562,6 +591,9 @@ def _cmd_serve(args: argparse.Namespace, console: Console) -> int:
         console.print("[red]uvicorn/fastapi not installed. Run: pip install -e .[/]")
         return 1
     from .web import create_app
+
+    if args.seed:
+        _seed_if_empty(args.db, console)
 
     app = create_app(args.db)
     console.print(
@@ -643,9 +675,13 @@ def _build_parser() -> argparse.ArgumentParser:
     p_sc.add_argument("--json", metavar="PATH", help="Write scorecard JSON to PATH")
 
     p_serve = sub.add_parser("serve", help="Launch the web dashboard")
-    p_serve.add_argument("--host", default="127.0.0.1")
-    p_serve.add_argument("--port", type=int, default=8000)
-    p_serve.add_argument("--db", default=DEFAULT_DB_PATH, help="SQLite DB path")
+    p_serve.add_argument("--host", default=os.environ.get("ASSET_SCORER_HOST", "127.0.0.1"))
+    p_serve.add_argument("--port", type=int,
+                         default=int(os.environ.get("PORT", "8000")))
+    p_serve.add_argument("--db", default=os.environ.get("ASSET_SCORER_DB", DEFAULT_DB_PATH),
+                         help="SQLite DB path")
+    p_serve.add_argument("--seed", action="store_true",
+                         help="Seed a synthetic demo scorecard if the DB is empty")
 
     return parser
 
