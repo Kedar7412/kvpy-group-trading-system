@@ -13,6 +13,7 @@ table is the time series that powers history queries and the dashboard.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import sqlite3
 from contextlib import contextmanager
@@ -63,6 +64,9 @@ CREATE TABLE IF NOT EXISTS scores (
     indicators            REAL,
     bubble_label          TEXT,
     bubble_penalty        REAL,
+    bubble_probability    REAL,
+    call                  TEXT,
+    rationale             TEXT,
     last_price            REAL,
     synthetic             INTEGER,
     weights_json          TEXT,
@@ -72,11 +76,52 @@ CREATE TABLE IF NOT EXISTS scores (
 
 CREATE INDEX IF NOT EXISTS idx_scores_symbol
     ON scores (asset_class, symbol, as_of);
+
+-- Tamper-evident append-only audit log. Each row is hash-chained to the
+-- previous one, so the entire history of saved runs can be verified and any
+-- after-the-fact edit is detectable. This is the seed of a public, auditable
+-- track record.
+CREATE TABLE IF NOT EXISTS ledger (
+    seq          INTEGER PRIMARY KEY AUTOINCREMENT,
+    as_of        TEXT NOT NULL,
+    asset_class  TEXT NOT NULL,
+    created_at   TEXT NOT NULL,
+    n_scores     INTEGER,
+    payload_hash TEXT NOT NULL,
+    prev_hash    TEXT NOT NULL,
+    entry_hash   TEXT NOT NULL
+);
 """
+
+# Columns added after v0.1; applied to pre-existing databases by _migrate().
+_MIGRATIONS = {
+    "scores": {
+        "bubble_probability": "REAL",
+        "call": "TEXT",
+        "rationale": "TEXT",
+    },
+}
 
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _canonical_payload(as_of: str, asset_class: str, triples: list) -> str:
+    """Canonical JSON of a run's scores -> the thing we hash.
+
+    triples: iterable of (symbol, final_score_or_None, call). Sorted so the
+    hash is independent of row order.
+    """
+    rows = sorted(
+        [
+            [t[0], (round(float(t[1]), 4) if t[1] is not None and t[1] == t[1] else None), t[2]]
+            for t in triples
+        ]
+    )
+    return json.dumps(
+        {"as_of": as_of, "asset_class": asset_class, "scores": rows}, sort_keys=True
+    )
 
 
 class ScoreStore:
@@ -97,6 +142,18 @@ class ScoreStore:
     def _init_db(self) -> None:
         with self._connect() as conn:
             conn.executescript(_SCHEMA)
+        self._migrate()
+
+    def _migrate(self) -> None:
+        """Add columns introduced after a DB was first created."""
+        with self._connect() as conn:
+            for table, cols in _MIGRATIONS.items():
+                existing = {
+                    r["name"] for r in conn.execute(f"PRAGMA table_info({table})")
+                }
+                for col, decl in cols.items():
+                    if col not in existing:
+                        conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
 
     # -- writes -----------------------------------------------------------
     def save_result(self, result: "EngineResult") -> int:
@@ -149,9 +206,9 @@ class ScoreStore:
                         as_of, asset_class, symbol, created_at, rank,
                         final_score, base_score, confidence, favorable_probability,
                         news, technicals, fundamentals, orderflow, indicators,
-                        bubble_label, bubble_penalty, last_price, synthetic,
-                        weights_json, fundamentals_json
-                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                        bubble_label, bubble_penalty, bubble_probability, call,
+                        rationale, last_price, synthetic, weights_json, fundamentals_json
+                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                     ON CONFLICT(as_of, asset_class, symbol) DO UPDATE SET
                         created_at=excluded.created_at,
                         rank=excluded.rank,
@@ -164,6 +221,8 @@ class ScoreStore:
                         indicators=excluded.indicators,
                         bubble_label=excluded.bubble_label,
                         bubble_penalty=excluded.bubble_penalty,
+                        bubble_probability=excluded.bubble_probability,
+                        call=excluded.call, rationale=excluded.rationale,
                         last_price=excluded.last_price, synthetic=excluded.synthetic,
                         weights_json=excluded.weights_json,
                         fundamentals_json=excluded.fundamentals_json
@@ -175,13 +234,42 @@ class ScoreStore:
                         _f(fs.get("news")), _f(fs.get("technicals")),
                         _f(fs.get("fundamentals")), _f(fs.get("orderflow")),
                         _f(fs.get("indicators")),
-                        s.bubble.label, _f(s.bubble.penalty), _f(s.last_price),
-                        int(s.synthetic), json.dumps(s.weights),
+                        s.bubble.label, _f(s.bubble.penalty), _f(s.bubble.probability),
+                        s.recommendation.call, s.recommendation.rationale,
+                        _f(s.last_price), int(s.synthetic), json.dumps(s.weights),
                         json.dumps(s.fundamentals),
                     ),
                 )
                 rows += 1
+
+            self._append_ledger(conn, result, now)
             return rows
+
+    def _append_ledger(self, conn, result: "EngineResult", now: str) -> None:
+        """Append a hash-chained, tamper-evident entry for this run."""
+        triples = [
+            (s.symbol,
+             s.final_score if s.final_score == s.final_score else None,
+             s.recommendation.call)
+            for s in result.scores
+        ]
+        payload = _canonical_payload(result.as_of, result.asset_class, triples)
+        payload_hash = hashlib.sha256(payload.encode()).hexdigest()
+        prev = conn.execute(
+            "SELECT entry_hash FROM ledger ORDER BY seq DESC LIMIT 1"
+        ).fetchone()
+        prev_hash = prev["entry_hash"] if prev else "0" * 64
+        entry_hash = hashlib.sha256((prev_hash + payload_hash).encode()).hexdigest()
+        conn.execute(
+            """
+            INSERT INTO ledger (
+                as_of, asset_class, created_at, n_scores,
+                payload_hash, prev_hash, entry_hash
+            ) VALUES (?,?,?,?,?,?,?)
+            """,
+            (result.as_of, result.asset_class, now, len(result.scores),
+             payload_hash, prev_hash, entry_hash),
+        )
 
     # -- reads ------------------------------------------------------------
     def list_runs(self, limit: int = 50, asset_class: str | None = None) -> list[dict]:
@@ -242,6 +330,75 @@ class ScoreStore:
                 "SELECT DISTINCT asset_class FROM scores ORDER BY asset_class"
             ).fetchall()
         return [r["asset_class"] for r in rows]
+
+    def distinct_as_of(self, asset_class: str) -> list[str]:
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT DISTINCT as_of FROM scores WHERE asset_class=? ORDER BY as_of",
+                (asset_class,),
+            ).fetchall()
+        return [r["as_of"] for r in rows]
+
+    def scores_on(self, as_of: str, asset_class: str) -> list[dict]:
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM scores WHERE as_of=? AND asset_class=? ORDER BY rank",
+                (as_of, asset_class),
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    # -- verifiable track record -----------------------------------------
+    def ledger_entries(self, limit: int = 200) -> list[dict]:
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM ledger ORDER BY seq DESC LIMIT ?", (limit,)
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def verify_chain(self) -> dict:
+        """Verify both the hash chain AND that the scores match what was sealed.
+
+        Two checks:
+          1. chain integrity: each entry's prev/entry hashes are consistent;
+          2. content integrity: recomputing the score hash from the current
+             `scores` table matches the latest sealed payload for that run.
+        Either failing means the history was altered after the fact.
+        """
+        with self._connect() as conn:
+            rows = [dict(r) for r in conn.execute(
+                "SELECT * FROM ledger ORDER BY seq ASC"
+            ).fetchall()]
+        prev = "0" * 64
+        latest_for_key: dict[tuple, dict] = {}
+        for row in rows:
+            expected = hashlib.sha256(
+                (prev + row["payload_hash"]).encode()
+            ).hexdigest()
+            if row["prev_hash"] != prev or row["entry_hash"] != expected:
+                return {
+                    "ok": False, "reason": "chain", "entries": len(rows),
+                    "broken_at_seq": row["seq"],
+                    "as_of": row["as_of"], "asset_class": row["asset_class"],
+                }
+            prev = row["entry_hash"]
+            latest_for_key[(row["as_of"], row["asset_class"])] = row
+
+        # Content integrity against the current scores table.
+        for (as_of, ac), row in latest_for_key.items():
+            triples = [
+                (r["symbol"], r.get("final_score"), r.get("call"))
+                for r in self.scores_on(as_of, ac)
+            ]
+            recomputed = hashlib.sha256(
+                _canonical_payload(as_of, ac, triples).encode()
+            ).hexdigest()
+            if recomputed != row["payload_hash"]:
+                return {
+                    "ok": False, "reason": "content", "entries": len(rows),
+                    "broken_at_seq": row["seq"], "as_of": as_of, "asset_class": ac,
+                }
+
+        return {"ok": True, "entries": len(rows), "head": prev if rows else None}
 
 
 def _f(value) -> float | None:

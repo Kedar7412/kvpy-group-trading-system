@@ -104,6 +104,58 @@ Schedule the daily job with cron (e.g. every day at 23:30):
 The `scores` table accumulates a per-asset time series (score, confidence, the
 five factor scores, bubble label) that powers the history view and dashboard.
 
+## Proving edge: the walk-forward backtest
+
+A score product is only worth trusting if it's tested **out of sample**. The
+`backtest` command does an honest walk-forward: at each rebalance it fits the
+weights, confidence model, and bubble detector on **past data only**, scores the
+unseen date, and records the realized forward return — net of transaction costs.
+
+```bash
+asset-scorer backtest --asset-class equity --history 650
+asset-scorer backtest --symbols BTC/USDT ETH/USDT SOL/USDT --history 700
+```
+
+It reports an equal-weight benchmark, a long-only top-quantile book, a
+long-short book, and a **selective** book (trades only high-confidence calls,
+holds cash otherwise) — plus a **calibration-by-confidence table**: do
+higher-confidence calls actually win more often? That table is the trust
+artifact. If the selective book doesn't beat the benchmark after costs, the tool
+says so honestly rather than overfitting.
+
+## Calls & abstention (selective prediction)
+
+Every asset gets an explicit **Call**, including the option to stay silent:
+
+| Call | Meaning |
+|---|---|
+| `FAVORED` | high score with sufficient confidence |
+| `AVOID` | low score with sufficient confidence |
+| `AVOID-BUBBLE` | high crash probability — looks like hype, not value |
+| `NEUTRAL` | nothing decisive |
+| `NO-EDGE` | confidence below the floor — we abstain rather than guess |
+
+Saying "no edge" most of the time is a feature, not a bug.
+
+## The bullshit detector (predictive bubble model)
+
+The anti-bubble logic is a **calibrated model** that predicts the probability of
+a forward drawdown from seven overheating signals (overbought RSI, parabolic
+momentum, news hype, Bollinger stretch, premium over a long-run anchor,
+volatility climax, vertical blow-off). It reports `P(crash)` per asset with
+human-readable reasons, and discounts the score when an asset is hot **and**
+unconfirmed by fundamentals + orderflow.
+
+## Verifiable track record
+
+Every saved run is sealed into a hash-chained, append-only **ledger**. `verify`
+recomputes the chain *and* the score-content hashes, so any after-the-fact edit
+to the history is detectable.
+
+```bash
+asset-scorer verify --db asset_scores.db
+```
+
 ## Web dashboard
 A FastAPI + single-page dashboard visualizes the stored scores.
 

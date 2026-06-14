@@ -109,6 +109,13 @@ function bubbleColor(label) {
   if (label.includes("hot") || label.includes("warming")) return "var(--yellow)";
   return "var(--muted)";
 }
+function callColor(call) {
+  if (call === "FAVORED") return "var(--green)";
+  if (call === "AVOID-BUBBLE") return "var(--red)";
+  if (call === "AVOID") return "var(--red)";
+  if (call === "NEUTRAL") return "var(--yellow)";
+  return "var(--muted)";  // NO-EDGE
+}
 function fmt(v, d = 0) { return (v == null || isNaN(v)) ? "–" : Number(v).toFixed(d); }
 function pct(v) { return (v == null || isNaN(v)) ? "–" : Math.round(v * 100) + "%"; }
 
@@ -152,22 +159,24 @@ function renderStats(run, asOf) {
 function renderTable(scores) {
   const wrap = document.getElementById("tableWrap");
   if (!scores.length) { wrap.innerHTML = `<p class="muted">No scores stored for this class yet.</p>`; return; }
-  const head = `<tr><th>#</th><th>Symbol</th><th>Score</th><th>Conf</th><th>P(fav)</th>` +
-    FACTORS.map(f => `<th>${f.slice(0,4)}</th>`).join("") + `<th>Bubble</th></tr>`;
+  const head = `<tr><th>#</th><th>Symbol</th><th>Call</th><th>Score</th><th>Conf</th><th>Crash</th>` +
+    FACTORS.map(f => `<th>${f.slice(0,4)}</th>`).join("") + `</tr>`;
   const rows = scores.map(s => {
     const syn = s.synthetic ? ` <span class="syn" title="synthetic data">*</span>` : "";
     const fcells = FACTORS.map(f => {
       const v = s[f];
       return `<td class="factorcell" style="color:${scoreColor(v)}">${fmt(v)}</td>`;
     }).join("");
+    const crash = s.bubble_probability;
+    const crashStyle = crash >= 0.6 ? "var(--red)" : (crash >= 0.35 ? "var(--yellow)" : "var(--muted)");
     return `<tr data-sym="${s.symbol}">
       <td>${s.rank}</td>
       <td>${s.symbol}${syn}</td>
+      <td><span class="pill" style="color:${callColor(s.call)};border:1px solid ${callColor(s.call)}">${s.call || "-"}</span></td>
       <td class="score" style="color:${scoreColor(s.final_score)}">${fmt(s.final_score, 1)}</td>
       <td>${pct(s.confidence)}</td>
-      <td>${pct(s.favorable_probability)}</td>
+      <td style="color:${crashStyle}">${crash == null ? "-" : Math.round(crash*100)+"%"}</td>
       ${fcells}
-      <td><span class="pill" style="color:${bubbleColor(s.bubble_label)};border:1px solid ${bubbleColor(s.bubble_label)}">${s.bubble_label || "–"}</span></td>
     </tr>`;
   }).join("");
   wrap.innerHTML = `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;

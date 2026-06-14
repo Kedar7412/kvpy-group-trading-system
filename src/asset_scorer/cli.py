@@ -71,6 +71,15 @@ def _color_score(value: float) -> str:
     return "red"
 
 
+_CALL_STYLE = {
+    "FAVORED": "bold green",
+    "AVOID": "red",
+    "AVOID-BUBBLE": "bold red",
+    "NEUTRAL": "yellow",
+    "NO-EDGE": "dim",
+}
+
+
 def _render_table(result: EngineResult, console: Console, top: int | None) -> None:
     title = (
         f"Asset Scores  |  {result.asset_class}  |  as of {result.as_of}  |  "
@@ -79,36 +88,50 @@ def _render_table(result: EngineResult, console: Console, top: int | None) -> No
     table = Table(title=title, header_style="bold cyan", expand=False)
     table.add_column("#", justify="right")
     table.add_column("Symbol")
+    table.add_column("Call")
     table.add_column("Score", justify="right")
     table.add_column("Conf", justify="right")
-    table.add_column("P(fav)", justify="right")
+    table.add_column("Crash", justify="right")
     table.add_column("News", justify="right")
     table.add_column("Tech", justify="right")
     table.add_column("Fund", justify="right")
     table.add_column("Flow", justify="right")
     table.add_column("Ind", justify="right")
-    table.add_column("Bubble")
 
     rows = result.scores if top is None else result.scores[:top]
     for s in rows:
         fs = s.factor_scores
-        bubble_style = "red" if "bubble-risk" in s.bubble.label else (
-            "yellow" if s.bubble.label in ("hot but confirmed", "warming") else "dim"
-        )
+        call = s.recommendation.call
+        crash = s.bubble.probability
+        crash_style = "red" if crash >= 0.6 else ("yellow" if crash >= 0.35 else "dim")
         table.add_row(
             str(s.rank),
             s.symbol + (" *" if s.synthetic else ""),
+            f"[{_CALL_STYLE.get(call, 'white')}]{call}[/]",
             f"[{_color_score(s.final_score)}]{s.final_score:5.1f}[/]",
             f"{s.confidence * 100:4.0f}%",
-            f"{s.favorable_probability * 100:4.0f}%",
+            f"[{crash_style}]{crash * 100:3.0f}%[/]",
             f"{fs.get('news', float('nan')):4.0f}",
             f"{fs.get('technicals', float('nan')):4.0f}",
             f"{fs.get('fundamentals', float('nan')):4.0f}",
             f"{fs.get('orderflow', float('nan')):4.0f}",
             f"{fs.get('indicators', float('nan')):4.0f}",
-            f"[{bubble_style}]{s.bubble.label}[/]",
         )
     console.print(table)
+    console.print(
+        "[dim]Call: FAVORED / NEUTRAL / AVOID / AVOID-BUBBLE / NO-EDGE (abstain). "
+        "Crash = P(drawdown ahead).[/]"
+    )
+
+    # Showcase the bullshit detector: list flagged assets and why.
+    flagged = [s for s in rows if s.bubble.reasons and s.bubble.probability >= 0.35]
+    if flagged:
+        console.print("[bold]Bubble watch:[/]")
+        for s in flagged[:6]:
+            console.print(
+                f"  [yellow]{s.symbol}[/] P(crash) {s.bubble.probability:.0%} "
+                f"[dim]{s.bubble.label}[/] — {', '.join(s.bubble.reasons)}"
+            )
 
 
 def _render_diagnostics(result: EngineResult, console: Console) -> None:
@@ -150,6 +173,8 @@ def _render_diagnostics(result: EngineResult, console: Console) -> None:
         shown = f"{v:.4f}" if v == v else "n/a"
         ic.add_row(f, shown)
     console.print(ic)
+    if result.bubble_model_note:
+        console.print(f"[dim]bullshit detector: {result.bubble_model_note}[/]")
 
 
 def _render_history(rows: list[dict], symbol: str, asset_class: str,
@@ -296,6 +321,109 @@ def _cmd_runs(args: argparse.Namespace, console: Console) -> int:
     return 0
 
 
+def _render_backtest(wf, console: Console) -> None:
+    d = wf.as_dict()
+    console.print(
+        f"[bold cyan]Walk-forward backtest[/]  |  {d['asset_class']}  |  "
+        f"horizon {d['horizon']}  |  {d['n_rebalances']} rebalances, "
+        f"{d['n_observations']} obs  |  OOS IC: {d['oos_information_coefficient']}"
+    )
+    pt = Table(title="Out-of-sample portfolios (net of costs)", header_style="bold magenta")
+    for c in ("Strategy", "Ann.return", "Sharpe", "Hit", "MaxDD", "Coverage"):
+        pt.add_column(c, justify="right" if c != "Strategy" else "left")
+    for v in d["portfolios"].values():
+        ann = v["annualized"]
+        pt.add_row(
+            v["name"],
+            f"[{'green' if ann > 0 else 'red'}]{ann:+.1%}[/]",
+            f"{v['sharpe']:+.2f}",
+            f"{v['hit_rate']:.0%}",
+            f"{v['max_drawdown']:.1%}",
+            f"{v['coverage']:.0%}",
+        )
+    console.print(pt)
+
+    if d["calibration_by_confidence"]:
+        ct = Table(
+            title="Calibration: do higher-confidence calls win more? (trust artifact)",
+            header_style="bold magenta",
+        )
+        for c in ("Confidence", "N", "Hit rate", "Mean fwd ret"):
+            ct.add_column(c, justify="right" if c != "Confidence" else "left")
+        for b in d["calibration_by_confidence"]:
+            ct.add_row(
+                b["confidence_bucket"], str(b["n"]),
+                f"{b['hit_rate']:.0%}", f"{b['mean_forward_return']:+.4f}",
+            )
+        console.print(ct)
+
+    det = d["detector_check"]
+    if det.get("flagged_mean_forward_return") is not None:
+        console.print(
+            f"[bold]Bullshit-detector check:[/] flagged {det['flagged_n']} obs · "
+            f"flagged avg fwd return [red]{det['flagged_mean_forward_return']:+.4f}[/] "
+            f"vs calm [green]{det['calm_mean_forward_return']:+.4f}[/] "
+            f"(flagged negative {det['flagged_negative_rate']:.0%} of the time)"
+        )
+    console.print(f"[dim]{d['note']}[/]")
+    console.print(
+        "[dim]Read: if the Selective book beats the benchmark with a positive "
+        "Sharpe, there is real, tradeable edge. If not, the model says so honestly.[/]"
+    )
+
+
+def _cmd_backtest(args: argparse.Namespace, console: Console) -> int:
+    from .backtest import WalkForwardBacktester
+
+    config = _build_config(args)
+    bt = config.backtest
+    bt = dataclasses.replace(
+        bt,
+        min_train=args.min_train or bt.min_train,
+        cost_bps=args.cost_bps if args.cost_bps is not None else bt.cost_bps,
+        selective_confidence=args.selective_confidence or bt.selective_confidence,
+    )
+    config = dataclasses.replace(config, backtest=bt)
+
+    with console.status(f"[cyan]Fetching {config.asset_class} data..."):
+        data = _fetch(config, args.synthetic)
+    engine = ScoringEngine(config)
+    with console.status("[cyan]Running walk-forward backtest (fits per rebalance)..."):
+        wf = WalkForwardBacktester(config).run(engine, data)
+    _render_backtest(wf, console)
+
+    if args.json:
+        with open(args.json, "w") as fh:
+            json.dump(wf.as_dict(), fh, indent=2)
+        console.print(f"[green]Wrote backtest JSON to {args.json}[/]")
+    return 0
+
+
+def _cmd_verify(args: argparse.Namespace, console: Console) -> int:
+    from .storage import ScoreStore
+
+    store = ScoreStore(args.db)
+    res = store.verify_chain()
+    if res["entries"] == 0:
+        console.print("[yellow]Ledger is empty. Save some runs first (score --save / daily).[/]")
+        return 0
+    if res["ok"]:
+        console.print(
+            f"[bold green]Track record verified.[/] {res['entries']} sealed "
+            f"entries, chain intact.\n[dim]head: {res['head']}[/]"
+        )
+    else:
+        reason = {"chain": "ledger chain", "content": "score data"}.get(
+            res.get("reason"), "history"
+        )
+        console.print(
+            f"[bold red]Tamper detected[/] ({reason}) at ledger seq "
+            f"{res['broken_at_seq']} ({res['as_of']} / {res['asset_class']}). "
+            f"The saved record was altered after the fact."
+        )
+    return 0
+
+
 def _cmd_serve(args: argparse.Namespace, console: Console) -> int:
     try:
         import uvicorn
@@ -361,6 +489,18 @@ def _build_parser() -> argparse.ArgumentParser:
     p_runs.add_argument("--limit", type=int, default=50)
     p_runs.add_argument("--db", default=DEFAULT_DB_PATH, help="SQLite DB path")
 
+    p_bt = sub.add_parser("backtest", help="Walk-forward (out-of-sample) edge test")
+    _add_data_args(p_bt)
+    p_bt.add_argument("--symbols", nargs="+", help="Symbols to test")
+    p_bt.add_argument("--min-train", type=int, help="Bars of history before first OOS call")
+    p_bt.add_argument("--cost-bps", type=float, help="Transaction cost per leg (bps)")
+    p_bt.add_argument("--selective-confidence", type=float,
+                      help="Min confidence for the selective book")
+    p_bt.add_argument("--json", metavar="PATH", help="Write backtest JSON to PATH")
+
+    p_verify = sub.add_parser("verify", help="Verify the tamper-evident track record")
+    p_verify.add_argument("--db", default=DEFAULT_DB_PATH, help="SQLite DB path")
+
     p_serve = sub.add_parser("serve", help="Launch the web dashboard")
     p_serve.add_argument("--host", default="127.0.0.1")
     p_serve.add_argument("--port", type=int, default=8000)
@@ -374,7 +514,7 @@ def main(argv: list[str] | None = None) -> int:
         argv = sys.argv[1:]
     # Default to the `score` subcommand for backward-compatible flat usage
     # (e.g. `asset-scorer --asset-class equity`).
-    known = {"score", "daily", "history", "runs", "serve"}
+    known = {"score", "daily", "history", "runs", "backtest", "verify", "serve"}
     help_flags = {"-h", "--help"}
     if not argv or (argv[0] not in known and argv[0] not in help_flags):
         argv = ["score"] + list(argv)
@@ -388,6 +528,8 @@ def main(argv: list[str] | None = None) -> int:
         "daily": _cmd_daily,
         "history": _cmd_history,
         "runs": _cmd_runs,
+        "backtest": _cmd_backtest,
+        "verify": _cmd_verify,
         "serve": _cmd_serve,
     }
     return handlers[args.command](args, console)
