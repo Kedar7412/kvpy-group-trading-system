@@ -531,6 +531,65 @@ def _cmd_scorecard(args: argparse.Namespace, console: Console) -> int:
     return 0
 
 
+def _cmd_snapshot(args: argparse.Namespace, console: Console) -> int:
+    """Generate a static JSON snapshot for the public (Vercel) scorecard.
+
+    Grades every stored asset class and dumps the full hash-chained ledger so a
+    static page can verify integrity client-side. No server required.
+    """
+    import pathlib
+
+    from .backtest import evaluate_scorecard
+    from .config import DEFAULT_UNIVERSES
+    from .storage import ScoreStore
+
+    base = _build_config(args)
+    store = ScoreStore(args.db)
+    classes = store.asset_classes() or ["crypto", "equity", "commodity"]
+
+    chain = sorted(store.ledger_entries(limit=100000), key=lambda r: r["seq"])
+    out = {
+        "generated_at": __import__("datetime").datetime.now(
+            __import__("datetime").timezone.utc
+        ).isoformat(timespec="seconds"),
+        "ledger": {
+            **store.verify_chain(),
+            "chain": [
+                {k: e[k] for k in ("seq", "as_of", "asset_class", "n_scores",
+                                   "payload_hash", "prev_hash", "entry_hash")}
+                for e in chain
+            ],
+        },
+        "classes": {},
+    }
+    for ac in classes:
+        syms = store.symbols(ac) or DEFAULT_UNIVERSES.get(ac, [])
+        if not syms:
+            continue
+        cfg = dataclasses.replace(base, asset_class=ac, universe=syms)
+        with console.status(f"[cyan]Grading {ac}…"):
+            data = _fetch(cfg, args.synthetic)
+            close = _close_panel(data)
+            res = evaluate_scorecard(
+                store, ac, close,
+                horizon=cfg.calibration.forward_horizon,
+                crash_drawdown=cfg.bubble.crash_drawdown,
+            )
+        out["classes"][ac] = res.as_dict()
+
+    out_dir = pathlib.Path(args.out)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "scorecard.json"
+    with open(path, "w") as fh:
+        json.dump(out, fh, indent=2)
+    console.print(
+        f"[green]Wrote snapshot for {len(out['classes'])} classes to {path}[/] "
+        f"[dim](ledger {out['ledger'].get('entries', 0)} entries, "
+        f"{'verified' if out['ledger'].get('ok') else 'BROKEN'})[/]"
+    )
+    return 0
+
+
 def _cmd_verify(args: argparse.Namespace, console: Console) -> int:
     from .storage import ScoreStore
 
@@ -674,6 +733,10 @@ def _build_parser() -> argparse.ArgumentParser:
     p_sc.add_argument("--symbols", nargs="+", help="Restrict to these symbols")
     p_sc.add_argument("--json", metavar="PATH", help="Write scorecard JSON to PATH")
 
+    p_snap = sub.add_parser("snapshot", help="Emit static JSON for the public site")
+    _add_data_args(p_snap)
+    p_snap.add_argument("--out", default="public", help="Output directory")
+
     p_serve = sub.add_parser("serve", help="Launch the web dashboard")
     p_serve.add_argument("--host", default=os.environ.get("ASSET_SCORER_HOST", "127.0.0.1"))
     p_serve.add_argument("--port", type=int,
@@ -692,7 +755,7 @@ def main(argv: list[str] | None = None) -> int:
     # Default to the `score` subcommand for backward-compatible flat usage
     # (e.g. `asset-scorer --asset-class equity`).
     known = {"score", "daily", "history", "runs", "backtest", "verify",
-             "backfill", "scorecard", "serve"}
+             "backfill", "scorecard", "snapshot", "serve"}
     help_flags = {"-h", "--help"}
     if not argv or (argv[0] not in known and argv[0] not in help_flags):
         argv = ["score"] + list(argv)
@@ -710,6 +773,7 @@ def main(argv: list[str] | None = None) -> int:
         "verify": _cmd_verify,
         "backfill": _cmd_backfill,
         "scorecard": _cmd_scorecard,
+        "snapshot": _cmd_snapshot,
         "serve": _cmd_serve,
     }
     return handlers[args.command](args, console)

@@ -1,9 +1,46 @@
 # Deploying the public scorecard
 
-The app serves the dashboard at `/` and a public, read-only scorecard at
-`/scorecard` (which publishes the ledger head hash for verification). On first
-boot it **auto-seeds a synthetic demo** so the page is never empty; you then
-schedule `daily` to append real calls and the track record compounds.
+There are two shapes:
+
+- **Static + CI (recommended, 100% free — Vercel/GitHub Pages):** a GitHub
+  Action runs `daily` + `snapshot` to produce `public/scorecard.json`, and a
+  static page verifies the hash-chain **in the browser**. No server, no cost,
+  fully auditable.
+- **Server (Render/Fly/Docker):** runs the full FastAPI app with a live
+  `/scorecard` and on-demand grading.
+
+---
+
+## Option 0 — Vercel (free, recommended)
+
+> Vercel is serverless with an ephemeral filesystem, so it can't run the live
+> Python server or keep a growing SQLite ledger. Instead we host the **static**
+> `public/` folder and let **GitHub Actions** do the Python work and commit the
+> snapshot. Vercel auto-deploys on every push.
+
+1. **Merge this PR to `main`** (scheduled Actions run on the default branch).
+2. In Vercel: **Add New → Project → import the repo**.
+   - Framework preset: **Other**
+   - **Root Directory: `public`** (or leave root and keep the included
+     `vercel.json`, which sets `outputDirectory: public`)
+   - Build command: **none** · Output directory: `public`
+   - Deploy → your scorecard is at `https://<project>.vercel.app/`
+3. The included **`.github/workflows/scorecard.yml`** runs daily (and on manual
+   dispatch): it bootstraps the ledger, appends the day's sealed calls with
+   `asset-scorer daily`, regenerates `public/scorecard.json` via
+   `asset-scorer snapshot`, and commits. Vercel redeploys automatically.
+
+Trigger the first build now: GitHub → **Actions → daily-scorecard → Run
+workflow**. An initial synthetic `public/scorecard.json` is already committed so
+the very first deploy isn't blank.
+
+**How the trust works:** the page recomputes the entire hash chain with the
+browser's SubtleCrypto and compares the head to the published hash — so visitors
+verify the record themselves, and the ledger lives immutably in git history.
+
+---
+
+## Server options (live app)
 
 Config is environment-driven:
 

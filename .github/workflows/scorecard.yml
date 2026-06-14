@@ -1,0 +1,52 @@
+name: daily-scorecard
+
+# Appends real sealed calls to the committed ledger and regenerates the static
+# snapshot that Vercel serves. Runs on the DEFAULT branch (merge the PR first),
+# and can be triggered manually.
+on:
+  schedule:
+    - cron: "30 23 * * *"   # 23:30 UTC daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scorecard
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Bootstrap ledger on first run
+        run: |
+          mkdir -p data
+          if [ ! -f data/asset_scores.db ]; then
+            for c in crypto equity commodity; do
+              asset-scorer backfill --asset-class "$c" --history 500 --db data/asset_scores.db || true
+            done
+          fi
+
+      - name: Append today's sealed calls
+        run: asset-scorer daily --db data/asset_scores.db || true
+
+      - name: Regenerate public snapshot
+        run: asset-scorer snapshot --db data/asset_scores.db --out public
+
+      - name: Commit & push
+        run: |
+          git config user.name "scorecard-bot"
+          git config user.email "scorecard-bot@users.noreply.github.com"
+          git add data/asset_scores.db public/scorecard.json
+          git commit -m "chore: daily scorecard snapshot [skip ci]" || echo "no changes"
+          git push

@@ -1,0 +1,13 @@
+{
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "public",
+  "framework": null,
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/scorecard.json",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asset Scorer — Public Scorecard</title>
+<meta name="description" content="A self-verifying, tamper-evident track record of multi-factor asset calls." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  :root{--bg0:#05060b;--bg1:#0a0d18;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.07);
+    --line:rgba(255,255,255,.09);--text:#e9eef9;--muted:#8a93a8;--indigo:#6366f1;--cyan:#22d3ee;
+    --green:#34d399;--red:#fb7185;--yellow:#fbbf24}
+  *{box-sizing:border-box}html,body{margin:0;min-height:100%}
+  body{background:radial-gradient(1100px 700px at 85% -10%,#11203c 0,transparent 55%),
+    radial-gradient(800px 600px at -5% 0,#1a1336 0,transparent 50%),linear-gradient(180deg,var(--bg1),var(--bg0));
+    color:var(--text);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  #bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 22px 64px}
+  nav{display:flex;align-items:center;gap:14px;padding:18px 0}
+  .logo{width:32px;height:32px;border-radius:9px;background:conic-gradient(from 200deg,var(--indigo),var(--cyan),#a78bfa,var(--indigo));box-shadow:0 0 22px rgba(99,102,241,.5);position:relative}
+  .logo::after{content:"";position:absolute;inset:6px;border-radius:5px;background:#0a0d18}
+  .brand b{font-family:Sora;font-weight:800;font-size:16px}.brand span{display:block;color:var(--muted);font-size:11px}
+  .spacer{flex:1}
+  .seg{display:flex;background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:4px}
+  .seg button{background:none;border:0;color:var(--muted);padding:7px 13px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer}
+  .seg button.on{background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff}
+  .hero{padding:34px 0 18px;max-width:680px}
+  .hero h1{font-family:Sora;font-weight:800;font-size:38px;margin:0 0 12px;line-height:1.08;
+    background:linear-gradient(120deg,#fff,#9db4ff,#74e6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);margin:0;font-size:15px}
+  .proof{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px)}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--line)}
+  .hash{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);word-break:break-all;flex:1;min-width:220px}
+  .copy{background:var(--glass2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:6px 11px;font-size:12px;cursor:pointer}
+  .panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:20px;backdrop-filter:blur(16px);box-shadow:0 20px 60px rgba(0,0,0,.35);margin-bottom:18px}
+  .panel h2{font-family:Sora;font-size:12px;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted);margin:0 0 14px}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .stat{background:var(--glass2);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .stat .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+  .stat .v{font-family:Sora;font-size:22px;font-weight:700;margin-top:4px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:right;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase}
+  .muted{color:var(--muted)}.foot{color:var(--muted);font-size:12px;text-align:center;margin-top:32px}
+  .foot a{color:var(--cyan);text-decoration:none}
+  canvas.chart{max-height:280px}
+  @media(max-width:760px){.hero h1{font-size:30px}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <nav>
+    <div class="logo"></div>
+    <div class="brand"><b>ASSET SCORER</b><span>public scorecard · self-verifying</span></div>
+    <div class="spacer"></div>
+    <div class="seg" id="seg"></div>
+  </nav>
+
+  <header class="hero">
+    <h1>The track record, in the open.</h1>
+    <p>Every call was sealed into a tamper-evident, hash-chained ledger when it was made, then graded against what prices actually did. Your browser re-computes the entire chain below — no server, no trust required.</p>
+  </header>
+
+  <div class="proof">
+    <span class="badge" id="badge"><span id="badgeText">verifying in your browser…</span></span>
+    <div class="hash" id="hash">ledger head: …</div>
+    <button class="copy" id="copyBtn">Copy hash</button>
+  </div>
+
+  <section class="panel"><h2>Headline</h2><div id="head"><p class="muted">Loading…</p></div></section>
+  <section class="panel"><h2>Follow-the-FAVORED equity</h2><canvas id="curve" class="chart"></canvas>
+    <p class="muted" id="curveNote" style="font-size:12px;margin-top:8px"></p></section>
+  <section class="panel"><h2>By call type</h2><div id="byCall"></div></section>
+  <section class="panel"><h2>Calibration by confidence</h2><div id="byConf"></div></section>
+
+  <div class="foot" id="foot">Research tool, not investment advice.</div>
+</div>
+
+<script>
+/* 3D follower */
+(function(){const c=document.getElementById("bg");if(!window.THREE)return;
+ const r=new THREE.WebGLRenderer({canvas:c,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
+ const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,100);cam.position.z=6;
+ const g=new THREE.Group();sc.add(g);
+ g.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.8,1)),new THREE.LineBasicMaterial({color:0x6f7bff,transparent:true,opacity:.5})));
+ g.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(2.5,1)),new THREE.LineBasicMaterial({color:0xa78bfa,transparent:true,opacity:.15})));
+ const N=600,p=new Float32Array(N*3);for(let i=0;i<N;i++){const rr=3.4+Math.random()*3,t=Math.random()*6.28,ph=Math.acos(2*Math.random()-1);p[i*3]=rr*Math.sin(ph)*Math.cos(t);p[i*3+1]=rr*Math.sin(ph)*Math.sin(t);p[i*3+2]=rr*Math.cos(ph);}
+ const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(p,3));
+ const st=new THREE.Points(pg,new THREE.PointsMaterial({color:0x39d8ff,size:.03,transparent:true,opacity:.6}));sc.add(st);
+ const tg={x:0,y:0},cu={x:0,y:0};addEventListener("pointermove",e=>{tg.x=(e.clientX/innerWidth)*2-1;tg.y=(e.clientY/innerHeight)*2-1;});
+ function rz(){r.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();}addEventListener("resize",rz);rz();
+ (function loop(){requestAnimationFrame(loop);cu.x+=(tg.x-cu.x)*.05;cu.y+=(tg.y-cu.y)*.05;
+   g.rotation.y+=.0024+cu.x*.01;g.rotation.x+=.0013;g.rotation.z=cu.x*.22;g.position.x=cu.x*1.6;g.position.y=-cu.y*1.1;
+   st.rotation.y-=.0006;cam.position.x+=(cu.x*.7-cam.position.x)*.04;cam.position.y+=(-cu.y*.5-cam.position.y)*.04;cam.lookAt(sc.position);r.render(sc,cam);})();
+})();
+
+const callColor=c=>({FAVORED:"#34d399","AVOID-BUBBLE":"#fb7185",AVOID:"#fb7185",NEUTRAL:"#fbbf24","NO-EDGE":"#8a93a8"}[c]||"#cbd5e1");
+const pct=v=>(v==null||isNaN(v))?"–":Math.round(v*100)+"%";
+const sgn=(v)=>(v==null||isNaN(v))?"–":(v>=0?"+":"")+Number(v).toFixed(4);
+let SNAP=null,state={ac:null},curveChart=null;
+
+async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest("SHA-256",b);return[...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function verifyChain(chain){let prev="0".repeat(64);for(const e of chain){const exp=await sha256(prev+e.payload_hash);if(e.prev_hash!==prev||e.entry_hash!==exp)return{ok:false,at:e.seq};prev=e.entry_hash;}return{ok:true,head:prev,entries:chain.length};}
+
+async function boot(){
+  try{SNAP=await (await fetch("./scorecard.json?cb="+Date.now())).json();}
+  catch(e){document.getElementById("head").innerHTML=`<p style="color:var(--red)">No snapshot found. Run \`asset-scorer snapshot\`.</p>`;return;}
+  const classes=Object.keys(SNAP.classes||{});
+  state.ac=classes[0]||"crypto";
+  const seg=document.getElementById("seg");
+  seg.innerHTML=classes.map(c=>`<button data-c="${c}">${c}</button>`).join("");
+  seg.querySelectorAll("button").forEach(b=>b.onclick=()=>{state.ac=b.dataset.c;sync();render();});
+  sync();
+
+  // client-side chain verification
+  const chain=(SNAP.ledger&&SNAP.ledger.chain)||[];
+  const badge=document.getElementById("badge");
+  let v={ok:false};
+  if(chain.length && window.crypto&&crypto.subtle){ try{v=await verifyChain(chain);}catch(e){v={ok:false}; } }
+  else { v={ok:!!(SNAP.ledger&&SNAP.ledger.ok),head:SNAP.ledger&&SNAP.ledger.head,entries:(SNAP.ledger&&SNAP.ledger.entries)||0}; }
+  const head=v.head||(SNAP.ledger&&SNAP.ledger.head)||"(none)";
+  badge.style.borderColor=v.ok?"var(--green)":"var(--red)";
+  document.getElementById("badgeText").innerHTML=v.ok
+    ?`<span style="color:var(--green)">✓ Verified in your browser</span> · ${v.entries||chain.length} sealed entries`
+    :`<span style="color:var(--red)">✗ Verification failed</span>`;
+  document.getElementById("hash").textContent="ledger head: "+head;
+  document.getElementById("copyBtn").onclick=()=>navigator.clipboard&&navigator.clipboard.writeText(head);
+  document.getElementById("foot").innerHTML=`Generated ${SNAP.generated_at||""} · research tool, not investment advice · <a href="https://github.com/Kedar7412/kvpy-group-trading-system" target="_blank">source</a>`;
+  render();
+}
+function sync(){document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.c===state.ac));}
+function st_(k,v,style=""){return `<div class="stat"><div class="k">${k}</div><div class="v" style="${style}">${v}</div></div>`;}
+
+function render(){
+  const d=(SNAP.classes||{})[state.ac];
+  const head=document.getElementById("head");
+  if(!d||!d.n_matured){head.innerHTML=`<p class="muted">${(d&&d.note)||"No matured calls yet — check back soon."}</p>`;if(curveChart){curveChart.destroy();curveChart=null;}document.getElementById("byCall").innerHTML="";document.getElementById("byConf").innerHTML="";return;}
+  const fmb=d.favored_minus_benchmark;
+  let h=`<div class="stat-grid">`;
+  h+=st_("Matured calls",d.n_matured);
+  h+=st_("Dates",d.n_dates);
+  h+=st_("Accuracy",pct(d.actionable_accuracy));
+  h+=st_("Abstention",pct(d.abstention_rate));
+  h+=st_("FAVORED ret",sgn(d.favored_mean_return));
+  h+=st_("FAVORED − bench",sgn(fmb),`color:${(fmb||0)>=0?'var(--green)':'var(--red)'}`);
+  h+=`</div><p class="muted" style="font-size:12px;margin-top:10px">${d.as_of_first} → ${d.as_of_last} · horizon ${d.horizon} bars · benchmark ${sgn(d.benchmark_mean_return)}</p>`;
+  head.innerHTML=h;
+
+  const ff=d.follow_favored||{},curve=d.equity_curve||[],ctx=document.getElementById("curve");
+  document.getElementById("curveNote").textContent=ff.total_return!=null?`Total ${(ff.total_return*100).toFixed(1)}% over ${ff.n_periods} periods · Sharpe-like ${ff.sharpe_like} (illustrative, overlapping windows).`:"";
+  if(curveChart)curveChart.destroy();
+  if(curve.length)curveChart=new Chart(ctx,{type:"line",data:{labels:curve.map(p=>p.as_of),datasets:[{data:curve.map(p=>p.equity),borderColor:"#22d3ee",backgroundColor:"rgba(34,211,238,.12)",fill:true,tension:.25,pointRadius:0}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#8a93a8",maxTicksLimit:7},grid:{color:"rgba(255,255,255,.06)"}},y:{ticks:{color:"#8a93a8"},grid:{color:"rgba(255,255,255,.06)"}}}}});
+
+  const tbl=(rows,cols)=>`<table><thead><tr>`+cols.map(c=>`<th>${c.h}</th>`).join("")+`</tr></thead><tbody>`+rows.map(r=>`<tr>${cols.map(c=>`<td style="${c.s?c.s(r):''}">${c.f(r)}</td>`).join("")}</tr>`).join("")+`</tbody></table>`;
+  document.getElementById("byCall").innerHTML=(d.by_call||[]).length?tbl(d.by_call,[{h:"Call",f:r=>r.call,s:r=>"text-align:left;color:"+callColor(r.call)},{h:"N",f:r=>r.n},{h:"Win rate",f:r=>pct(r.win_rate)},{h:"Mean fwd ret",f:r=>sgn(r.mean_forward_return)}]):`<p class="muted">No data.</p>`;
+  document.getElementById("byConf").innerHTML=(d.by_confidence||[]).length?tbl(d.by_confidence,[{h:"Confidence",f:r=>r.confidence_bucket,s:()=>"text-align:left"},{h:"N",f:r=>r.n},{h:"Hit rate",f:r=>pct(r.hit_rate)},{h:"Mean fwd ret",f:r=>sgn(r.mean_forward_return)}]):`<p class="muted">No data.</p>`;
+}
+boot();
+</script>
+</body>
+</html>
