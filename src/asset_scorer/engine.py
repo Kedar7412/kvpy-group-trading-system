@@ -29,8 +29,11 @@ from .scoring import (
     SIGNAL_NAMES,
     composite_panel,
     compute_flexible_weights,
+    compute_regime,
     cross_sectional_score,
+    longs_allowed,
     recommend,
+    regime_state_at,
 )
 
 
@@ -112,6 +115,7 @@ class EngineResult:
     global_ic: dict[str, float]
     data_source: str
     asset_class: str = "crypto"
+    regime: str = "neutral"
     n_synthetic: int = 0
     n_real_news: int = 0
     n_real_fundamentals: int = 0
@@ -124,6 +128,7 @@ class EngineResult:
             "forward_horizon": self.horizon,
             "asset_class": self.asset_class,
             "data_source": self.data_source,
+            "regime": self.regime,
             "n_assets": len(self.scores),
             "n_synthetic": self.n_synthetic,
             "n_real_news": self.n_real_news,
@@ -252,9 +257,14 @@ class ScoringEngine:
         bt = evaluate_scores(final_panel, p.forward_returns)
         as_of = self._resolve_as_of(final_panel)
 
+        # Market regime (point-in-time) gates FAVORED longs.
+        regime_df = compute_regime(p.close_panel, self.config.regime)
+        regime_label = regime_state_at(regime_df, as_of).label
+        longs_ok = longs_allowed(regime_label)
+
         asset_scores = self._build_asset_scores(
             data, p, signals, prob_panel, final_panel, base_panel,
-            flex.weights, factor_order, as_of, detector,
+            flex.weights, factor_order, as_of, detector, longs_ok,
         )
 
         n_synth = sum(1 for ad in data.values() if ad.synthetic)
@@ -284,6 +294,7 @@ class ScoringEngine:
             global_ic={f: float(flex.global_ic.get(f, np.nan)) for f in factor_order},
             data_source=source,
             asset_class=self.config.asset_class,
+            regime=regime_label,
             n_synthetic=n_synth,
             n_real_news=n_news,
             n_real_fundamentals=n_fund,
@@ -304,7 +315,7 @@ class ScoringEngine:
 
     def _build_asset_scores(
         self, data, p, signals, prob_panel, final_panel, base_panel,
-        weights, factor_order, as_of, detector,
+        weights, factor_order, as_of, detector, longs_ok=True,
     ) -> list[AssetScore]:
         rows: list[AssetScore] = []
         for symbol in data:
@@ -356,7 +367,8 @@ class ScoringEngine:
             r.favorable_probability = float(p_fav.get(r.symbol, np.nan))
             r.confidence = float(conf.get(r.symbol, np.nan))
             r.recommendation = recommend(
-                r.final_score, r.confidence, r.bubble.probability, self.config.abstention
+                r.final_score, r.confidence, r.bubble.probability,
+                self.config.abstention, longs_ok=longs_ok,
             )
 
         rows.sort(key=lambda r: (np.isnan(r.final_score), -np.nan_to_num(r.final_score, nan=-1e9)))

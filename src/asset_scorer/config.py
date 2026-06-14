@@ -81,6 +81,26 @@ class BubbleConfig:
 
 
 @dataclass(frozen=True)
+class RegimeConfig:
+    """Market-regime detection (point-in-time) from the universe itself.
+
+    The idea: don't go long into a falling, choppy, or panicking market. We
+    build an equal-weight index from the universe and read its trend, breadth,
+    and volatility to label each day risk_on / neutral / risk_off. FAVORED longs
+    are only allowed in risk_on/neutral.
+    """
+
+    index_fast: int = 50          # fast SMA on the equal-weight index
+    index_slow: int = 100         # slow SMA (trend filter)
+    breadth_lookback: int = 50    # SMA each asset is compared against for breadth
+    vol_lookback: int = 30        # realized-vol window on index returns
+    vol_z_window: int = 120       # window for the vol z-score
+    vol_hot_z: float = 1.25       # vol z above this = stress
+    breadth_weak: float = 0.40    # breadth below this = risk_off
+    breadth_strong: float = 0.55  # breadth above this (+trend) = risk_on
+
+
+@dataclass(frozen=True)
 class AbstentionConfig:
     """Selective prediction: the courage to say 'no edge'.
 
@@ -141,21 +161,16 @@ class AppConfig:
     asset_class: str = "crypto"  # crypto | equity | commodity
     universe: list[str] = field(
         default_factory=lambda: [
-            "BTC/USDT",
-            "ETH/USDT",
-            "SOL/USDT",
-            "BNB/USDT",
-            "XRP/USDT",
-            "ADA/USDT",
-            "DOGE/USDT",
-            "AVAX/USDT",
-            "LINK/USDT",
-            "DOT/USDT",
+            "BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "ADA/USDT",
+            "DOGE/USDT", "AVAX/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT",
+            "ATOM/USDT", "UNI/USDT", "NEAR/USDT", "ARB/USDT", "OP/USDT",
+            "INJ/USDT", "APT/USDT", "SUI/USDT",
         ]
     )
     factor: FactorConfig = field(default_factory=FactorConfig)
     weights: WeightConfig = field(default_factory=WeightConfig)
     bubble: BubbleConfig = field(default_factory=BubbleConfig)
+    regime: RegimeConfig = field(default_factory=RegimeConfig)
     abstention: AbstentionConfig = field(default_factory=AbstentionConfig)
     backtest: BacktestConfig = field(default_factory=BacktestConfig)
     calibration: CalibrationConfig = field(default_factory=CalibrationConfig)
@@ -168,8 +183,8 @@ DEFAULT_CONFIG = AppConfig()
 DEFAULT_UNIVERSES: dict[str, list[str]] = {
     "crypto": list(DEFAULT_CONFIG.universe),
     "equity": [
-        "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META",
-        "TSLA", "JPM", "XOM", "JNJ", "WMT", "KO",
+        "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "AMD",
+        "JPM", "XOM", "JNJ", "WMT", "KO", "CRM", "UBER", "PLTR", "COIN", "NFLX",
     ],
     "commodity": [
         "GC=F",  # gold

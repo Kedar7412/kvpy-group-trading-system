@@ -36,6 +36,7 @@ def recommend(
     confidence: float,
     bubble_probability: float,
     cfg: AbstentionConfig,
+    longs_ok: bool = True,
 ) -> Recommendation:
     if bubble_probability is not None and bubble_probability >= cfg.bubble_avoid_prob:
         return Recommendation(
@@ -49,6 +50,11 @@ def recommend(
             f" below {cfg.min_confidence:.0%} -- no reliable edge today",
         )
     if score >= cfg.favored_score:
+        if not longs_ok:
+            return Recommendation(
+                "NEUTRAL",
+                f"score {score:.0f} but risk-off market -- longs suppressed",
+            )
         return Recommendation("FAVORED", f"score {score:.0f} with sufficient conviction")
     if score <= cfg.avoid_score:
         return Recommendation("AVOID", f"score {score:.0f} with sufficient conviction")

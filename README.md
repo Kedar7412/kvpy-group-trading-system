@@ -137,6 +137,16 @@ Every asset gets an explicit **Call**, including the option to stay silent:
 
 Saying "no edge" most of the time is a feature, not a bug.
 
+## Market regime filter
+
+A long-biased scorer bleeds most by going long into a falling, choppy market.
+The engine builds an equal-weight index from the universe and reads its trend,
+breadth, and volatility to label each day **risk_on / neutral / risk_off**
+(point-in-time, no look-ahead). FAVORED longs are suppressed in `risk_off`, and
+the backtest adds a **regime-gated long book** that holds cash in risk-off. On a
+wider 18-asset universe this lifted the out-of-sample IC and gave the
+regime-gated book a materially better Sharpe than the naive long book.
+
 ## The bullshit detector (predictive bubble model)
 
 The anti-bubble logic is a **calibrated model** that predicts the probability of
@@ -176,18 +186,21 @@ forward, `daily` keeps appending, so the record compounds. The same view is on
 the dashboard (`/api/scorecard`).
 
 ## Web dashboard
-A FastAPI + single-page dashboard visualizes the stored scores.
+A premium single-page dashboard (FastAPI + Three.js) with an interactive 3D
+object that follows your cursor.
 
 ```bash
 asset-scorer daily --db asset_scores.db   # populate some data first
 asset-scorer serve --db asset_scores.db   # http://127.0.0.1:8000
 ```
 
-The dashboard shows a ranked, color-coded score table with run diagnostics
-(calibration skill, Brier, IC, hit rate), a per-asset **score-history line
-chart** (score + confidence over time), and a **factor-breakdown bar chart**.
-Buttons trigger a live refresh (fetch + score + save) or a synthetic demo run.
-API routes live under `/api/*` (`scores`, `history`, `runs`, `refresh`).
+It shows the live **regime badge**, color-coded scores with the **Call**
+(FAVORED/AVOID/NO-EDGE…) and crash probability, run diagnostics, score-history
+and factor-breakdown charts, and an in-page **Grade calls** scorecard. A
+separate **public, read-only scorecard page** at `/scorecard` grades the sealed
+calls and publishes the **ledger head hash** so anyone can verify the record.
+API routes live under `/api/*` (`scores`, `history`, `runs`, `refresh`,
+`scorecard`, `verify`).
 
 ## Asset classes
 The engine is asset-class agnostic — all providers return the same `AssetData`

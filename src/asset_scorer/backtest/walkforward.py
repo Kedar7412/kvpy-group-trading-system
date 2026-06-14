@@ -26,7 +26,10 @@ import numpy as np
 import pandas as pd
 
 from ..config import AppConfig
-from ..scoring import BubbleDetector, compute_flexible_weights, recommend
+from ..scoring import (
+    BubbleDetector, compute_flexible_weights, compute_regime, longs_allowed,
+    recommend, regime_state_at,
+)
 from ..calibration import ConfidenceModel as _ConfidenceModel
 
 
@@ -131,6 +134,7 @@ class WalkForwardBacktester:
             panels.rsi, panels.momentum_z, panels.heat, panels.bb_pos,
             panels.premium, close,
         )
+        regime_df = compute_regime(close, self.config.regime)
 
         start = max(cfg.min_train, 1)
         rebal = [i for i in range(start, len(dates) - H, step)]
@@ -179,6 +183,8 @@ class WalkForwardBacktester:
             )
             fwd_t = fwd.loc[t]
             ranks = score_t.rank(ascending=False, method="min")
+            regime_label = regime_state_at(regime_df, t).label
+            longs_ok = longs_allowed(regime_label)
 
             date_rows = []
             for sym in feat_t.index:
@@ -190,12 +196,14 @@ class WalkForwardBacktester:
                             "date": t, "symbol": sym, "score": float(s),
                             "confidence": float(conf_t.get(sym, np.nan)),
                             "prob": float(prob_t.get(sym, np.nan)),
-                            "fwd": float(fr),
+                            "fwd": float(fr), "regime": regime_label,
                         })
                     if persist:
                         prob = float(prob_t.get(sym, 0.0))
                         conf = float(conf_t.get(sym, np.nan))
-                        rec_call = recommend(float(s), conf, prob, self.config.abstention)
+                        rec_call = recommend(
+                            float(s), conf, prob, self.config.abstention, longs_ok=longs_ok
+                        )
                         deficit_v = float(def_t.get(sym, 0.5))
                         date_rows.append({
                             "symbol": sym,
@@ -243,8 +251,9 @@ class WalkForwardBacktester:
     def _build_portfolios(self, rec: pd.DataFrame, ppy: float, cfg) -> WalkForwardResult:
         q = cfg.quantile
         cost = cfg.cost_bps / 1e4
-        bench, longonly, longshort, selective = [], [], [], []
+        bench, longonly, longshort, selective, regime_long = [], [], [], [], []
         sel_live = 0
+        reg_live = 0
 
         for _, g in rec.groupby("date"):
             g = g.dropna(subset=["score", "fwd"])
@@ -265,15 +274,25 @@ class WalkForwardBacktester:
                 sel_live += 1
             else:
                 selective.append(0.0)  # cash
+            # regime-gated long: only hold the top book when the market allows longs
+            regime_ok = "regime" in g.columns and longs_allowed(str(g["regime"].iloc[0]))
+            if regime_ok:
+                regime_long.append(top["fwd"].mean() - cost)
+                reg_live += 1
+            else:
+                regime_long.append(0.0)  # cash in risk-off
 
         n_dates = rec["date"].nunique()
-        coverage = sel_live / max(1, len([1 for _, g in rec.groupby("date") if len(g) >= 4]))
+        n_eligible = len([1 for _, g in rec.groupby("date") if len(g) >= 4])
+        coverage = sel_live / max(1, n_eligible)
+        reg_coverage = reg_live / max(1, n_eligible)
 
         portfolios = {
             "benchmark": _stats("Equal-weight benchmark", bench, ppy),
             "long_only_top": _stats("Long top-quantile", longonly, ppy),
             "long_short": _stats("Long-short", longshort, ppy),
             "selective": _stats("Selective (high-confidence only)", selective, ppy, coverage),
+            "regime_long": _stats("Regime-gated long (cash in risk-off)", regime_long, ppy, reg_coverage),
         }
 
         oos_ic = _spearman(rec["score"], rec["fwd"])

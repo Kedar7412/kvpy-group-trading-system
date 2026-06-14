@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS runs (
     created_at       TEXT NOT NULL,
     horizon          INTEGER,
     data_source      TEXT,
+    regime           TEXT,
     n_assets         INTEGER,
     n_synthetic      INTEGER,
     calib_fitted     INTEGER,
@@ -99,6 +100,9 @@ _MIGRATIONS = {
         "bubble_probability": "REAL",
         "call": "TEXT",
         "rationale": "TEXT",
+    },
+    "runs": {
+        "regime": "TEXT",
     },
 }
 
@@ -168,8 +172,8 @@ class ScoreStore:
                     as_of, asset_class, created_at, horizon, data_source,
                     n_assets, n_synthetic, calib_fitted, calib_method, base_rate,
                     brier_score, skill_score, information_coefficient,
-                    top_minus_bottom, hit_rate, global_ic_json
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    top_minus_bottom, hit_rate, global_ic_json, regime
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(as_of, asset_class) DO UPDATE SET
                     created_at=excluded.created_at,
                     horizon=excluded.horizon,
@@ -184,7 +188,8 @@ class ScoreStore:
                     information_coefficient=excluded.information_coefficient,
                     top_minus_bottom=excluded.top_minus_bottom,
                     hit_rate=excluded.hit_rate,
-                    global_ic_json=excluded.global_ic_json
+                    global_ic_json=excluded.global_ic_json,
+                    regime=excluded.regime
                 """,
                 (
                     result.as_of, result.asset_class, now, result.horizon,
@@ -193,7 +198,7 @@ class ScoreStore:
                     r.skill_score, bt.ic if bt.ic == bt.ic else None,
                     bt.top_minus_bottom if bt.top_minus_bottom == bt.top_minus_bottom else None,
                     bt.hit_rate if bt.hit_rate == bt.hit_rate else None,
-                    json.dumps(result.global_ic),
+                    json.dumps(result.global_ic), getattr(result, "regime", None),
                 ),
             )
 
