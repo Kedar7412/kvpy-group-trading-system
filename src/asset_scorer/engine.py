@@ -169,6 +169,13 @@ class ScoringEngine:
         factor_order = [f for f in FACTORS if f in self.factors]
         H = self.config.calibration.forward_horizon
 
+        # Normalize all OHLCV indices to timezone-naive so real and synthetic
+        # assets (which may differ in tz-awareness) can always be merged.
+        for ad in data.values():
+            idx = ad.ohlcv.index
+            if isinstance(idx, pd.DatetimeIndex) and idx.tz is not None:
+                ad.ohlcv.index = idx.tz_localize(None)
+
         # 1. Run every factor on every asset.
         outputs: dict[str, dict[str, dict[str, pd.Series]]] = {}
         for symbol, ad in data.items():

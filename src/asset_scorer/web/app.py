@@ -49,7 +49,7 @@ def create_app(db_path: str = DEFAULT_DB_PATH) -> FastAPI:
         html = _STATIC / "index.html"
         if not html.exists():
             return "<h1>Dashboard asset missing</h1>"
-        return html.read_text()
+        return html.read_text(encoding="utf-8")
 
     @app.get("/api/asset-classes")
     def asset_classes() -> list[str]:

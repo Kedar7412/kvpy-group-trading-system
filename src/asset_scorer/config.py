@@ -115,7 +115,7 @@ class AppConfig:
             "DOGE/USDT",
             "AVAX/USDT",
             "LINK/USDT",
-            "MATIC/USDT",
+            "DOT/USDT",
         ]
     )
     factor: FactorConfig = field(default_factory=FactorConfig)
