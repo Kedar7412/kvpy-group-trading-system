@@ -78,6 +78,15 @@
     <div id="tableWrap"><p class="muted">Loading…</p></div>
   </section>
 
+  <section class="panel full">
+    <h2>Live scorecard — did our calls come true?
+      <span class="muted" id="scMeta"></span>
+      <button id="scBtn" style="float:right" title="Fetch prices and grade every sealed call">Grade calls</button>
+    </h2>
+    <div id="scWrap"><p class="muted">Click “Grade calls” to evaluate the sealed track record against realized prices.</p></div>
+    <canvas id="scChart" style="margin-top:12px"></canvas>
+  </section>
+
   <section class="panel">
     <h2>Score history <span class="muted" id="histSym"></span></h2>
     <canvas id="histChart"></canvas>
@@ -94,7 +103,7 @@
 <script>
 const FACTORS = ["news", "technicals", "fundamentals", "orderflow", "indicators"];
 let state = { ac: "crypto", selected: null, scores: [] };
-let histChart = null, factorChart = null;
+let histChart = null, factorChart = null, scChart = null;
 
 function scoreColor(v) {
   if (v == null || isNaN(v)) return "var(--muted)";
@@ -253,6 +262,88 @@ function renderFactorChart(s) {
   });
 }
 
+async function loadScorecard() {
+  const wrap = document.getElementById("scWrap");
+  const btn = document.getElementById("scBtn");
+  btn.disabled = true; btn.textContent = "Grading…";
+  wrap.innerHTML = `<p class="muted">Fetching prices and grading sealed calls…</p>`;
+  try {
+    const d = await getJSON(`/api/scorecard?asset_class=${encodeURIComponent(state.ac)}`);
+    renderScorecard(d);
+  } catch (e) {
+    wrap.innerHTML = `<p style="color:var(--red)">Scorecard failed: ${e.message}</p>`;
+  } finally {
+    btn.disabled = false; btn.textContent = "Grade calls";
+  }
+}
+
+function fnum(v, d=4) { return (v==null||isNaN(v)) ? "–" : Number(v).toFixed(d); }
+function fsign(v, d=4) { return (v==null||isNaN(v)) ? "–" : (v>=0?"+":"")+Number(v).toFixed(d); }
+
+function renderScorecard(d) {
+  const wrap = document.getElementById("scWrap");
+  const led = d.ledger || {};
+  const badge = led.ok ? `<span style="color:var(--green)">verified</span>`
+                       : `<span style="color:var(--red)">TAMPERED</span>`;
+  document.getElementById("scMeta").innerHTML =
+    `· ledger ${badge} (${led.entries||0}) · ${d.n_matured||0}/${d.n_calls||0} matured`;
+  if (!d.n_matured) {
+    wrap.innerHTML = `<p class="muted">${d.note || "No matured calls yet."}</p>`;
+    if (scChart) { scChart.destroy(); scChart = null; }
+    return;
+  }
+  const fmb = d.favored_minus_benchmark;
+  const stat = (k,v,style="") => `<div class="stat"><div class="k">${k}</div><div class="v" style="${style}">${v}</div></div>`;
+  let html = `<div class="stat-grid">`;
+  html += stat("Actionable accuracy", d.actionable_accuracy==null?"–":Math.round(d.actionable_accuracy*100)+"%");
+  html += stat("Abstention rate", d.abstention_rate==null?"–":Math.round(d.abstention_rate*100)+"%");
+  html += stat("FAVORED mean ret", fsign(d.favored_mean_return));
+  html += stat("Benchmark mean ret", fsign(d.benchmark_mean_return));
+  html += stat("FAVORED − benchmark", fsign(fmb), `color:${(fmb||0)>=0?'var(--green)':'var(--red)'}`);
+  if (d.follow_favored && d.follow_favored.total_return!=null)
+    html += stat("Follow-FAVORED total", (d.follow_favored.total_return>=0?"+":"")+(d.follow_favored.total_return*100).toFixed(1)+"%");
+  html += `</div>`;
+
+  // by call + by confidence tables
+  const tbl = (title, rows, cols) => {
+    let t = `<h3 style="color:var(--muted);font-size:12px;margin:14px 0 6px">${title}</h3><table><thead><tr>`;
+    t += cols.map(c=>`<th>${c.h}</th>`).join("") + `</tr></thead><tbody>`;
+    t += rows.map(r=>`<tr>${cols.map(c=>`<td style="${c.style?c.style(r):''}">${c.f(r)}</td>`).join("")}</tr>`).join("");
+    return t + `</tbody></table>`;
+  };
+  if (d.by_call && d.by_call.length)
+    html += tbl("By call type", d.by_call, [
+      {h:"Call", f:r=>r.call, style:r=>"text-align:left;color:"+callColor(r.call)},
+      {h:"N", f:r=>r.n},
+      {h:"Win rate", f:r=>Math.round(r.win_rate*100)+"%"},
+      {h:"Mean fwd ret", f:r=>fsign(r.mean_forward_return)},
+    ]);
+  if (d.by_confidence && d.by_confidence.length)
+    html += tbl("Calibration by confidence", d.by_confidence, [
+      {h:"Confidence", f:r=>r.confidence_bucket, style:()=>"text-align:left"},
+      {h:"N", f:r=>r.n},
+      {h:"Hit rate", f:r=>Math.round(r.hit_rate*100)+"%"},
+      {h:"Mean fwd ret", f:r=>fsign(r.mean_forward_return)},
+    ]);
+  wrap.innerHTML = html;
+
+  // equity curve
+  const curve = d.equity_curve || [];
+  const ctx = document.getElementById("scChart");
+  if (scChart) scChart.destroy();
+  if (curve.length) {
+    scChart = new Chart(ctx, {
+      type: "line",
+      data: { labels: curve.map(p=>p.as_of),
+        datasets: [{ label: "Follow-FAVORED equity", data: curve.map(p=>p.equity),
+          borderColor: "#4da3ff", backgroundColor: "rgba(77,163,255,.1)", fill: true, tension: .2 }] },
+      options: { responsive: true, plugins: { legend: { labels: { color:"#8b98a9" } } },
+        scales: { x: { ticks:{color:"#8b98a9",maxTicksLimit:8}, grid:{color:"#2d3744"} },
+                  y: { ticks:{color:"#8b98a9"}, grid:{color:"#2d3744"} } } }
+    });
+  }
+}
+
 async function refresh(synthetic) {
   const btns = document.querySelectorAll("header button");
   btns.forEach(b => b.disabled = true);
@@ -272,10 +363,16 @@ async function refresh(synthetic) {
 }
 
 document.getElementById("classSelect").onchange = (e) => {
-  state.ac = e.target.value; state.selected = null; loadScores();
+  state.ac = e.target.value; state.selected = null;
+  document.getElementById("scWrap").innerHTML =
+    `<p class="muted">Click “Grade calls” to evaluate ${state.ac} calls.</p>`;
+  document.getElementById("scMeta").textContent = "";
+  if (scChart) { scChart.destroy(); scChart = null; }
+  loadScores();
 };
 document.getElementById("refreshBtn").onclick = () => refresh(false);
 document.getElementById("refreshSynBtn").onclick = () => refresh(true);
+document.getElementById("scBtn").onclick = () => loadScorecard();
 
 (async function init() {
   await loadClasses();

@@ -399,6 +399,137 @@ def _cmd_backtest(args: argparse.Namespace, console: Console) -> int:
     return 0
 
 
+def _close_panel(data):
+    import pandas as pd
+    return pd.concat({s: d.ohlcv["close"] for s, d in data.items()}, axis=1).sort_index()
+
+
+def _cmd_backfill(args: argparse.Namespace, console: Console) -> int:
+    """Replay history point-in-time and persist the calls into the ledger."""
+    from .backtest import WalkForwardBacktester
+    from .storage import ScoreStore
+
+    config = _build_config(args)
+    if args.min_train:
+        config = dataclasses.replace(
+            config, backtest=dataclasses.replace(config.backtest, min_train=args.min_train)
+        )
+    with console.status(f"[cyan]Fetching {config.asset_class} data..."):
+        data = _fetch(config, args.synthetic)
+    engine = ScoringEngine(config)
+    store = ScoreStore(args.db)
+    with console.status("[cyan]Replaying history & sealing point-in-time calls..."):
+        wf = WalkForwardBacktester(config).run(
+            engine, data, store=store, persist=True, source="backfill"
+        )
+    console.print(
+        f"[green]Backfilled {wf.n_observations} calls across {wf.n_rebalances} "
+        f"dates into {args.db}.[/]"
+    )
+    chain = store.verify_chain()
+    console.print(
+        f"[dim]Ledger now holds {chain['entries']} sealed entries "
+        f"({'verified' if chain['ok'] else 'BROKEN'}).[/]"
+    )
+    console.print("[dim]Now run:  asset-scorer scorecard --db "
+                  f"{args.db} --asset-class {config.asset_class}[/]")
+    return 0
+
+
+def _render_scorecard(d: dict, console: Console) -> None:
+    led = d["ledger"]
+    badge = ("[bold green]verified[/]" if led.get("ok") else "[bold red]TAMPERED[/]")
+    console.print(
+        f"[bold cyan]Live Scorecard[/]  |  {d['asset_class']}  |  horizon "
+        f"{d['horizon']}  |  ledger: {badge} ({led.get('entries', 0)} entries)"
+    )
+    console.print(
+        f"[dim]calls: {d['n_calls']} sealed · {d['n_matured']} matured · "
+        f"{d['n_pending']} pending · dates {d['as_of_first']} -> {d['as_of_last']}[/]"
+    )
+    if d["n_matured"] == 0:
+        console.print(f"[yellow]{d['note']}[/]")
+        return
+
+    acc = d["actionable_accuracy"]
+    fmb = d["favored_minus_benchmark"]
+    head = Table(title="Headline (matured calls only)", header_style="bold magenta")
+    head.add_column("Metric")
+    head.add_column("Value", justify="right")
+    head.add_row("Actionable accuracy", f"{acc:.0%}" if acc is not None else "-")
+    head.add_row("Abstention rate (NO-EDGE/NEUTRAL)",
+                 f"{d['abstention_rate']:.0%}" if d["abstention_rate"] is not None else "-")
+    head.add_row("FAVORED mean return",
+                 f"{d['favored_mean_return']:+.4f}" if d["favored_mean_return"] is not None else "-")
+    head.add_row("Benchmark mean return",
+                 f"{d['benchmark_mean_return']:+.4f}" if d["benchmark_mean_return"] is not None else "-")
+    if fmb is not None:
+        head.add_row("FAVORED minus benchmark",
+                     f"[{'green' if fmb > 0 else 'red'}]{fmb:+.4f}[/]")
+    console.print(head)
+
+    if d["by_call"]:
+        ct = Table(title="By call type", header_style="bold magenta")
+        for c in ("Call", "N", "Win rate", "Mean fwd ret"):
+            ct.add_column(c, justify="right" if c != "Call" else "left")
+        for b in d["by_call"]:
+            ct.add_row(b["call"], str(b["n"]), f"{b['win_rate']:.0%}",
+                       f"{b['mean_forward_return']:+.4f}")
+        console.print(ct)
+
+    if d["by_confidence"]:
+        cf = Table(title="Calibration: higher confidence -> higher hit rate?",
+                   header_style="bold magenta")
+        for c in ("Confidence", "N", "Hit rate", "Mean fwd ret"):
+            cf.add_column(c, justify="right" if c != "Confidence" else "left")
+        for b in d["by_confidence"]:
+            cf.add_row(b["confidence_bucket"], str(b["n"]), f"{b['hit_rate']:.0%}",
+                       f"{b['mean_forward_return']:+.4f}")
+        console.print(cf)
+
+    det = d["detector"]
+    if det.get("flagged_mean_forward_return") is not None:
+        line = (f"[bold]Bullshit-detector:[/] {det['flagged_n']} flagged · "
+                f"flagged avg fwd [red]{det['flagged_mean_forward_return']:+.4f}[/] "
+                f"vs calm [green]{det['calm_mean_forward_return']:+.4f}[/]")
+        if det.get("flagged_crash_rate") is not None:
+            line += f" · flagged crash rate {det['flagged_crash_rate']:.0%}"
+        console.print(line)
+
+    ff = d["follow_favored"]
+    if ff:
+        console.print(
+            f"[bold]Follow-the-FAVORED:[/] {ff['n_periods']} periods · "
+            f"total {ff['total_return']:+.1%} · Sharpe-like {ff['sharpe_like']:+.2f} "
+            f"[dim](illustrative, overlapping windows)[/]"
+        )
+
+
+def _cmd_scorecard(args: argparse.Namespace, console: Console) -> int:
+    from .backtest import evaluate_scorecard
+    from .storage import ScoreStore
+
+    config = _build_config(args)
+    store = ScoreStore(args.db)
+    syms = store.symbols(config.asset_class) or config.universe
+    config = dataclasses.replace(config, universe=syms)
+
+    with console.status(f"[cyan]Fetching prices to grade {config.asset_class} calls..."):
+        data = _fetch(config, args.synthetic)
+    close = _close_panel(data)
+    res = evaluate_scorecard(
+        store, config.asset_class, close,
+        horizon=config.calibration.forward_horizon,
+        crash_drawdown=config.bubble.crash_drawdown,
+    )
+    _render_scorecard(res.as_dict(), console)
+    if args.json:
+        with open(args.json, "w") as fh:
+            json.dump(res.as_dict(), fh, indent=2)
+        console.print(f"[green]Wrote scorecard JSON to {args.json}[/]")
+    return 0
+
+
 def _cmd_verify(args: argparse.Namespace, console: Console) -> int:
     from .storage import ScoreStore
 
@@ -501,6 +632,16 @@ def _build_parser() -> argparse.ArgumentParser:
     p_verify = sub.add_parser("verify", help="Verify the tamper-evident track record")
     p_verify.add_argument("--db", default=DEFAULT_DB_PATH, help="SQLite DB path")
 
+    p_bf = sub.add_parser("backfill", help="Replay history & seal point-in-time calls")
+    _add_data_args(p_bf)
+    p_bf.add_argument("--symbols", nargs="+", help="Symbols to backfill")
+    p_bf.add_argument("--min-train", type=int, help="Bars before first sealed call")
+
+    p_sc = sub.add_parser("scorecard", help="Public scorecard: did our calls come true?")
+    _add_data_args(p_sc)
+    p_sc.add_argument("--symbols", nargs="+", help="Restrict to these symbols")
+    p_sc.add_argument("--json", metavar="PATH", help="Write scorecard JSON to PATH")
+
     p_serve = sub.add_parser("serve", help="Launch the web dashboard")
     p_serve.add_argument("--host", default="127.0.0.1")
     p_serve.add_argument("--port", type=int, default=8000)
@@ -514,7 +655,8 @@ def main(argv: list[str] | None = None) -> int:
         argv = sys.argv[1:]
     # Default to the `score` subcommand for backward-compatible flat usage
     # (e.g. `asset-scorer --asset-class equity`).
-    known = {"score", "daily", "history", "runs", "backtest", "verify", "serve"}
+    known = {"score", "daily", "history", "runs", "backtest", "verify",
+             "backfill", "scorecard", "serve"}
     help_flags = {"-h", "--help"}
     if not argv or (argv[0] not in known and argv[0] not in help_flags):
         argv = ["score"] + list(argv)
@@ -530,6 +672,8 @@ def main(argv: list[str] | None = None) -> int:
         "runs": _cmd_runs,
         "backtest": _cmd_backtest,
         "verify": _cmd_verify,
+        "backfill": _cmd_backfill,
+        "scorecard": _cmd_scorecard,
         "serve": _cmd_serve,
     }
     return handlers[args.command](args, console)

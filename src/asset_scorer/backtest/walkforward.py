@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 
 from ..config import AppConfig
-from ..scoring import BubbleDetector, compute_flexible_weights
+from ..scoring import BubbleDetector, compute_flexible_weights, recommend
 from ..calibration import ConfidenceModel as _ConfidenceModel
 
 
@@ -111,10 +111,12 @@ class WalkForwardBacktester:
     def __init__(self, config: AppConfig):
         self.config = config
 
-    def run(self, engine, data) -> WalkForwardResult:
+    def run(self, engine, data, store=None, persist: bool = False,
+            source: str = "backfill") -> WalkForwardResult:
         cfg = self.config.backtest
         H = self.config.calibration.forward_horizon
         step = cfg.step or H
+        synthetic = bool(data) and all(ad.synthetic for ad in data.values())
 
         panels, _ = engine.build_panels(data)
         norm = panels.norm_panels
@@ -172,19 +174,55 @@ class WalkForwardBacktester:
                      ).clip(self.config.bubble.penalty_floor, 1.0)
             score_t = (base_t * pen_t).reindex(feat_t.index)
             conf_t = conf_model.confidence(feat_t, score_t)
+            pfav_t = pd.Series(
+                conf_model.predict_favorable_proba(feat_t), index=feat_t.index
+            )
             fwd_t = fwd.loc[t]
+            ranks = score_t.rank(ascending=False, method="min")
 
+            date_rows = []
             for sym in feat_t.index:
                 s = score_t.get(sym)
-                fr = fwd_t.get(sym)
-                if s is None or pd.isna(s) or pd.isna(fr):
-                    continue
-                records.append({
-                    "date": t, "symbol": sym, "score": float(s),
-                    "confidence": float(conf_t.get(sym, np.nan)),
-                    "prob": float(prob_t.get(sym, np.nan)),
-                    "fwd": float(fr),
-                })
+                if s is not None and not pd.isna(s):
+                    fr = fwd_t.get(sym)
+                    if fr is not None and not pd.isna(fr):
+                        records.append({
+                            "date": t, "symbol": sym, "score": float(s),
+                            "confidence": float(conf_t.get(sym, np.nan)),
+                            "prob": float(prob_t.get(sym, np.nan)),
+                            "fwd": float(fr),
+                        })
+                    if persist:
+                        prob = float(prob_t.get(sym, 0.0))
+                        conf = float(conf_t.get(sym, np.nan))
+                        rec_call = recommend(float(s), conf, prob, self.config.abstention)
+                        deficit_v = float(def_t.get(sym, 0.5))
+                        date_rows.append({
+                            "symbol": sym,
+                            "rank": int(ranks.get(sym, 0)),
+                            "final_score": float(s),
+                            "base_score": float(base_t.get(sym, np.nan)),
+                            "confidence": conf,
+                            "favorable_probability": float(pfav_t.get(sym, np.nan)),
+                            "news": float(feat_t.loc[sym, "news"]) if "news" in feat_t else None,
+                            "technicals": float(feat_t.loc[sym, "technicals"]) if "technicals" in feat_t else None,
+                            "fundamentals": float(feat_t.loc[sym, "fundamentals"]) if "fundamentals" in feat_t else None,
+                            "orderflow": float(feat_t.loc[sym, "orderflow"]) if "orderflow" in feat_t else None,
+                            "indicators": float(feat_t.loc[sym, "indicators"]) if "indicators" in feat_t else None,
+                            "bubble_probability": prob,
+                            "bubble_label": self._bubble_label(prob, deficit_v),
+                            "bubble_penalty": float(pen_t.get(sym, 1.0)),
+                            "call": rec_call.call,
+                            "rationale": rec_call.rationale,
+                            "last_price": float(close.loc[t, sym]) if sym in close.columns else None,
+                        })
+
+            if persist and store is not None and date_rows:
+                as_of = str(t.date()) if hasattr(t, "date") else str(t)
+                store.save_calls(
+                    as_of, self.config.asset_class, date_rows,
+                    source=source, synthetic=synthetic, horizon=H,
+                )
 
         if not records:
             return WalkForwardResult(
@@ -291,6 +329,16 @@ class WalkForwardBacktester:
             "flagged_negative_rate": round(float((flagged["fwd"] < 0).mean()), 4)
             if len(flagged) else None,
         }
+
+    @staticmethod
+    def _bubble_label(prob: float, deficit: float) -> str:
+        if prob >= 0.6 and deficit > 0.5:
+            return "bubble-risk: hot & unconfirmed"
+        if prob >= 0.6:
+            return "hot but confirmed"
+        if prob >= 0.35:
+            return "warming"
+        return "normal"
 
     @staticmethod
     def _stack(norm_panels, factors) -> pd.DataFrame:

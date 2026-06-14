@@ -156,6 +156,25 @@ to the history is detectable.
 asset-scorer verify --db asset_scores.db
 ```
 
+## Public live scorecard
+
+The scorecard grades the calls we actually **sealed in the ledger** against what
+prices really did — no cherry-picking, no look-ahead — with the integrity proof
+attached. Populate history instantly with a point-in-time `backfill` (replays
+the walk-forward and seals each date's calls), then grade them:
+
+```bash
+asset-scorer backfill --asset-class crypto --history 400 --db asset_scores.db
+asset-scorer scorecard --asset-class crypto --db asset_scores.db
+```
+
+It reports: actionable accuracy, abstention rate, FAVORED-vs-benchmark spread,
+accuracy by call type, **calibration by confidence** (do higher-confidence calls
+win more?), a bullshit-detector check (do flagged names fall more?), and a
+follow-the-FAVORED equity curve — alongside the ledger verification badge. Going
+forward, `daily` keeps appending, so the record compounds. The same view is on
+the dashboard (`/api/scorecard`).
+
 ## Web dashboard
 A FastAPI + single-page dashboard visualizes the stored scores.
 

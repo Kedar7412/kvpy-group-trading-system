@@ -246,14 +246,19 @@ class ScoreStore:
             return rows
 
     def _append_ledger(self, conn, result: "EngineResult", now: str) -> None:
-        """Append a hash-chained, tamper-evident entry for this run."""
+        """Append a hash-chained, tamper-evident entry for an EngineResult."""
         triples = [
             (s.symbol,
              s.final_score if s.final_score == s.final_score else None,
              s.recommendation.call)
             for s in result.scores
         ]
-        payload = _canonical_payload(result.as_of, result.asset_class, triples)
+        self._append_ledger_triples(
+            conn, result.as_of, result.asset_class, triples, now
+        )
+
+    def _append_ledger_triples(self, conn, as_of, asset_class, triples, now) -> None:
+        payload = _canonical_payload(as_of, asset_class, triples)
         payload_hash = hashlib.sha256(payload.encode()).hexdigest()
         prev = conn.execute(
             "SELECT entry_hash FROM ledger ORDER BY seq DESC LIMIT 1"
@@ -267,9 +272,81 @@ class ScoreStore:
                 payload_hash, prev_hash, entry_hash
             ) VALUES (?,?,?,?,?,?,?)
             """,
-            (result.as_of, result.asset_class, now, len(result.scores),
-             payload_hash, prev_hash, entry_hash),
+            (as_of, asset_class, now, len(triples), payload_hash, prev_hash, entry_hash),
         )
+
+    def save_calls(
+        self, as_of: str, asset_class: str, rows: list[dict], *,
+        source: str = "backfill", synthetic: bool = False, horizon: int | None = None,
+    ) -> int:
+        """Persist a batch of point-in-time calls (used by backfill).
+
+        ``rows`` items are plain dicts with keys: symbol, rank, final_score,
+        base_score, confidence, favorable_probability, news, technicals,
+        fundamentals, orderflow, indicators, bubble_probability, bubble_label,
+        bubble_penalty, call, rationale, last_price. Inserts a minimal run row,
+        the score rows (UPSERT), and one hash-chained ledger entry.
+        """
+        now = _now_iso()
+        with self._connect() as conn:
+            conn.execute(
+                """
+                INSERT INTO runs (as_of, asset_class, created_at, horizon,
+                    data_source, n_assets, n_synthetic)
+                VALUES (?,?,?,?,?,?,?)
+                ON CONFLICT(as_of, asset_class) DO UPDATE SET
+                    created_at=excluded.created_at, horizon=excluded.horizon,
+                    data_source=excluded.data_source, n_assets=excluded.n_assets,
+                    n_synthetic=excluded.n_synthetic
+                """,
+                (as_of, asset_class, now, horizon, source, len(rows),
+                 len(rows) if synthetic else 0),
+            )
+            for d in rows:
+                conn.execute(
+                    """
+                    INSERT INTO scores (
+                        as_of, asset_class, symbol, created_at, rank,
+                        final_score, base_score, confidence, favorable_probability,
+                        news, technicals, fundamentals, orderflow, indicators,
+                        bubble_label, bubble_penalty, bubble_probability, call,
+                        rationale, last_price, synthetic, weights_json, fundamentals_json
+                    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                    ON CONFLICT(as_of, asset_class, symbol) DO UPDATE SET
+                        created_at=excluded.created_at, rank=excluded.rank,
+                        final_score=excluded.final_score, base_score=excluded.base_score,
+                        confidence=excluded.confidence,
+                        favorable_probability=excluded.favorable_probability,
+                        news=excluded.news, technicals=excluded.technicals,
+                        fundamentals=excluded.fundamentals, orderflow=excluded.orderflow,
+                        indicators=excluded.indicators, bubble_label=excluded.bubble_label,
+                        bubble_penalty=excluded.bubble_penalty,
+                        bubble_probability=excluded.bubble_probability,
+                        call=excluded.call, rationale=excluded.rationale,
+                        last_price=excluded.last_price, synthetic=excluded.synthetic
+                    """,
+                    (
+                        as_of, asset_class, d["symbol"], now, d.get("rank"),
+                        _f(d.get("final_score")), _f(d.get("base_score")),
+                        _f(d.get("confidence")), _f(d.get("favorable_probability")),
+                        _f(d.get("news")), _f(d.get("technicals")),
+                        _f(d.get("fundamentals")), _f(d.get("orderflow")),
+                        _f(d.get("indicators")),
+                        d.get("bubble_label"), _f(d.get("bubble_penalty")),
+                        _f(d.get("bubble_probability")), d.get("call"),
+                        d.get("rationale"), _f(d.get("last_price")),
+                        int(synthetic), None, None,
+                    ),
+                )
+            triples = [
+                (d["symbol"],
+                 d.get("final_score") if d.get("final_score") is not None
+                 and d.get("final_score") == d.get("final_score") else None,
+                 d.get("call"))
+                for d in rows
+            ]
+            self._append_ledger_triples(conn, as_of, asset_class, triples, now)
+            return len(rows)
 
     # -- reads ------------------------------------------------------------
     def list_runs(self, limit: int = 50, asset_class: str | None = None) -> list[dict]:
@@ -344,6 +421,14 @@ class ScoreStore:
             rows = conn.execute(
                 "SELECT * FROM scores WHERE as_of=? AND asset_class=? ORDER BY rank",
                 (as_of, asset_class),
+            ).fetchall()
+        return [dict(r) for r in rows]
+
+    def all_scores(self, asset_class: str) -> list[dict]:
+        with self._connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM scores WHERE asset_class=? ORDER BY as_of, rank",
+                (asset_class,),
             ).fetchall()
         return [dict(r) for r in rows]
 
