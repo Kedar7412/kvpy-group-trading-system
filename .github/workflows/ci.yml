@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches: [main, feature/asset-scorer-mvp]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Compile all modules
+        run: python -m compileall -q src
+
+      - name: Smoke test (offline, synthetic — fast & deterministic)
+        run: |
+          set -e
+          asset-scorer score --synthetic --quiet --top 3
+          asset-scorer backfill --synthetic --history 240 --db /tmp/ci.db
+          asset-scorer scorecard --synthetic --db /tmp/ci.db
+          asset-scorer snapshot --synthetic --db /tmp/ci.db --out /tmp/ci_public
+          asset-scorer verify --db /tmp/ci.db
+          test -f /tmp/ci_public/scorecard.json
+
+      - name: Validate snapshot + ledger chain
+        run: |
+          python - <<'PY'
+          import json, hashlib, sys
+          d = json.load(open("/tmp/ci_public/scorecard.json"))
+          chain = d["ledger"]["chain"]; prev = "0"*64
+          for e in chain:
+              exp = hashlib.sha256((prev + e["payload_hash"]).encode()).hexdigest()
+              assert e["prev_hash"] == prev and e["entry_hash"] == exp, "ledger chain broken"
+              prev = e["entry_hash"]
+          assert d["ledger"]["ok"] and (not chain or prev == d["ledger"]["head"]), "head mismatch"
+          assert d["classes"], "no classes in snapshot"
+          print("snapshot OK:", list(d["classes"]), "| chain", len(chain), "verified")
+          PY

@@ -1,5 +1,8 @@
 # asset-scorer
 
+![CI](https://github.com/Kedar7412/kvpy-group-trading-system/actions/workflows/ci.yml/badge.svg)
+![daily-scorecard](https://github.com/Kedar7412/kvpy-group-trading-system/actions/workflows/scorecard.yml/badge.svg)
+
 A systematic, daily multi-factor **scoring engine** for tradable assets
 (crypto-first MVP) with a **calibrated confidence** = the probability that each
 score's directional call is actually correct.
