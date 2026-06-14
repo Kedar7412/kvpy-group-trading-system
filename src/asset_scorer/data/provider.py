@@ -206,7 +206,7 @@ class MarketDataProvider:
         open_ = np.concatenate([[close[0]], close[:-1]])
         volume = self._synthetic_volume(rng, close, regime)
 
-        idx = pd.date_range(end=pd.Timestamp.utcnow().normalize(), periods=n, freq="D")
+        idx = pd.date_range(end=pd.Timestamp.now().normalize(), periods=n, freq="D")
         df = pd.DataFrame(
             {
                 "open": open_,

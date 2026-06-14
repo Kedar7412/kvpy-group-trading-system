@@ -15,6 +15,8 @@ venv/
 *.sqlite
 *.sqlite3
 report*.json
+# ...but the committed public ledger (for the CI snapshot) is tracked:
+!data/asset_scores.db
 
 # OS / editor
 .DS_Store

@@ -3,275 +3,359 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Asset Scorer</title>
+<title>Asset Scorer — Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-  :root {
-    --bg: #0f1419; --panel: #1a212b; --panel2: #222b38; --text: #e6edf3;
-    --muted: #8b98a9; --line: #2d3744; --accent: #4da3ff;
-    --green: #3fb950; --green2: #2ea043; --yellow: #d29922; --red: #f85149;
+  :root{
+    --bg0:#05060b; --bg1:#0a0d18; --glass:rgba(255,255,255,.045);
+    --glass-strong:rgba(255,255,255,.07); --line:rgba(255,255,255,.09);
+    --text:#e9eef9; --muted:#8a93a8; --indigo:#6366f1; --cyan:#22d3ee;
+    --green:#34d399; --red:#fb7185; --yellow:#fbbf24; --violet:#a78bfa;
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text);
-    font: 14px/1.5 -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-  header { padding: 16px 24px; border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  header h1 { font-size: 18px; margin: 0; font-weight: 600; }
-  header .sub { color: var(--muted); font-size: 12px; }
-  .controls { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-  select, button { background: var(--panel2); color: var(--text);
-    border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px;
-    font-size: 13px; cursor: pointer; }
-  button:hover { border-color: var(--accent); }
-  button:disabled { opacity: .5; cursor: wait; }
-  main { padding: 20px 24px; display: grid; gap: 20px;
-    grid-template-columns: 1fr 1fr; }
-  .panel { background: var(--panel); border: 1px solid var(--line);
-    border-radius: 10px; padding: 16px; }
-  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .5px;
-    color: var(--muted); margin: 0 0 12px; font-weight: 600; }
-  .full { grid-column: 1 / -1; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--line); }
-  th:nth-child(2), td:nth-child(2) { text-align: left; }
-  th { color: var(--muted); font-weight: 600; font-size: 11px;
-    text-transform: uppercase; cursor: default; }
-  tbody tr { cursor: pointer; }
-  tbody tr:hover { background: var(--panel2); }
-  tbody tr.sel { background: #243043; }
-  .pill { display: inline-block; padding: 1px 7px; border-radius: 10px;
-    font-size: 11px; font-weight: 600; }
-  .score { font-weight: 700; }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .stat { background: var(--panel2); border-radius: 8px; padding: 10px 12px; }
-  .stat .k { color: var(--muted); font-size: 11px; text-transform: uppercase; }
-  .stat .v { font-size: 18px; font-weight: 700; margin-top: 2px; }
-  .muted { color: var(--muted); }
-  .factorcell { width: 44px; }
-  canvas { max-height: 280px; }
-  .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
-  .syn { color: var(--yellow); }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:radial-gradient(1200px 800px at 80% -10%, #15203b 0%, transparent 55%),
+               radial-gradient(900px 700px at -10% 10%, #1a1336 0%, transparent 50%),
+               linear-gradient(180deg,var(--bg1),var(--bg0));
+    color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  #bg{position:fixed; inset:0; z-index:0; pointer-events:none}
+  .wrap{position:relative; z-index:1; max-width:1280px; margin:0 auto; padding:0 24px 64px}
+
+  /* ---- top bar ---- */
+  nav{position:sticky; top:0; z-index:20; display:flex; align-items:center; gap:18px;
+    padding:16px 0; backdrop-filter:blur(8px);}
+  .brand{display:flex; align-items:center; gap:12px}
+  .logo{width:34px;height:34px;border-radius:10px;
+    background:conic-gradient(from 200deg,var(--indigo),var(--cyan),var(--violet),var(--indigo));
+    box-shadow:0 0 24px rgba(99,102,241,.55); position:relative}
+  .logo::after{content:"";position:absolute;inset:6px;border-radius:6px;background:#0a0d18}
+  .brand b{font-family:Sora,Inter,sans-serif; font-weight:800; letter-spacing:.2px; font-size:17px}
+  .brand span{display:block;color:var(--muted);font-size:11px;margin-top:-2px}
+  .spacer{flex:1}
+  .seg{display:flex; background:var(--glass); border:1px solid var(--line); border-radius:12px; padding:4px}
+  .seg button{background:none;border:0;color:var(--muted);padding:7px 14px;border-radius:9px;
+    font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+  .seg button.on{background:linear-gradient(135deg,var(--indigo),var(--cyan));color:#fff;
+    box-shadow:0 6px 18px rgba(99,102,241,.4)}
+  .btn{background:var(--glass-strong);border:1px solid var(--line);color:var(--text);
+    padding:8px 14px;border-radius:11px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+  .btn:hover{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(34,211,238,.12)}
+  .btn.primary{background:linear-gradient(135deg,var(--indigo),var(--cyan));border:0;color:#fff}
+  .btn:disabled{opacity:.5;cursor:wait}
+  a.btn{text-decoration:none;display:inline-block}
+
+  /* ---- hero ---- */
+  .hero{padding:46px 0 26px; max-width:760px}
+  .hero h1{font-family:Sora,sans-serif; font-weight:800; font-size:46px; line-height:1.05; margin:0 0 14px;
+    background:linear-gradient(120deg,#fff 20%,#9db4ff 60%,#74e6ff);-webkit-background-clip:text;
+    background-clip:text;color:transparent}
+  .hero p{color:var(--muted); font-size:16px; margin:0; max-width:620px}
+  .regime{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 14px;
+    border-radius:999px;border:1px solid var(--line);background:var(--glass);font-size:13px;font-weight:600}
+  .dot{width:9px;height:9px;border-radius:50%;box-shadow:0 0 12px currentColor;background:currentColor}
+
+  /* ---- panels ---- */
+  .grid{display:grid;gap:18px;grid-template-columns:1fr 1fr;margin-top:8px}
+  .panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:20px;
+    backdrop-filter:blur(16px);box-shadow:0 20px 60px rgba(0,0,0,.35);
+    animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .full{grid-column:1/-1}
+  .panel h2{font-family:Sora,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:1.4px;
+    color:var(--muted);margin:0 0 14px;font-weight:700;display:flex;align-items:center;gap:10px}
+  .panel h2 .muted{font-family:Inter;letter-spacing:0;text-transform:none}
+
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .stat{background:var(--glass-strong);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .stat .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+  .stat .v{font-family:Sora,sans-serif;font-size:22px;font-weight:700;margin-top:4px}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:right;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06)}
+  th:nth-child(2),td:nth-child(2),th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  tbody tr{cursor:pointer;transition:.15s}
+  tbody tr:hover{background:rgba(255,255,255,.04)}
+  tbody tr.sel{background:linear-gradient(90deg,rgba(99,102,241,.16),transparent)}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.3px}
+  .score{font-family:Sora,sans-serif;font-weight:700}
+  .muted{color:var(--muted)}
+  .hint{color:var(--muted);font-size:12px;margin-top:10px}
+  canvas.chart{max-height:300px}
+  .syn{color:var(--yellow)}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:40px}
+  .foot a{color:var(--cyan);text-decoration:none}
+  @media(max-width:920px){.grid{grid-template-columns:1fr}.hero h1{font-size:34px}.stat-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<header>
-  <div>
-    <h1>Asset Scorer</h1>
-    <div class="sub" id="subtitle">multi-factor scores with calibrated confidence</div>
-  </div>
-  <div class="controls">
-    <select id="classSelect"></select>
-    <button id="refreshBtn" title="Fetch live data, score, and save">Refresh (live)</button>
-    <button id="refreshSynBtn" title="Score with offline synthetic data">Demo data</button>
-  </div>
-</header>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <nav>
+    <div class="brand"><div class="logo"></div>
+      <div><b>ASSET&nbsp;SCORER</b><span>multi-factor intelligence · calibrated confidence</span></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="seg" id="classSeg"></div>
+    <button class="btn" id="refreshSynBtn" title="Score with offline demo data">Demo</button>
+    <button class="btn primary" id="refreshBtn" title="Fetch live data, score and save">Refresh</button>
+    <a class="btn" href="/scorecard" target="_blank" title="Public verifiable scorecard">Scorecard ↗</a>
+  </nav>
 
-<main>
+  <header class="hero">
+    <h1>Know what's real.<br>Ignore the hype.</h1>
+    <p>A daily, multi-factor score for every tradable asset — with a calibrated probability that the call is right, an anti-bubble detector, and a market-regime filter. It abstains when it has no edge.</p>
+    <div class="regime" id="regimeBadge"><span class="dot" style="color:var(--muted)"></span><span id="regimeText">loading regime…</span></div>
+  </header>
+
   <section class="panel full">
-    <h2>Run diagnostics</h2>
+    <h2>Run diagnostics <span class="muted" id="runMeta"></span></h2>
     <div class="stat-grid" id="stats"></div>
     <div class="hint" id="runHint"></div>
   </section>
 
   <section class="panel full">
-    <h2>Latest scores <span class="muted" id="scoresMeta"></span></h2>
+    <h2>Live scores <span class="muted" id="scoresMeta"></span></h2>
     <div id="tableWrap"><p class="muted">Loading…</p></div>
+  </section>
+
+  <section class="panel full">
+    <h2>Verifiable scorecard <span class="muted" id="scMeta"></span>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn" id="scBtn" style="margin-left:auto">Grade calls</button>
+    </h2>
+    <div id="scWrap"><p class="muted">Click “Grade calls” to evaluate the sealed track record against realized prices.</p></div>
+    <canvas id="scChart" class="chart" style="margin-top:14px"></canvas>
   </section>
 
   <section class="panel">
     <h2>Score history <span class="muted" id="histSym"></span></h2>
-    <canvas id="histChart"></canvas>
-    <div class="hint">Click a row above to see its history. One point per stored daily run.</div>
+    <canvas id="histChart" class="chart"></canvas>
+    <div class="hint">Click a row above to load its history.</div>
   </section>
 
   <section class="panel">
     <h2>Factor breakdown <span class="muted" id="factorSym"></span></h2>
-    <canvas id="factorChart"></canvas>
-    <div class="hint">Normalized 0–100 factor scores for the selected asset (50 = universe average).</div>
+    <canvas id="factorChart" class="chart"></canvas>
+    <div class="hint">Normalized 0–100 factor scores (50 = universe average).</div>
   </section>
-</main>
+
+  <div class="foot">Research tool, not investment advice · <a href="/scorecard" target="_blank">public scorecard</a></div>
+</div>
 
 <script>
-const FACTORS = ["news", "technicals", "fundamentals", "orderflow", "indicators"];
-let state = { ac: "crypto", selected: null, scores: [] };
-let histChart = null, factorChart = null;
+/* ============================ 3D cursor-follower ============================ */
+(function(){
+  const canvas = document.getElementById("bg");
+  if(!window.THREE) return;
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, .1, 100);
+  camera.position.z = 6;
 
-function scoreColor(v) {
-  if (v == null || isNaN(v)) return "var(--muted)";
-  if (v >= 65) return "var(--green)";
-  if (v >= 50) return "var(--green2)";
-  if (v >= 35) return "var(--yellow)";
-  return "var(--red)";
-}
-function bubbleColor(label) {
-  if (!label) return "var(--muted)";
-  if (label.includes("bubble-risk")) return "var(--red)";
-  if (label.includes("hot") || label.includes("warming")) return "var(--yellow)";
-  return "var(--muted)";
-}
-function fmt(v, d = 0) { return (v == null || isNaN(v)) ? "–" : Number(v).toFixed(d); }
-function pct(v) { return (v == null || isNaN(v)) ? "–" : Math.round(v * 100) + "%"; }
+  const group = new THREE.Group(); scene.add(group);
 
-async function getJSON(url, opts) {
-  const r = await fetch(url, opts);
-  if (!r.ok) throw new Error((await r.json()).detail || r.statusText);
-  return r.json();
-}
+  // glowing wireframe icosahedron
+  const geo = new THREE.IcosahedronGeometry(1.9, 1);
+  const wire = new THREE.LineSegments(
+    new THREE.WireframeGeometry(geo),
+    new THREE.LineBasicMaterial({color:0x6f7bff, transparent:true, opacity:.55})
+  );
+  group.add(wire);
+  const core = new THREE.Mesh(geo,
+    new THREE.MeshBasicMaterial({color:0x121a33, transparent:true, opacity:.25}));
+  group.add(core);
 
-async function loadClasses() {
-  const classes = await getJSON("/api/asset-classes");
-  const sel = document.getElementById("classSelect");
-  sel.innerHTML = classes.map(c => `<option value="${c}">${c}</option>`).join("");
-  sel.value = classes.includes(state.ac) ? state.ac : classes[0];
-  state.ac = sel.value;
-}
-
-function renderStats(run, asOf) {
-  const el = document.getElementById("stats");
-  if (!run) { el.innerHTML = `<div class="muted">No saved runs yet — click “Refresh” or “Demo data”.</div>`;
-    document.getElementById("runHint").textContent = ""; return; }
-  const skill = run.skill_score;
-  const skillColor = skill == null ? "var(--muted)" : (skill > 0 ? "var(--green)" : "var(--red)");
-  const cells = [
-    ["As of", asOf || "–"],
-    ["Source", run.data_source || "–"],
-    ["Assets", run.n_assets ?? "–"],
-    ["Calib. skill", `<span style="color:${skillColor}">${fmt(skill, 4)}</span>`],
-    ["Brier", fmt(run.brier_score, 4)],
-    ["Backtest IC", fmt(run.information_coefficient, 4)],
-    ["Top–bottom", fmt(run.top_minus_bottom, 5)],
-    ["Hit rate", run.hit_rate == null ? "–" : pct(run.hit_rate)],
-  ];
-  el.innerHTML = cells.map(([k, v]) =>
-    `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
-  document.getElementById("runHint").innerHTML =
-    `Calibration skill &gt; 0 means the confidence beats a naive base-rate guess. ` +
-    `IC &gt; 0 means higher scores preceded higher forward returns.`;
-}
-
-function renderTable(scores) {
-  const wrap = document.getElementById("tableWrap");
-  if (!scores.length) { wrap.innerHTML = `<p class="muted">No scores stored for this class yet.</p>`; return; }
-  const head = `<tr><th>#</th><th>Symbol</th><th>Score</th><th>Conf</th><th>P(fav)</th>` +
-    FACTORS.map(f => `<th>${f.slice(0,4)}</th>`).join("") + `<th>Bubble</th></tr>`;
-  const rows = scores.map(s => {
-    const syn = s.synthetic ? ` <span class="syn" title="synthetic data">*</span>` : "";
-    const fcells = FACTORS.map(f => {
-      const v = s[f];
-      return `<td class="factorcell" style="color:${scoreColor(v)}">${fmt(v)}</td>`;
-    }).join("");
-    return `<tr data-sym="${s.symbol}">
-      <td>${s.rank}</td>
-      <td>${s.symbol}${syn}</td>
-      <td class="score" style="color:${scoreColor(s.final_score)}">${fmt(s.final_score, 1)}</td>
-      <td>${pct(s.confidence)}</td>
-      <td>${pct(s.favorable_probability)}</td>
-      ${fcells}
-      <td><span class="pill" style="color:${bubbleColor(s.bubble_label)};border:1px solid ${bubbleColor(s.bubble_label)}">${s.bubble_label || "–"}</span></td>
-    </tr>`;
-  }).join("");
-  wrap.innerHTML = `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
-  wrap.querySelectorAll("tbody tr").forEach(tr => {
-    tr.onclick = () => selectSymbol(tr.dataset.sym);
-  });
-}
-
-async function loadScores() {
-  document.getElementById("scoresMeta").textContent = "";
-  const data = await getJSON(`/api/scores?asset_class=${encodeURIComponent(state.ac)}`);
-  state.scores = data.scores;
-  renderStats(data.run, data.as_of);
-  renderTable(data.scores);
-  document.getElementById("scoresMeta").textContent =
-    data.as_of ? `· ${data.scores.length} assets · as of ${data.as_of}` : "";
-  if (data.scores.length) {
-    const keep = data.scores.find(s => s.symbol === state.selected);
-    selectSymbol(keep ? keep.symbol : data.scores[0].symbol);
-  } else {
-    state.selected = null;
+  // particle halo
+  const N=900, pos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    const r=3.2+Math.random()*3.6, t=Math.random()*Math.PI*2, p=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(p)*Math.cos(t); pos[i*3+1]=r*Math.sin(p)*Math.sin(t); pos[i*3+2]=r*Math.cos(p);
   }
-}
+  const pg=new THREE.BufferGeometry(); pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
+  const stars=new THREE.Points(pg,new THREE.PointsMaterial({color:0x39d8ff,size:.03,transparent:true,opacity:.7}));
+  scene.add(stars);
 
-async function selectSymbol(sym) {
-  state.selected = sym;
-  document.querySelectorAll("tbody tr").forEach(tr =>
-    tr.classList.toggle("sel", tr.dataset.sym === sym));
-  document.getElementById("histSym").textContent = "· " + sym;
-  document.getElementById("factorSym").textContent = "· " + sym;
-  renderFactorChart(state.scores.find(s => s.symbol === sym));
-  const h = await getJSON(
-    `/api/history?symbol=${encodeURIComponent(sym)}&asset_class=${encodeURIComponent(state.ac)}`);
-  renderHistChart(h.history);
-}
+  // accent point lights feel via two extra wire shells
+  const shell=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(2.55,1)),
+    new THREE.LineBasicMaterial({color:0xa78bfa,transparent:true,opacity:.18}));
+  group.add(shell);
 
-function renderHistChart(history) {
-  const labels = history.map(r => r.as_of);
-  const score = history.map(r => r.final_score);
-  const conf = history.map(r => r.confidence == null ? null : r.confidence * 100);
-  const ctx = document.getElementById("histChart");
-  if (histChart) histChart.destroy();
-  histChart = new Chart(ctx, {
-    type: "line",
-    data: { labels, datasets: [
-      { label: "Score", data: score, borderColor: "#4da3ff", backgroundColor: "rgba(77,163,255,.1)",
-        tension: .25, fill: true, yAxisID: "y" },
-      { label: "Confidence %", data: conf, borderColor: "#3fb950", tension: .25,
-        borderDash: [5,4], yAxisID: "y" },
-    ]},
-    options: { responsive: true, interaction: { mode: "index", intersect: false },
-      plugins: { legend: { labels: { color: "#8b98a9" } } },
-      scales: {
-        x: { ticks: { color: "#8b98a9", maxTicksLimit: 8 }, grid: { color: "#2d3744" } },
-        y: { min: 0, max: 100, ticks: { color: "#8b98a9" }, grid: { color: "#2d3744" } },
-      } }
+  const target={x:0,y:0}, cur={x:0,y:0};
+  addEventListener("pointermove",e=>{
+    target.x=(e.clientX/innerWidth)*2-1;
+    target.y=(e.clientY/innerHeight)*2-1;
   });
-}
+  function setAccent(hex){ wire.material.color.setHex(hex); }
+  window.__setAccent=setAccent;
 
-function renderFactorChart(s) {
-  if (!s) return;
-  const data = FACTORS.map(f => s[f]);
-  const colors = data.map(v => scoreColor(v));
-  const ctx = document.getElementById("factorChart");
-  if (factorChart) factorChart.destroy();
-  factorChart = new Chart(ctx, {
-    type: "bar",
-    data: { labels: FACTORS, datasets: [{ label: "Score", data, backgroundColor: colors }] },
-    options: { responsive: true, plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: "#8b98a9" }, grid: { display: false } },
-        y: { min: 0, max: 100, ticks: { color: "#8b98a9" }, grid: { color: "#2d3744" } },
-      } }
-  });
-}
+  function resize(){ renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }
+  addEventListener("resize",resize); resize();
 
-async function refresh(synthetic) {
-  const btns = document.querySelectorAll("header button");
-  btns.forEach(b => b.disabled = true);
-  const lbl = synthetic ? "Demo data" : "Refresh (live)";
-  const btn = synthetic ? document.getElementById("refreshSynBtn") : document.getElementById("refreshBtn");
-  btn.textContent = "Working…";
-  try {
-    await getJSON(`/api/refresh?asset_class=${encodeURIComponent(state.ac)}&synthetic=${synthetic}`,
-      { method: "POST" });
-    await loadScores();
-  } catch (e) {
-    alert("Refresh failed: " + e.message);
-  } finally {
-    btns.forEach(b => b.disabled = false);
-    btn.textContent = lbl;
-  }
-}
-
-document.getElementById("classSelect").onchange = (e) => {
-  state.ac = e.target.value; state.selected = null; loadScores();
-};
-document.getElementById("refreshBtn").onclick = () => refresh(false);
-document.getElementById("refreshSynBtn").onclick = () => refresh(true);
-
-(async function init() {
-  await loadClasses();
-  await loadScores();
+  let t=0;
+  (function loop(){
+    requestAnimationFrame(loop); t+=0.004;
+    cur.x += (target.x-cur.x)*0.05; cur.y += (target.y-cur.y)*0.05;
+    // the object follows the cursor completely: orient toward it + parallax
+    group.rotation.y += 0.0024 + cur.x*0.01;
+    group.rotation.x += 0.0014;
+    group.rotation.z = cur.x*0.25;
+    group.position.x = cur.x*1.7;
+    group.position.y = -cur.y*1.2;
+    stars.rotation.y -= 0.0006; stars.rotation.x = cur.y*0.15;
+    camera.position.x += (cur.x*0.8 - camera.position.x)*0.04;
+    camera.position.y += (-cur.y*0.6 - camera.position.y)*0.04;
+    camera.lookAt(scene.position);
+    renderer.render(scene,camera);
+  })();
 })();
+
+/* ============================ dashboard logic ============================ */
+const FACTORS=["news","technicals","fundamentals","orderflow","indicators"];
+let state={ac:"crypto",selected:null,scores:[]};
+let histChart=null,factorChart=null,scChart=null;
+
+const scoreColor=v=>v==null||isNaN(v)?"#8a93a8":v>=65?"#34d399":v>=50?"#7fd6a8":v>=35?"#fbbf24":"#fb7185";
+const callColor=c=>({FAVORED:"#34d399","AVOID-BUBBLE":"#fb7185",AVOID:"#fb7185",NEUTRAL:"#fbbf24","NO-EDGE":"#8a93a8"}[c]||"#cbd5e1");
+const fmt=(v,d=0)=>(v==null||isNaN(v))?"–":Number(v).toFixed(d);
+const pct=v=>(v==null||isNaN(v))?"–":Math.round(v*100)+"%";
+const sgn=(v,d=4)=>(v==null||isNaN(v))?"–":(v>=0?"+":"")+Number(v).toFixed(d);
+
+async function getJSON(u,o){const r=await fetch(u,o);if(!r.ok)throw new Error((await r.json().catch(()=>({}))).detail||r.statusText);return r.json();}
+
+const REGIME={
+  risk_on:{c:"var(--green)",t:"RISK-ON · longs enabled",a:0x34d399},
+  neutral:{c:"var(--yellow)",t:"NEUTRAL · selective",a:0x6f7bff},
+  risk_off:{c:"var(--red)",t:"RISK-OFF · longs suppressed",a:0xfb7185},
+};
+function setRegime(r){
+  const m=REGIME[r]||{c:"var(--muted)",t:"unknown",a:0x6f7bff};
+  document.querySelector("#regimeBadge .dot").style.color=m.c;
+  document.getElementById("regimeText").textContent=m.t;
+  if(window.__setAccent)window.__setAccent(m.a);
+}
+
+async function loadClasses(){
+  const cls=await getJSON("/api/asset-classes");
+  const seg=document.getElementById("classSeg");
+  seg.innerHTML=cls.map(c=>`<button data-c="${c}">${c}</button>`).join("");
+  seg.querySelectorAll("button").forEach(b=>b.onclick=()=>{state.ac=b.dataset.c;state.selected=null;syncSeg();resetSc();loadScores();});
+  if(!cls.includes(state.ac))state.ac=cls[0];
+  syncSeg();
+}
+function syncSeg(){document.querySelectorAll("#classSeg button").forEach(b=>b.classList.toggle("on",b.dataset.c===state.ac));}
+
+function renderStats(run,asOf){
+  const el=document.getElementById("stats");
+  if(!run){el.innerHTML=`<div class="muted">No saved run — hit Refresh or Demo.</div>`;return;}
+  setRegime(run.regime);
+  const skill=run.skill_score, sc=skill==null?"var(--muted)":(skill>0?"var(--green)":"var(--red)");
+  const cells=[["As of",asOf||"–"],["Source",run.data_source||"–"],["Regime",(run.regime||"–").replace("_","-")],
+    ["Assets",run.n_assets??"–"],["Calib. skill",`<span style="color:${sc}">${fmt(skill,4)}</span>`],
+    ["Brier",fmt(run.brier_score,4)],["Backtest IC",fmt(run.information_coefficient,4)],
+    ["Hit rate",run.hit_rate==null?"–":pct(run.hit_rate)]];
+  el.innerHTML=cells.map(([k,v])=>`<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`).join("");
+  document.getElementById("runHint").innerHTML="Calibration skill &gt; 0 = confidence beats a base-rate guess · IC &gt; 0 = higher scores preceded higher returns.";
+}
+
+function renderTable(scores){
+  const w=document.getElementById("tableWrap");
+  if(!scores.length){w.innerHTML=`<p class="muted">No scores stored yet.</p>`;return;}
+  const head=`<tr><th>#</th><th>Symbol</th><th>Call</th><th>Score</th><th>Conf</th><th>Crash</th>`+FACTORS.map(f=>`<th>${f.slice(0,4)}</th>`).join("")+`</tr>`;
+  const rows=scores.map(s=>{
+    const syn=s.synthetic?` <span class="syn" title="synthetic">*</span>`:"";
+    const cr=s.bubble_probability, crc=cr>=.6?"#fb7185":cr>=.35?"#fbbf24":"#8a93a8";
+    const fc=FACTORS.map(f=>`<td style="color:${scoreColor(s[f])}">${fmt(s[f])}</td>`).join("");
+    return `<tr data-sym="${s.symbol}"><td>${s.rank}</td><td>${s.symbol}${syn}</td>
+      <td><span class="pill" style="color:${callColor(s.call)};border:1px solid ${callColor(s.call)}">${s.call||"–"}</span></td>
+      <td class="score" style="color:${scoreColor(s.final_score)}">${fmt(s.final_score,1)}</td>
+      <td>${pct(s.confidence)}</td><td style="color:${crc}">${cr==null?"–":Math.round(cr*100)+"%"}</td>${fc}</tr>`;
+  }).join("");
+  w.innerHTML=`<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+  w.querySelectorAll("tbody tr").forEach(tr=>tr.onclick=()=>selectSymbol(tr.dataset.sym));
+}
+
+async function loadScores(){
+  const d=await getJSON(`/api/scores?asset_class=${encodeURIComponent(state.ac)}`);
+  state.scores=d.scores; renderStats(d.run,d.as_of); renderTable(d.scores);
+  document.getElementById("scoresMeta").textContent=d.as_of?`· ${d.scores.length} assets · ${d.as_of}`:"";
+  if(d.scores.length){const k=d.scores.find(s=>s.symbol===state.selected);selectSymbol(k?k.symbol:d.scores[0].symbol);}
+}
+
+async function selectSymbol(sym){
+  state.selected=sym;
+  document.querySelectorAll("tbody tr").forEach(tr=>tr.classList.toggle("sel",tr.dataset.sym===sym));
+  document.getElementById("histSym").textContent="· "+sym;
+  document.getElementById("factorSym").textContent="· "+sym;
+  renderFactor(state.scores.find(s=>s.symbol===sym));
+  const h=await getJSON(`/api/history?symbol=${encodeURIComponent(sym)}&asset_class=${encodeURIComponent(state.ac)}`);
+  renderHist(h.history);
+}
+const AX={ticks:{color:"#8a93a8"},grid:{color:"rgba(255,255,255,.06)"}};
+function renderHist(h){
+  const ctx=document.getElementById("histChart");if(histChart)histChart.destroy();
+  histChart=new Chart(ctx,{type:"line",data:{labels:h.map(r=>r.as_of),datasets:[
+    {label:"Score",data:h.map(r=>r.final_score),borderColor:"#6f7bff",backgroundColor:"rgba(111,123,255,.12)",fill:true,tension:.3,pointRadius:0},
+    {label:"Confidence %",data:h.map(r=>r.confidence==null?null:r.confidence*100),borderColor:"#34d399",borderDash:[5,4],tension:.3,pointRadius:0}]},
+    options:{responsive:true,plugins:{legend:{labels:{color:"#8a93a8"}}},scales:{x:{...AX,ticks:{color:"#8a93a8",maxTicksLimit:7}},y:{...AX,min:0,max:100}}}});
+}
+function renderFactor(s){
+  if(!s)return;const ctx=document.getElementById("factorChart");if(factorChart)factorChart.destroy();
+  factorChart=new Chart(ctx,{type:"bar",data:{labels:FACTORS,datasets:[{data:FACTORS.map(f=>s[f]),backgroundColor:FACTORS.map(f=>scoreColor(s[f]))}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{...AX,grid:{display:false}},y:{...AX,min:0,max:100}}}});
+}
+
+function resetSc(){document.getElementById("scWrap").innerHTML=`<p class="muted">Click “Grade calls” to evaluate ${state.ac} calls.</p>`;document.getElementById("scMeta").textContent="";if(scChart){scChart.destroy();scChart=null;}}
+async function loadScorecard(){
+  const wrap=document.getElementById("scWrap"),btn=document.getElementById("scBtn");
+  btn.disabled=true;btn.textContent="Grading…";wrap.innerHTML=`<p class="muted">Fetching prices and grading sealed calls…</p>`;
+  try{renderScorecard(await getJSON(`/api/scorecard?asset_class=${encodeURIComponent(state.ac)}`));}
+  catch(e){wrap.innerHTML=`<p style="color:var(--red)">Scorecard failed: ${e.message}</p>`;}
+  finally{btn.disabled=false;btn.textContent="Grade calls";}
+}
+function renderScorecard(d){
+  const wrap=document.getElementById("scWrap"),led=d.ledger||{};
+  const badge=led.ok?`<span style="color:var(--green)">✓ verified</span>`:`<span style="color:var(--red)">✗ tampered</span>`;
+  document.getElementById("scMeta").innerHTML=`· ledger ${badge} (${led.entries||0}) · ${d.n_matured||0}/${d.n_calls||0} matured`;
+  if(!d.n_matured){wrap.innerHTML=`<p class="muted">${d.note||"No matured calls yet."}</p>`;if(scChart){scChart.destroy();scChart=null;}return;}
+  const stat=(k,v,st="")=>`<div class="stat"><div class="k">${k}</div><div class="v" style="${st}">${v}</div></div>`;
+  const fmb=d.favored_minus_benchmark;
+  let h=`<div class="stat-grid">`;
+  h+=stat("Accuracy",d.actionable_accuracy==null?"–":pct(d.actionable_accuracy));
+  h+=stat("Abstention",d.abstention_rate==null?"–":pct(d.abstention_rate));
+  h+=stat("FAVORED ret",sgn(d.favored_mean_return));
+  h+=stat("Benchmark",sgn(d.benchmark_mean_return));
+  h+=stat("FAVORED − bench",sgn(fmb),`color:${(fmb||0)>=0?'var(--green)':'var(--red)'}`);
+  if(d.follow_favored&&d.follow_favored.total_return!=null)h+=stat("Follow total",(d.follow_favored.total_return>=0?"+":"")+(d.follow_favored.total_return*100).toFixed(1)+"%");
+  h+=`</div>`;
+  const tbl=(title,rows,cols)=>{let t=`<div class="muted" style="margin:14px 0 6px;font-size:12px">${title}</div><table><thead><tr>`+cols.map(c=>`<th>${c.h}</th>`).join("")+`</tr></thead><tbody>`+rows.map(r=>`<tr>${cols.map(c=>`<td style="${c.s?c.s(r):''}">${c.f(r)}</td>`).join("")}</tr>`).join("")+`</tbody></table>`;return t;};
+  if(d.by_call&&d.by_call.length)h+=tbl("By call type",d.by_call,[{h:"Call",f:r=>r.call,s:r=>"text-align:left;color:"+callColor(r.call)},{h:"N",f:r=>r.n},{h:"Win",f:r=>pct(r.win_rate)},{h:"Mean ret",f:r=>sgn(r.mean_forward_return)}]);
+  if(d.by_confidence&&d.by_confidence.length)h+=tbl("Calibration by confidence",d.by_confidence,[{h:"Confidence",f:r=>r.confidence_bucket,s:()=>"text-align:left"},{h:"N",f:r=>r.n},{h:"Hit",f:r=>pct(r.hit_rate)},{h:"Mean ret",f:r=>sgn(r.mean_forward_return)}]);
+  wrap.innerHTML=h;
+  const curve=d.equity_curve||[],ctx=document.getElementById("scChart");if(scChart)scChart.destroy();
+  if(curve.length)scChart=new Chart(ctx,{type:"line",data:{labels:curve.map(p=>p.as_of),datasets:[{label:"Follow-FAVORED equity",data:curve.map(p=>p.equity),borderColor:"#22d3ee",backgroundColor:"rgba(34,211,238,.12)",fill:true,tension:.25,pointRadius:0}]},options:{responsive:true,plugins:{legend:{labels:{color:"#8a93a8"}}},scales:{x:{...AX,ticks:{color:"#8a93a8",maxTicksLimit:7}},y:AX}}});
+}
+
+async function refresh(syn){
+  const btns=document.querySelectorAll("nav button");btns.forEach(b=>b.disabled=true);
+  const btn=syn?document.getElementById("refreshSynBtn"):document.getElementById("refreshBtn");
+  const lbl=btn.textContent;btn.textContent="Working…";
+  try{await getJSON(`/api/refresh?asset_class=${encodeURIComponent(state.ac)}&synthetic=${syn}`,{method:"POST"});await loadScores();}
+  catch(e){alert("Refresh failed: "+e.message);}finally{btns.forEach(b=>b.disabled=false);btn.textContent=lbl;}
+}
+document.getElementById("refreshBtn").onclick=()=>refresh(false);
+document.getElementById("refreshSynBtn").onclick=()=>refresh(true);
+document.getElementById("scBtn").onclick=loadScorecard;
+
+(async function(){await loadClasses();await loadScores();})();
 </script>
 </body>
 </html>

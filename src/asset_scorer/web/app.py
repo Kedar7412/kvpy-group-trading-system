@@ -49,7 +49,14 @@ def create_app(db_path: str = DEFAULT_DB_PATH) -> FastAPI:
         html = _STATIC / "index.html"
         if not html.exists():
             return "<h1>Dashboard asset missing</h1>"
-        return html.read_text()
+        return html.read_text(encoding="utf-8")
+
+    @app.get("/scorecard", response_class=HTMLResponse)
+    def scorecard_page() -> str:
+        html = _STATIC / "scorecard.html"
+        if not html.exists():
+            return "<h1>Scorecard page missing</h1>"
+        return html.read_text(encoding="utf-8")
 
     @app.get("/api/asset-classes")
     def asset_classes() -> list[str]:
@@ -73,6 +80,49 @@ def create_app(db_path: str = DEFAULT_DB_PATH) -> FastAPI:
     @app.get("/api/runs")
     def runs(asset_class: str | None = Query(None), limit: int = Query(50)) -> list:
         return store.list_runs(limit, asset_class)
+
+    @app.get("/api/verify")
+    def verify() -> JSONResponse:
+        return JSONResponse(store.verify_chain())
+
+    @app.get("/api/scorecard")
+    def scorecard(
+        asset_class: str = Query("crypto"),
+        synthetic: bool = Query(False),
+    ) -> JSONResponse:
+        """Grade the sealed calls against realized prices. Sync -> threadpool."""
+        import dataclasses
+
+        import pandas as pd
+
+        from ..backtest import evaluate_scorecard
+        from ..config import DEFAULT_UNIVERSES, AppConfig
+        from ..data.provider import MarketDataProvider
+        from ..data.providers import get_provider
+
+        syms = store.symbols(asset_class) or DEFAULT_UNIVERSES.get(asset_class, [])
+        if not syms:
+            return JSONResponse({"asset_class": asset_class, "n_calls": 0,
+                                 "note": "No stored calls. Run backfill or daily first."})
+        base = AppConfig()
+        config = dataclasses.replace(base, asset_class=asset_class, universe=syms)
+        try:
+            if synthetic:
+                prov = MarketDataProvider(config.data)
+                data = {s: prov._synthesize(s) for s in syms}
+            else:
+                data = get_provider(asset_class, config.data).fetch_universe(syms)
+            close = pd.concat(
+                {s: d.ohlcv["close"] for s, d in data.items()}, axis=1
+            ).sort_index()
+            res = evaluate_scorecard(
+                store, asset_class, close,
+                horizon=config.calibration.forward_horizon,
+                crash_drawdown=config.bubble.crash_drawdown,
+            )
+            return JSONResponse(res.as_dict())
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"{type(exc).__name__}: {exc}")
 
     @app.get("/api/history")
     def history(

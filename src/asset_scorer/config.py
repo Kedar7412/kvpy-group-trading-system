@@ -53,23 +53,80 @@ class WeightConfig:
     prior_strength: float = 0.5  # 0 => pure IC, large => stick to priors
     ic_floor: float = 0.0  # negative ICs are clamped (don't bet against a factor)
     min_weight: float = 0.02  # never let a factor go fully to zero
+    regime_conditional: bool = True   # estimate weights from same-regime history
+    regime_min_samples: int = 50      # below this, fall back to all-history weights
 
 
 @dataclass(frozen=True)
 class BubbleConfig:
-    """Anti-bubble penalty parameters.
+    """Anti-bubble / "bullshit detector" parameters.
 
-    The penalty fires when momentum/indicator/news heat is high but
-    fundamentals + orderflow do not confirm. It scales the composite score
-    down toward `max_penalty` (a multiplicative factor in [floor, 1]).
+    The detector blends several overheating signals into a crash probability and
+    discounts the score when an asset is hot AND unconfirmed by fundamentals +
+    orderflow. When enough history exists, the probability is a *calibrated
+    model* trained to predict forward drawdowns; otherwise a transparent
+    heuristic blend is used.
     """
 
     rsi_hot: float = 75.0          # RSI above this is "overheated"
     momentum_hot_z: float = 1.5    # momentum z-score considered parabolic
     hype_hot: float = 70.0         # news/indicator heat threshold (0-100)
     confirm_threshold: float = 50.0  # fundamentals/orderflow below = no confirm
-    penalty_floor: float = 0.55    # strongest possible multiplicative penalty
+    penalty_floor: float = 0.45    # strongest possible multiplicative penalty
     strength: float = 1.0          # global multiplier on penalty intensity
+
+    # Predictive crash model
+    crash_lookahead: int = 20      # bars ahead to look for a drawdown
+    crash_drawdown: float = 0.15   # peak-to-trough drop that counts as a "crash"
+    min_train_samples: int = 250   # below this -> heuristic probability
+    bubble_flag_prob: float = 0.60  # P(crash) above this -> bubble-risk label
+
+
+@dataclass(frozen=True)
+class RegimeConfig:
+    """Market-regime detection (point-in-time) from the universe itself.
+
+    The idea: don't go long into a falling, choppy, or panicking market. We
+    build an equal-weight index from the universe and read its trend, breadth,
+    and volatility to label each day risk_on / neutral / risk_off. FAVORED longs
+    are only allowed in risk_on/neutral.
+    """
+
+    index_fast: int = 50          # fast SMA on the equal-weight index
+    index_slow: int = 100         # slow SMA (trend filter)
+    breadth_lookback: int = 50    # SMA each asset is compared against for breadth
+    vol_lookback: int = 30        # realized-vol window on index returns
+    vol_z_window: int = 120       # window for the vol z-score
+    vol_hot_z: float = 1.25       # vol z above this = stress
+    breadth_weak: float = 0.40    # breadth below this = risk_off
+    breadth_strong: float = 0.55  # breadth above this (+trend) = risk_on
+
+
+@dataclass(frozen=True)
+class AbstentionConfig:
+    """Selective prediction: the courage to say 'no edge'.
+
+    A high-quality call requires real conviction. Below the confidence floor the
+    engine abstains ('NO-EDGE') rather than emit a noisy score. High crash
+    probability forces an AVOID regardless of score.
+    """
+
+    min_confidence: float = 0.55     # below this -> NO-EDGE (abstain)
+    favored_score: float = 58.0      # score at/above -> candidate FAVORED
+    avoid_score: float = 42.0        # score at/below -> AVOID/underweight
+    bubble_avoid_prob: float = 0.60  # crash prob at/above -> AVOID-BUBBLE
+
+
+@dataclass(frozen=True)
+class BacktestConfig:
+    """Walk-forward (out-of-sample) backtest parameters."""
+
+    min_train: int = 150          # bars of history before the first OOS call
+    step: int | None = None       # rebalance spacing in bars (default = horizon)
+    quantile: float = 0.34        # top/bottom fraction for long-short baskets
+    cost_bps: float = 10.0        # round-trip transaction cost per rebalance leg
+    selective_confidence: float = 0.55  # min confidence for the selective book
+    retrain_calibration: bool = True     # refit confidence each rebalance
 
 
 @dataclass(frozen=True)
@@ -106,21 +163,18 @@ class AppConfig:
     asset_class: str = "crypto"  # crypto | equity | commodity
     universe: list[str] = field(
         default_factory=lambda: [
-            "BTC/USDT",
-            "ETH/USDT",
-            "SOL/USDT",
-            "BNB/USDT",
-            "XRP/USDT",
-            "ADA/USDT",
-            "DOGE/USDT",
-            "AVAX/USDT",
-            "LINK/USDT",
-            "MATIC/USDT",
+            "BTC/USDT", "ETH/USDT", "SOL/USDT", "XRP/USDT", "ADA/USDT",
+            "DOGE/USDT", "AVAX/USDT", "LINK/USDT", "DOT/USDT", "LTC/USDT",
+            "ATOM/USDT", "UNI/USDT", "NEAR/USDT", "ARB/USDT", "OP/USDT",
+            "INJ/USDT", "APT/USDT", "SUI/USDT",
         ]
     )
     factor: FactorConfig = field(default_factory=FactorConfig)
     weights: WeightConfig = field(default_factory=WeightConfig)
     bubble: BubbleConfig = field(default_factory=BubbleConfig)
+    regime: RegimeConfig = field(default_factory=RegimeConfig)
+    abstention: AbstentionConfig = field(default_factory=AbstentionConfig)
+    backtest: BacktestConfig = field(default_factory=BacktestConfig)
     calibration: CalibrationConfig = field(default_factory=CalibrationConfig)
     data: DataConfig = field(default_factory=DataConfig)
 
@@ -131,8 +185,8 @@ DEFAULT_CONFIG = AppConfig()
 DEFAULT_UNIVERSES: dict[str, list[str]] = {
     "crypto": list(DEFAULT_CONFIG.universe),
     "equity": [
-        "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META",
-        "TSLA", "JPM", "XOM", "JNJ", "WMT", "KO",
+        "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "AMD",
+        "JPM", "XOM", "JNJ", "WMT", "KO", "CRM", "UBER", "PLTR", "COIN", "NFLX",
     ],
     "commodity": [
         "GC=F",  # gold

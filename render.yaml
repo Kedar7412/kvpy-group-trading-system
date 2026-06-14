@@ -1,0 +1,27 @@
+# One-click deploy on Render (https://render.com). Push this repo, then
+# "New + > Blueprint" and point it at this file.
+services:
+  - type: web
+    name: asset-scorer
+    runtime: python
+    plan: free
+    buildCommand: pip install -e .
+    startCommand: asset-scorer serve --host 0.0.0.0 --port $PORT --db /var/data/asset_scores.db --seed
+    envVars:
+      - key: ASSET_SCORER_DB
+        value: /var/data/asset_scores.db
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+    disk:
+      name: ledger
+      mountPath: /var/data
+      sizeGB: 1
+
+# Optional: a daily job that appends real calls so the public record compounds.
+# (Render Cron Jobs require a paid plan; alternatively use the GitHub Action.)
+#  - type: cron
+#    name: asset-scorer-daily
+#    runtime: python
+#    schedule: "30 23 * * *"
+#    buildCommand: pip install -e .
+#    command: asset-scorer daily --db /var/data/asset_scores.db

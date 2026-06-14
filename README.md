@@ -104,19 +104,121 @@ Schedule the daily job with cron (e.g. every day at 23:30):
 The `scores` table accumulates a per-asset time series (score, confidence, the
 five factor scores, bubble label) that powers the history view and dashboard.
 
+## Proving edge: the walk-forward backtest
+
+A score product is only worth trusting if it's tested **out of sample**. The
+`backtest` command does an honest walk-forward: at each rebalance it fits the
+weights, confidence model, and bubble detector on **past data only**, scores the
+unseen date, and records the realized forward return — net of transaction costs.
+
+```bash
+asset-scorer backtest --asset-class equity --history 650
+asset-scorer backtest --symbols BTC/USDT ETH/USDT SOL/USDT --history 700
+```
+
+It reports an equal-weight benchmark, a long-only top-quantile book, a
+long-short book, and a **selective** book (trades only high-confidence calls,
+holds cash otherwise) — plus a **calibration-by-confidence table**: do
+higher-confidence calls actually win more often? That table is the trust
+artifact. If the selective book doesn't beat the benchmark after costs, the tool
+says so honestly rather than overfitting.
+
+## Calls & abstention (selective prediction)
+
+Every asset gets an explicit **Call**, including the option to stay silent:
+
+| Call | Meaning |
+|---|---|
+| `FAVORED` | high score with sufficient confidence |
+| `AVOID` | low score with sufficient confidence |
+| `AVOID-BUBBLE` | high crash probability — looks like hype, not value |
+| `NEUTRAL` | nothing decisive |
+| `NO-EDGE` | confidence below the floor — we abstain rather than guess |
+
+Saying "no edge" most of the time is a feature, not a bug.
+
+## Market regime filter
+
+A long-biased scorer bleeds most by going long into a falling, choppy market.
+The engine builds an equal-weight index from the universe and reads its trend,
+breadth, and volatility to label each day **risk_on / neutral / risk_off**
+(point-in-time, no look-ahead). FAVORED longs are suppressed in `risk_off`, and
+the backtest adds a **regime-gated long book** that holds cash in risk-off. On a
+wider 18-asset universe this lifted the out-of-sample IC and gave the
+regime-gated book a materially better Sharpe than the naive long book.
+
+Weights are also **regime-conditional**: factor weights are estimated from
+*same-regime* history (with an all-history fallback when samples are thin), so
+the model leans on whatever has actually worked in the current kind of market.
+
+## Deployment (public scorecard URL)
+The app serves the dashboard at `/` and a public, verifiable scorecard at
+`/scorecard`. It's container- and PaaS-ready and **auto-seeds** a demo on first
+boot so the page is never empty:
+
+```bash
+docker build -t asset-scorer . && docker run -p 8000:8000 -v data:/data asset-scorer
+# or Render (render.yaml) / Fly (fly.toml) / Procfile hosts
+```
+
+`serve` reads `PORT`, `ASSET_SCORER_HOST`, and `ASSET_SCORER_DB` from the
+environment. Schedule `asset-scorer daily` to append real calls so the record
+compounds. Full instructions in [DEPLOY.md](DEPLOY.md).
+
+## The bullshit detector (predictive bubble model)
+
+The anti-bubble logic is a **calibrated model** that predicts the probability of
+a forward drawdown from seven overheating signals (overbought RSI, parabolic
+momentum, news hype, Bollinger stretch, premium over a long-run anchor,
+volatility climax, vertical blow-off). It reports `P(crash)` per asset with
+human-readable reasons, and discounts the score when an asset is hot **and**
+unconfirmed by fundamentals + orderflow.
+
+## Verifiable track record
+
+Every saved run is sealed into a hash-chained, append-only **ledger**. `verify`
+recomputes the chain *and* the score-content hashes, so any after-the-fact edit
+to the history is detectable.
+
+```bash
+asset-scorer verify --db asset_scores.db
+```
+
+## Public live scorecard
+
+The scorecard grades the calls we actually **sealed in the ledger** against what
+prices really did — no cherry-picking, no look-ahead — with the integrity proof
+attached. Populate history instantly with a point-in-time `backfill` (replays
+the walk-forward and seals each date's calls), then grade them:
+
+```bash
+asset-scorer backfill --asset-class crypto --history 400 --db asset_scores.db
+asset-scorer scorecard --asset-class crypto --db asset_scores.db
+```
+
+It reports: actionable accuracy, abstention rate, FAVORED-vs-benchmark spread,
+accuracy by call type, **calibration by confidence** (do higher-confidence calls
+win more?), a bullshit-detector check (do flagged names fall more?), and a
+follow-the-FAVORED equity curve — alongside the ledger verification badge. Going
+forward, `daily` keeps appending, so the record compounds. The same view is on
+the dashboard (`/api/scorecard`).
+
 ## Web dashboard
-A FastAPI + single-page dashboard visualizes the stored scores.
+A premium single-page dashboard (FastAPI + Three.js) with an interactive 3D
+object that follows your cursor.
 
 ```bash
 asset-scorer daily --db asset_scores.db   # populate some data first
 asset-scorer serve --db asset_scores.db   # http://127.0.0.1:8000
 ```
 
-The dashboard shows a ranked, color-coded score table with run diagnostics
-(calibration skill, Brier, IC, hit rate), a per-asset **score-history line
-chart** (score + confidence over time), and a **factor-breakdown bar chart**.
-Buttons trigger a live refresh (fetch + score + save) or a synthetic demo run.
-API routes live under `/api/*` (`scores`, `history`, `runs`, `refresh`).
+It shows the live **regime badge**, color-coded scores with the **Call**
+(FAVORED/AVOID/NO-EDGE…) and crash probability, run diagnostics, score-history
+and factor-breakdown charts, and an in-page **Grade calls** scorecard. A
+separate **public, read-only scorecard page** at `/scorecard` grades the sealed
+calls and publishes the **ledger head hash** so anyone can verify the record.
+API routes live under `/api/*` (`scores`, `history`, `runs`, `refresh`,
+`scorecard`, `verify`).
 
 ## Asset classes
 The engine is asset-class agnostic — all providers return the same `AssetData`
