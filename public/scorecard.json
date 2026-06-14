@@ -1,1602 +1,1908 @@
 {
-  "generated_at": "2026-06-14T12:40:41+00:00",
+  "generated_at": "2026-06-14T15:02:16+00:00",
   "ledger": {
     "ok": true,
-    "entries": 177,
-    "head": "2281595725884d06ef474caf2b92f2ef0a73cf2f2857ec85fe0ecb450eafa877",
+    "entries": 211,
+    "head": "b7990e4d22a26c2a1d296fd48cb31433cd8652c2fd2cb4e1024871479c1701db",
     "chain": [
       {
         "seq": 1,
-        "as_of": "2025-08-19",
+        "as_of": "2025-06-30",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "31ffab00f368e05b8feac6a045a29883e2e16ed5e1fa25edd20eab07930ead88",
+        "payload_hash": "ff7348ad0c233c9ab95445f1dd22a0357b95b3ad2c0eb5759abc25e7b35ecf90",
         "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-        "entry_hash": "7238b5dd13aea4b7be69d256f919d5c03c2cb4b2949d4904db227991b57a7b9b"
+        "entry_hash": "4d0d69b28f42514ea68e325633e0b1cdc5b2d7778dd12d622f5f115a5c0e1243"
       },
       {
         "seq": 2,
-        "as_of": "2025-08-24",
+        "as_of": "2025-07-05",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "cc738a6e65261c5d84f757cdf0dab5d2934c090f6f23500d44d94aba3d3ba034",
-        "prev_hash": "7238b5dd13aea4b7be69d256f919d5c03c2cb4b2949d4904db227991b57a7b9b",
-        "entry_hash": "80e597af71c0110f451f8cfef2342a9bc0ef204e3686a63843c53953c759bdf4"
+        "payload_hash": "efb1c81781405309cb72e63fa2080cbbf7edd705f5c16554a05a20a2c39d3b5e",
+        "prev_hash": "4d0d69b28f42514ea68e325633e0b1cdc5b2d7778dd12d622f5f115a5c0e1243",
+        "entry_hash": "2614fcb182518ce3a380144eb0790a8d3bdcb473aeec39a4fc7a85d111745d84"
       },
       {
         "seq": 3,
-        "as_of": "2025-08-29",
+        "as_of": "2025-07-10",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "639f68f56aa43d7389041719d6d885f52642d8b5993d3a057df61532a290adc3",
-        "prev_hash": "80e597af71c0110f451f8cfef2342a9bc0ef204e3686a63843c53953c759bdf4",
-        "entry_hash": "d7d676db19b5e74203ac2dfaf1aed0852cdafb791b85840a45db3607ab7b701f"
+        "payload_hash": "b0d02cea968a0891cf3849f8d9610db69f9a27e01b548e27ffe51967638654ca",
+        "prev_hash": "2614fcb182518ce3a380144eb0790a8d3bdcb473aeec39a4fc7a85d111745d84",
+        "entry_hash": "a9dbd191558ae06e57bd5d865094a96959067e9f73b0f65f023133c657885434"
       },
       {
         "seq": 4,
-        "as_of": "2025-09-03",
+        "as_of": "2025-07-15",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "2a975c8a248e6919cbc1e854b294241deaf76bc4c15a7e41edd205eb1642cf17",
-        "prev_hash": "d7d676db19b5e74203ac2dfaf1aed0852cdafb791b85840a45db3607ab7b701f",
-        "entry_hash": "e855462ec1dde300a7497ad4d671401e46a5aad14f08c5b93bd870c07de1a066"
+        "payload_hash": "aade9902ce996bf59939596fee05b3a266a0a6dce647402d5e523ee5eb3ca7cc",
+        "prev_hash": "a9dbd191558ae06e57bd5d865094a96959067e9f73b0f65f023133c657885434",
+        "entry_hash": "c0cfd2a34770d24144d0b3e4e0961e8178e10d2ba8b0f17fd0735683baca5c18"
       },
       {
         "seq": 5,
-        "as_of": "2025-09-08",
+        "as_of": "2025-07-20",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "e461f7a004f3ee715b12e2baba269622920fcf54c906b9387e333186f46a40c0",
-        "prev_hash": "e855462ec1dde300a7497ad4d671401e46a5aad14f08c5b93bd870c07de1a066",
-        "entry_hash": "3366768d249b98ea8827467aa11720eed77bc6aefbc8cb6ed55be36ab392ddf7"
+        "payload_hash": "0e667722bbf66b7c521bb92e220fe624e433096e915b9e3c7413747dd91afa0b",
+        "prev_hash": "c0cfd2a34770d24144d0b3e4e0961e8178e10d2ba8b0f17fd0735683baca5c18",
+        "entry_hash": "02f28289f85925c87c42a16fc910b9af0aa254b9298308bc23ef558b670029af"
       },
       {
         "seq": 6,
-        "as_of": "2025-09-13",
+        "as_of": "2025-07-25",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "8f429452dd60c749715ef7b198f4b53024e6efc8f713b2557dd8766b6f31e1d8",
-        "prev_hash": "3366768d249b98ea8827467aa11720eed77bc6aefbc8cb6ed55be36ab392ddf7",
-        "entry_hash": "795331080b745aef94ba44f698057781e26d8ee9f23e8dd862894923b62dac80"
+        "payload_hash": "0a08f103b3726909034a065c5853228fe8526c22ac4e7ca921762ed29eb382db",
+        "prev_hash": "02f28289f85925c87c42a16fc910b9af0aa254b9298308bc23ef558b670029af",
+        "entry_hash": "89234b6dbe487248683d40d8f9a3067808936f0d0a4396f74131d9b3d1e05828"
       },
       {
         "seq": 7,
-        "as_of": "2025-09-18",
+        "as_of": "2025-07-30",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "f7334612571d4036cdc781db4b06a73b1092013e78ba76388aebabfeae875681",
-        "prev_hash": "795331080b745aef94ba44f698057781e26d8ee9f23e8dd862894923b62dac80",
-        "entry_hash": "6b5df766cbbc5095593c796ed78422ef9aaf8d6d9cba1d29c3de326de67dffa6"
+        "payload_hash": "1cba4aa01702b2f74518437bda27e28eb28f202d967dc162ec236fd8c18afa9d",
+        "prev_hash": "89234b6dbe487248683d40d8f9a3067808936f0d0a4396f74131d9b3d1e05828",
+        "entry_hash": "c5999050470b026dab35a288a60efc509771e51cfa887edcf4f948d023daee8d"
       },
       {
         "seq": 8,
-        "as_of": "2025-09-23",
+        "as_of": "2025-08-04",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "366704459dc022582924ba767b7a0ccbfcadff0c3df03060b7deab84794ed688",
-        "prev_hash": "6b5df766cbbc5095593c796ed78422ef9aaf8d6d9cba1d29c3de326de67dffa6",
-        "entry_hash": "c460b0e0c6db4e9db748a3156899c9d2b12071d7a34526a75f5da87dede6051a"
+        "payload_hash": "fd99138b5effd26a6c56407a6dd7a4fd07cae9328c798e6e5e0580251dba74e5",
+        "prev_hash": "c5999050470b026dab35a288a60efc509771e51cfa887edcf4f948d023daee8d",
+        "entry_hash": "844d2d9ad9bee6c19d4388ed0863f608e962b3b3e86acdc43c390a4c093860b6"
       },
       {
         "seq": 9,
-        "as_of": "2025-09-28",
+        "as_of": "2025-08-09",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "46ecaafd9e244fc8e1e416cb431f0053432ee8faa4848c3903f38f540ca78d67",
-        "prev_hash": "c460b0e0c6db4e9db748a3156899c9d2b12071d7a34526a75f5da87dede6051a",
-        "entry_hash": "87bd8c1f2c8278aac12f26ec5101abd5e62ed991d53e987b45f8a3c74a2ddf8d"
+        "payload_hash": "079e74cc123e110ab2d356a67875886a908423374d4e61a3eab4fd3bebbf30e6",
+        "prev_hash": "844d2d9ad9bee6c19d4388ed0863f608e962b3b3e86acdc43c390a4c093860b6",
+        "entry_hash": "82dc74cbcd66b910db0d1d12af2ba4c9ca60504314a1f6ad0c6cad109684801d"
       },
       {
         "seq": 10,
-        "as_of": "2025-10-03",
+        "as_of": "2025-08-14",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "4eab3944d38783c89c461bb08d7a902d79080bfacc66ae6265911c4d2446c722",
-        "prev_hash": "87bd8c1f2c8278aac12f26ec5101abd5e62ed991d53e987b45f8a3c74a2ddf8d",
-        "entry_hash": "6bccab14df2e7de16844a42513d58d84a66a5e44ddfba0b5f464e9bb60586da0"
+        "payload_hash": "f33d7c3e8e236417365448c172dc7b144eed54a882eac0c5af6e0fae54906a48",
+        "prev_hash": "82dc74cbcd66b910db0d1d12af2ba4c9ca60504314a1f6ad0c6cad109684801d",
+        "entry_hash": "f7e5c6888aacd913aa09aa42159897fb0a0e04edd0416efc35723aa91cc807ed"
       },
       {
         "seq": 11,
-        "as_of": "2025-10-08",
+        "as_of": "2025-08-19",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "9d21f93a97aa2b2b969931782e461949514e55c120a997f67839d3ef4891a305",
-        "prev_hash": "6bccab14df2e7de16844a42513d58d84a66a5e44ddfba0b5f464e9bb60586da0",
-        "entry_hash": "9c8d8a00ed512d62006bff04951eef29dea682744a301c23705dbc5c50a15115"
+        "payload_hash": "e967427e4438e12b61e9f0eed6979502b7eec8934f8e4602f008e5e3aebe79ec",
+        "prev_hash": "f7e5c6888aacd913aa09aa42159897fb0a0e04edd0416efc35723aa91cc807ed",
+        "entry_hash": "af78af60514b4436891328f32fd238cde06b93747cbba0fdf580e1ed30ac1779"
       },
       {
         "seq": 12,
-        "as_of": "2025-10-13",
+        "as_of": "2025-08-24",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "52c5c4158add3dd19ed87e2be990c7acf9f7602b9d04ea20005fcf197e5d4efc",
-        "prev_hash": "9c8d8a00ed512d62006bff04951eef29dea682744a301c23705dbc5c50a15115",
-        "entry_hash": "7407d3770ed151f95d37da9265d34052e3995a22b2193eb8505305def9309067"
+        "payload_hash": "22e9c984085d95399b3e4b8d495d37e3e803eb448d4f1fdd81e13ce76ea8d7a4",
+        "prev_hash": "af78af60514b4436891328f32fd238cde06b93747cbba0fdf580e1ed30ac1779",
+        "entry_hash": "1a15dd5d4bd8217854e29461e5aecd80164ec2090f5aa99bfc6f763a7f9ab8bb"
       },
       {
         "seq": 13,
-        "as_of": "2025-10-18",
+        "as_of": "2025-08-29",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "372b8acb78344988f3e4ff766ff6711a3142e74b0ec8de1ebd519517d61c3036",
-        "prev_hash": "7407d3770ed151f95d37da9265d34052e3995a22b2193eb8505305def9309067",
-        "entry_hash": "d9c1694f5e54b0c98fca2696f8b030ffd6cb4a832972cb512dc3088288a3a22f"
+        "payload_hash": "c6c5e67fced13b88041415148ab8c3ee630e8fabdb71d446fc66859eadb08cd4",
+        "prev_hash": "1a15dd5d4bd8217854e29461e5aecd80164ec2090f5aa99bfc6f763a7f9ab8bb",
+        "entry_hash": "8e23df5e5bd9dd96e5e5efc905ed1a713f3db4df22759066d137580dfe9cefb7"
       },
       {
         "seq": 14,
-        "as_of": "2025-10-23",
+        "as_of": "2025-09-03",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "181a0a0410f9b7f0946306759cd037b114a30481651e60e8eee6d5084c9531e5",
-        "prev_hash": "d9c1694f5e54b0c98fca2696f8b030ffd6cb4a832972cb512dc3088288a3a22f",
-        "entry_hash": "6f244ebe62221eb8486eff29b0e2659969b209a1ee0ab94d6dc7976d94bc0b7e"
+        "payload_hash": "f6ea49304cfecfa552f231aab15107503f4700bf9e86ce5334bbd989ee04e822",
+        "prev_hash": "8e23df5e5bd9dd96e5e5efc905ed1a713f3db4df22759066d137580dfe9cefb7",
+        "entry_hash": "3fd4d986dbb363cef6d997d3937098426b8d8e6072c606f90c33ceb1f3e21979"
       },
       {
         "seq": 15,
-        "as_of": "2025-10-28",
+        "as_of": "2025-09-08",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ab697dfc5f2985918e3ea30b1fd98acedf5e0ca0f8c7b7576e575e32ec4f76bb",
-        "prev_hash": "6f244ebe62221eb8486eff29b0e2659969b209a1ee0ab94d6dc7976d94bc0b7e",
-        "entry_hash": "466cb53c691957fae260b3815be93857448ddaa9b8197b5a00f80d793e5d5aef"
+        "payload_hash": "b229cc52faa1ffa56148acc4f2f7f4faa86f6c44257af0a75ea8124c26512559",
+        "prev_hash": "3fd4d986dbb363cef6d997d3937098426b8d8e6072c606f90c33ceb1f3e21979",
+        "entry_hash": "1804eae2ea44fe7c319045993526d61cdb50a5c91aaf230f029624734ea91c56"
       },
       {
         "seq": 16,
-        "as_of": "2025-11-02",
+        "as_of": "2025-09-13",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "905f722d0f0ab2b6b0c5942b062f4c73a67e175764b1ae6dab2b9adc548021c8",
-        "prev_hash": "466cb53c691957fae260b3815be93857448ddaa9b8197b5a00f80d793e5d5aef",
-        "entry_hash": "c0b99ff61933338e283f6229e8ecdefb9cbe16a9bf233380148fcb3a541e255f"
+        "payload_hash": "2842aabbba87ab667b68c3b619a6f22296fcbcbb1698c80764235177934a7e1e",
+        "prev_hash": "1804eae2ea44fe7c319045993526d61cdb50a5c91aaf230f029624734ea91c56",
+        "entry_hash": "ccdb6a269b66a457721a6e6e1c22f6196fc86c26535e8d1af826dc3226feedad"
       },
       {
         "seq": 17,
-        "as_of": "2025-11-07",
+        "as_of": "2025-09-18",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "b21764a6f666f0e3bfb9502a0f9c7525ae712f2872937f7f0e4190bb3c38cde4",
-        "prev_hash": "c0b99ff61933338e283f6229e8ecdefb9cbe16a9bf233380148fcb3a541e255f",
-        "entry_hash": "15bfe9f8b59867aa5625fc228fd29e0ccff932b4ec4731fe27115728f5e0fcb4"
+        "payload_hash": "852ea45ce7e760fa36e0658cf733801d44acf067aee94a53d84f5b390ff1acee",
+        "prev_hash": "ccdb6a269b66a457721a6e6e1c22f6196fc86c26535e8d1af826dc3226feedad",
+        "entry_hash": "da95a05d509cb734f50dd03a3dbe674f6ebf0b0f86e2dd0165d92b7e0e764e0f"
       },
       {
         "seq": 18,
-        "as_of": "2025-11-12",
+        "as_of": "2025-09-23",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "30c45f4df0c4836d843458ae4aa1252991b3c01d8b10aa868bd6db835926e2fb",
-        "prev_hash": "15bfe9f8b59867aa5625fc228fd29e0ccff932b4ec4731fe27115728f5e0fcb4",
-        "entry_hash": "c62c95f4ce2782a710273d7388f4f7210cdba5fdfb2b37d01de03ab08e2f7d73"
+        "payload_hash": "a41e60482bed0747091389a95f824a509212752ca8320a191d49f5548b93fce2",
+        "prev_hash": "da95a05d509cb734f50dd03a3dbe674f6ebf0b0f86e2dd0165d92b7e0e764e0f",
+        "entry_hash": "acdc3c50735d2e9fad7408b94a6d02a93e7c708170cf3ae18b8d6205f949bf8e"
       },
       {
         "seq": 19,
-        "as_of": "2025-11-17",
+        "as_of": "2025-09-28",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "c46d5e1cfbdb8d5655e7cae9746057184f28c9d1354bd6c259e099522377fc44",
-        "prev_hash": "c62c95f4ce2782a710273d7388f4f7210cdba5fdfb2b37d01de03ab08e2f7d73",
-        "entry_hash": "1ddd18dc535cf78ab470b8cc1bfc75e9351f25a25113eac6690b47d87995f90a"
+        "payload_hash": "d7e1d5fed2394c151d197de6bdf282e6f1ee17010d7a129f8c0fb0972080c8d0",
+        "prev_hash": "acdc3c50735d2e9fad7408b94a6d02a93e7c708170cf3ae18b8d6205f949bf8e",
+        "entry_hash": "732bc1d683834eeb2c3185d6173d0da7a0b4296c96a21e535a74f69ee58a07ac"
       },
       {
         "seq": 20,
-        "as_of": "2025-11-22",
+        "as_of": "2025-10-03",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "20fc2976c2f291d4f92b15ba18b55a34e4a59118e7a497b5ea3322644af0f5f3",
-        "prev_hash": "1ddd18dc535cf78ab470b8cc1bfc75e9351f25a25113eac6690b47d87995f90a",
-        "entry_hash": "d3ca9cf2327e07d00ea603d82bb97fe9460306916de8daab120be3451ae605aa"
+        "payload_hash": "cdbe32feb6c9dad3cdc9a215db0836413cae8a3dab45251d9ce3938d04fea265",
+        "prev_hash": "732bc1d683834eeb2c3185d6173d0da7a0b4296c96a21e535a74f69ee58a07ac",
+        "entry_hash": "ff9eaa273741554e0cf60caed9320daeeb08810638df2495c88cd2aa32050421"
       },
       {
         "seq": 21,
-        "as_of": "2025-11-27",
+        "as_of": "2025-10-08",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "fe8eac5d1ff2776f0a106f3b26c93f9ed0e4e29e364cb86fb2c6731b242dd638",
-        "prev_hash": "d3ca9cf2327e07d00ea603d82bb97fe9460306916de8daab120be3451ae605aa",
-        "entry_hash": "7df5ff503db508d5a0ed0c6bd196fca71d0ad7f7240963ff7845ba2b1418e651"
+        "payload_hash": "6e2926246babf938295d1a35379d31abd6146a663aaec5ac86fd6be48a22e4eb",
+        "prev_hash": "ff9eaa273741554e0cf60caed9320daeeb08810638df2495c88cd2aa32050421",
+        "entry_hash": "bed060be53ecddb0aa4c4f5e0ed00346a9e1dd9c31722f19cb5132e1b29db115"
       },
       {
         "seq": 22,
-        "as_of": "2025-12-02",
+        "as_of": "2025-10-13",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "0b3716799affe9e74dc4ebd9cbe1c97d5fedd6e0f915c1f39d8c848c035c6c42",
-        "prev_hash": "7df5ff503db508d5a0ed0c6bd196fca71d0ad7f7240963ff7845ba2b1418e651",
-        "entry_hash": "4ee8ed86e3ac1d8f49e66cf62300dd55e4eda0a7e5796d33d098e634b3b51026"
+        "payload_hash": "29618a4e128bf386bba3881fd36cfff3134aacca467e506332f0df74de3f8479",
+        "prev_hash": "bed060be53ecddb0aa4c4f5e0ed00346a9e1dd9c31722f19cb5132e1b29db115",
+        "entry_hash": "d13955b678d7e05339dbeb8bdc04792be518b5576eca6e0dd9d991d95874d356"
       },
       {
         "seq": 23,
-        "as_of": "2025-12-07",
+        "as_of": "2025-10-18",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "17afd54c59617d4b6c4c139491c530486435e2aee5fd8e8102c7b00764b01d86",
-        "prev_hash": "4ee8ed86e3ac1d8f49e66cf62300dd55e4eda0a7e5796d33d098e634b3b51026",
-        "entry_hash": "3546fc4d4ac068f501668162ca0075f42a0febeb9ae4e30d2a0af23c2ccded2e"
+        "payload_hash": "6ee8d1994f93bc0d0ad82672559ecfbca19bcaea48eb41ef9dfd7ec51a912015",
+        "prev_hash": "d13955b678d7e05339dbeb8bdc04792be518b5576eca6e0dd9d991d95874d356",
+        "entry_hash": "40affeb0cb24c5feee883d36b5173307d61aae9cb973d9e84500e57557e550b6"
       },
       {
         "seq": 24,
-        "as_of": "2025-12-12",
+        "as_of": "2025-10-23",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "961911bc7f9004a6ae887ca3b586e8f4dad5b0f6e78679ed4806264fc81181ff",
-        "prev_hash": "3546fc4d4ac068f501668162ca0075f42a0febeb9ae4e30d2a0af23c2ccded2e",
-        "entry_hash": "fc940f3073461b7d79824a55d2a4242bba88a56970ae53314ded6d5ab8bbdb52"
+        "payload_hash": "4c03eada9a1f00fbed73db40359123f20b852a3c605772c6b57d02c349c5b3c0",
+        "prev_hash": "40affeb0cb24c5feee883d36b5173307d61aae9cb973d9e84500e57557e550b6",
+        "entry_hash": "b8af0423fb1f1bf9d1451e85887987726abe5c55f6cef95a5c4e138aacc7d106"
       },
       {
         "seq": 25,
-        "as_of": "2025-12-17",
+        "as_of": "2025-10-28",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "3e438c1699da4e0c5a3161885a7824232479433c57cbb47a6cc7e9f219fed17d",
-        "prev_hash": "fc940f3073461b7d79824a55d2a4242bba88a56970ae53314ded6d5ab8bbdb52",
-        "entry_hash": "53701a9dc1494216d73e9aab28d26d4f418c6ae8f61312b032b49290739a5310"
+        "payload_hash": "22186e65aeea47f0625249e7a5892c498747bca8077dbce26cf08659bb236435",
+        "prev_hash": "b8af0423fb1f1bf9d1451e85887987726abe5c55f6cef95a5c4e138aacc7d106",
+        "entry_hash": "3cea9f6b8cf787737aa1580e4a31a923042508dbe6f57641dec7bc3f7c703971"
       },
       {
         "seq": 26,
-        "as_of": "2025-12-22",
+        "as_of": "2025-11-02",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "e1f72a344bddae71b35a242833335bf20e44ff25e488bbdff5c71f48885c067c",
-        "prev_hash": "53701a9dc1494216d73e9aab28d26d4f418c6ae8f61312b032b49290739a5310",
-        "entry_hash": "5e48730dddf2c85b878dd09a3e5f2490769e852137e3022ce1a12196c2469dfc"
+        "payload_hash": "d63e88d2927c33c9975dcf3785068c28738b58c516173016ce66baddcd8c1421",
+        "prev_hash": "3cea9f6b8cf787737aa1580e4a31a923042508dbe6f57641dec7bc3f7c703971",
+        "entry_hash": "348b3ec89d47dd110043581270eaf3ecafd1a22f589af8867d52aec95abe654e"
       },
       {
         "seq": 27,
-        "as_of": "2025-12-27",
+        "as_of": "2025-11-07",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "1a175d7a13159d5854f01161ac758d22a95749bc2cc07c313eeea702d6414855",
-        "prev_hash": "5e48730dddf2c85b878dd09a3e5f2490769e852137e3022ce1a12196c2469dfc",
-        "entry_hash": "ca2e0840f22bb69b5561f6dc789de74e6714c572358dca9c25270ca0c040657c"
+        "payload_hash": "c9e132444fd9b531d080f780f1426fd985142302be0ac95203faea4dbae45c4d",
+        "prev_hash": "348b3ec89d47dd110043581270eaf3ecafd1a22f589af8867d52aec95abe654e",
+        "entry_hash": "e337affcb76bdc7f77908c935a651587f97b15a8c66368e8f9085496dc84a42e"
       },
       {
         "seq": 28,
-        "as_of": "2026-01-01",
+        "as_of": "2025-11-12",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "6c927b022571b7b457e56b6d576a4b1811e07823a89b2c3f3d4a2b3ca3adb5a0",
-        "prev_hash": "ca2e0840f22bb69b5561f6dc789de74e6714c572358dca9c25270ca0c040657c",
-        "entry_hash": "56396a575dd9f03f8f8f8fb793f1ffe564864454266103da2fb3f8ec976b6d65"
+        "payload_hash": "81fe506393e40d78f75b0488ecb39a60684a8deca9bf061aface8456c508e4d8",
+        "prev_hash": "e337affcb76bdc7f77908c935a651587f97b15a8c66368e8f9085496dc84a42e",
+        "entry_hash": "d1ef662154332a8dd4073638aaf3bd9a99cc5208a017e55ec772d0932b4e8de7"
       },
       {
         "seq": 29,
-        "as_of": "2026-01-06",
+        "as_of": "2025-11-17",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "fe6f51870f6f0deea18fdf40ea8e4191bc080ed7e852461a0507e52c6db31c6e",
-        "prev_hash": "56396a575dd9f03f8f8f8fb793f1ffe564864454266103da2fb3f8ec976b6d65",
-        "entry_hash": "307837ad408f74f0785b802baa5f4d10d536f8f981ab7bfee74a6fe40956a310"
+        "payload_hash": "2700211a6507f67a24df73da50565b70bf7442b20558968238c1cf6ae917ac02",
+        "prev_hash": "d1ef662154332a8dd4073638aaf3bd9a99cc5208a017e55ec772d0932b4e8de7",
+        "entry_hash": "3ebf3bab14acf13567ac0e7492f560159cb9e0ac4f966d23c424e1bad371d7c3"
       },
       {
         "seq": 30,
-        "as_of": "2026-01-11",
+        "as_of": "2025-11-22",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "efc30c700e480cd60cd757722a00a640bff6334f2ec9bac297fa1d425b8548c8",
-        "prev_hash": "307837ad408f74f0785b802baa5f4d10d536f8f981ab7bfee74a6fe40956a310",
-        "entry_hash": "2d0051029a4d8be77c4205909157ce8b5154ea66db903073f6ea55b675d3d25c"
+        "payload_hash": "9fdb63f9ecdbbe6840ff38ba845eef14a3bf6d0f1188fb841fc6a0dd6eac18a0",
+        "prev_hash": "3ebf3bab14acf13567ac0e7492f560159cb9e0ac4f966d23c424e1bad371d7c3",
+        "entry_hash": "4e047d89fb0070b9d1d3bc9b57747467610afc1635eb70f5ca974334b574fc44"
       },
       {
         "seq": 31,
-        "as_of": "2026-01-16",
+        "as_of": "2025-11-27",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "3a6b97020a37de28dcc11cdffc0ceeb36ebf60721635b29f9f95df4d9fb28815",
-        "prev_hash": "2d0051029a4d8be77c4205909157ce8b5154ea66db903073f6ea55b675d3d25c",
-        "entry_hash": "36e07ac59bc8c519b6d9d26fdec4e958360cc368d9e54b9871563d3c29424f38"
+        "payload_hash": "db8707756f1121bb5167919c8eab0dad062e424a737b0b43aab692062a685968",
+        "prev_hash": "4e047d89fb0070b9d1d3bc9b57747467610afc1635eb70f5ca974334b574fc44",
+        "entry_hash": "d2de9271c3d21bea2b41fbb485f27e4a1a9a4f145c48da1d49b6290fd64c3be8"
       },
       {
         "seq": 32,
-        "as_of": "2026-01-21",
+        "as_of": "2025-12-02",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ed55121f4dbe50e4849958b7bd0b55392f7593dcbaa567adb8dba5d5e6bcdb82",
-        "prev_hash": "36e07ac59bc8c519b6d9d26fdec4e958360cc368d9e54b9871563d3c29424f38",
-        "entry_hash": "9207213bcd528e0240bcf47163db17dbb2e412afc8ed4c7bedd0cb40568da4fb"
+        "payload_hash": "c56bc8e220c1a736f43d7f05f0c055a06b76e921cf5b82673a012f78f2257b87",
+        "prev_hash": "d2de9271c3d21bea2b41fbb485f27e4a1a9a4f145c48da1d49b6290fd64c3be8",
+        "entry_hash": "3fefb015127b3abb9b98600a654b97d2de5853128e3f0f7e0bbbebd5d4a7f1dc"
       },
       {
         "seq": 33,
-        "as_of": "2026-01-26",
+        "as_of": "2025-12-07",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ca68e9722587044436471f97fa13dde86cbfa44bdcf65985dd81d8d9b45e8fcf",
-        "prev_hash": "9207213bcd528e0240bcf47163db17dbb2e412afc8ed4c7bedd0cb40568da4fb",
-        "entry_hash": "3ef0cd486f824becefea918992b81e4ceb7102dc177a28ccb6152bd4219dbafb"
+        "payload_hash": "edccea236c0b0d2ef7b39c67ada71276cbd23afd71e95e368e81b0f67e7327ea",
+        "prev_hash": "3fefb015127b3abb9b98600a654b97d2de5853128e3f0f7e0bbbebd5d4a7f1dc",
+        "entry_hash": "b2fc625f93652df036bb70332f8bfcb07e91056938a885130e8b44e877d6841a"
       },
       {
         "seq": 34,
-        "as_of": "2026-01-31",
+        "as_of": "2025-12-12",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "4b034bbc0cdc75de8407b244c99725d4af461e95882fff6c81002a7db77bcf66",
-        "prev_hash": "3ef0cd486f824becefea918992b81e4ceb7102dc177a28ccb6152bd4219dbafb",
-        "entry_hash": "29aa7c5e8ef1af9479beeedbed6a9cbcfabd5113e635f28741e05470c21f7d14"
+        "payload_hash": "acdcc72e681ed4653ab8fa80678825fab67608f6c635b30cf462564d659a1853",
+        "prev_hash": "b2fc625f93652df036bb70332f8bfcb07e91056938a885130e8b44e877d6841a",
+        "entry_hash": "bf3ad811ed30403fd08b5409435563ec1b0d88352daa6b1bee896ce2d8ad997e"
       },
       {
         "seq": 35,
-        "as_of": "2026-02-05",
+        "as_of": "2025-12-17",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a403bbd445ded354ab7737000dd653fe11549685a2bcb2cdafb0280bab83e0b2",
-        "prev_hash": "29aa7c5e8ef1af9479beeedbed6a9cbcfabd5113e635f28741e05470c21f7d14",
-        "entry_hash": "c5f3be152b963cf2a87f8b86bb7ab3569be6dc9d752ea57fe06012de43b5bce0"
+        "payload_hash": "d17c37d6bad15f4636b37e4f0842b5733bea5130f7653b1d386f8a5d53fb3e3c",
+        "prev_hash": "bf3ad811ed30403fd08b5409435563ec1b0d88352daa6b1bee896ce2d8ad997e",
+        "entry_hash": "bda7869ef06e7be205c0b570cc2a4be8e413b15f2ef7df1e07de6c601d08bca1"
       },
       {
         "seq": 36,
-        "as_of": "2026-02-10",
+        "as_of": "2025-12-22",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "c70584acae202c5bbf7759bf044b5023c5b8a0320d5dfc46a41b0dacfc2f3ce0",
-        "prev_hash": "c5f3be152b963cf2a87f8b86bb7ab3569be6dc9d752ea57fe06012de43b5bce0",
-        "entry_hash": "3aeb2e971eb86d022e2dc3fa989ec4a9aecb0637d75f2025148dd8d8ec090414"
+        "payload_hash": "c5857cfdf3ff6123b7ee9b00ffe36a3fe0a47c5f5339a6bc47019c6819511cec",
+        "prev_hash": "bda7869ef06e7be205c0b570cc2a4be8e413b15f2ef7df1e07de6c601d08bca1",
+        "entry_hash": "ec01a05512d88a4c70c651cd2ede6036d103498a039dc667db2770ea1a5a4c9c"
       },
       {
         "seq": 37,
-        "as_of": "2026-02-15",
+        "as_of": "2025-12-27",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "4ae0c119cf476350482230740b396176d2bdc446ac12c371e6725aff2a63cb8a",
-        "prev_hash": "3aeb2e971eb86d022e2dc3fa989ec4a9aecb0637d75f2025148dd8d8ec090414",
-        "entry_hash": "8d8c7b7b9089e605ffac05844c022c086706903ecbc7e95fc98cd80d8ac62027"
+        "payload_hash": "4b6ab818492e4e4316dd64c2a54decc21c1ca7c00a0f156fb8a8b07e5a644fac",
+        "prev_hash": "ec01a05512d88a4c70c651cd2ede6036d103498a039dc667db2770ea1a5a4c9c",
+        "entry_hash": "64f1fbda4ee8fb12f3b0fd7a8857b6b45680699868b47b22e3d900cc3156439c"
       },
       {
         "seq": 38,
-        "as_of": "2026-02-20",
+        "as_of": "2026-01-01",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "dba2367833e161480668e049624be3862e4459b971fc9bde0127a5814df37a18",
-        "prev_hash": "8d8c7b7b9089e605ffac05844c022c086706903ecbc7e95fc98cd80d8ac62027",
-        "entry_hash": "c0e7b513e5f8662c7501023d0aa91a54681bc44b3cf90e554c9e40da96c15bb8"
+        "payload_hash": "0e21cdbcdaa35c158fa905aeac76d720e669ece551d5b3e4b63c77e4c3082dd3",
+        "prev_hash": "64f1fbda4ee8fb12f3b0fd7a8857b6b45680699868b47b22e3d900cc3156439c",
+        "entry_hash": "c816dafbd00c224b8ff88a3fa396bc1be52412d88ba0fbfb4b62e894afa79cf4"
       },
       {
         "seq": 39,
-        "as_of": "2026-02-25",
+        "as_of": "2026-01-06",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "86a4b22df2d96e07610ffdb175667c7ceb9b312a829e9e10fee5337e16aa577e",
-        "prev_hash": "c0e7b513e5f8662c7501023d0aa91a54681bc44b3cf90e554c9e40da96c15bb8",
-        "entry_hash": "ed889ba700ff900cb21b130ed0654b50f78477336d9ecdfa7b81250f985ee6b7"
+        "payload_hash": "d351838f99e7c34f2b111fab5a3cf2ede0beb40015d7cf8b7e8e3d576f9bb1cb",
+        "prev_hash": "c816dafbd00c224b8ff88a3fa396bc1be52412d88ba0fbfb4b62e894afa79cf4",
+        "entry_hash": "564e7d8a926dea832304012eaf83e8f16f665c1adf62c5b19fbe54741b2b88f2"
       },
       {
         "seq": 40,
-        "as_of": "2026-03-02",
+        "as_of": "2026-01-11",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "80eca3cc84865e5345612ae48d6b00f0e6a460bc8143b7421e188a69ed75f727",
-        "prev_hash": "ed889ba700ff900cb21b130ed0654b50f78477336d9ecdfa7b81250f985ee6b7",
-        "entry_hash": "01cfe8b9b8bfb5af4d7a598bf73f304f1c268941d83f2f471cb07e4b1f460038"
+        "payload_hash": "1033999e6b4eaf95dc985e21d019ad2d9d98d06a0b2c9bbe4cc6fdba9ba5ad00",
+        "prev_hash": "564e7d8a926dea832304012eaf83e8f16f665c1adf62c5b19fbe54741b2b88f2",
+        "entry_hash": "c7acbe851689613410655589f6bb32b3fd76114d3c4b6bf3cf087d25cf16eff8"
       },
       {
         "seq": 41,
-        "as_of": "2026-03-07",
+        "as_of": "2026-01-16",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "b09bd58b980985da258adbaee88fc7c5e9ca25d7ad48485346b7a6f00ba1b6a0",
-        "prev_hash": "01cfe8b9b8bfb5af4d7a598bf73f304f1c268941d83f2f471cb07e4b1f460038",
-        "entry_hash": "f1697609140069a7bddba82442ad85968088019971126c7677c3ef6feb59f5ea"
+        "payload_hash": "31ab257d7acdd68468b649ac0ea0a5f67081b36007372b093d09e80831452394",
+        "prev_hash": "c7acbe851689613410655589f6bb32b3fd76114d3c4b6bf3cf087d25cf16eff8",
+        "entry_hash": "286b522099788660d1f5e3c16b927fd6d0d59cfc68120cb8f5cc2fa7c151ddbe"
       },
       {
         "seq": 42,
-        "as_of": "2026-03-12",
+        "as_of": "2026-01-21",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a87b25cb146c90f27ae0f7d170ce587e18fbd2ae1e43fb961ccf66c4301f47c1",
-        "prev_hash": "f1697609140069a7bddba82442ad85968088019971126c7677c3ef6feb59f5ea",
-        "entry_hash": "a3d0a6150ddaded1eeaf44e067ca13369fbc87dc0d743243ba126527ef9b9828"
+        "payload_hash": "67483a38b4cc49dc3e4963f425902f86db7833b87dea8097e6e5db0ca9beed17",
+        "prev_hash": "286b522099788660d1f5e3c16b927fd6d0d59cfc68120cb8f5cc2fa7c151ddbe",
+        "entry_hash": "6818206655d459b0105714bdeb5ed36698e2c6486635720bc8c255a4bb166801"
       },
       {
         "seq": 43,
-        "as_of": "2026-03-17",
+        "as_of": "2026-01-26",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "1162afc8761d1eb1082f5379e858f59b0563ed13f75059c2b6fcc64a2e135fa8",
-        "prev_hash": "a3d0a6150ddaded1eeaf44e067ca13369fbc87dc0d743243ba126527ef9b9828",
-        "entry_hash": "80153a96c2e68f359908abc7c0143162f38b83a0245e630634a796d417e3ae57"
+        "payload_hash": "46f081f58b54dac4fd79673a9b5a9be90a924cc4c0ea65a6077e823bb2562542",
+        "prev_hash": "6818206655d459b0105714bdeb5ed36698e2c6486635720bc8c255a4bb166801",
+        "entry_hash": "402e2d2bf49a672162a71e7cea8b470c45ac6b34058575f756c9e4a815595bc7"
       },
       {
         "seq": 44,
-        "as_of": "2026-03-22",
+        "as_of": "2026-01-31",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "62dbe18136b1a60a61129774914c7ac24e636c7ccea6fe60b33b23a571a0b195",
-        "prev_hash": "80153a96c2e68f359908abc7c0143162f38b83a0245e630634a796d417e3ae57",
-        "entry_hash": "4175a01541326aa137539a5b63345bc586ae7a6fe96059d124f0eb5aea2197d5"
+        "payload_hash": "c356b58a03990fafef42efdf9eee988da8769e8f94a21caf8e0adef51895fc9a",
+        "prev_hash": "402e2d2bf49a672162a71e7cea8b470c45ac6b34058575f756c9e4a815595bc7",
+        "entry_hash": "70629bbdc5fda65cf905ece6aa8d6d716e2d0c03b1586e93aac0177771198644"
       },
       {
         "seq": 45,
-        "as_of": "2026-03-27",
+        "as_of": "2026-02-05",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a9264f3249ced020bc1082363fcaf3ce3fb61aa370f323aecbe616cd22edccfc",
-        "prev_hash": "4175a01541326aa137539a5b63345bc586ae7a6fe96059d124f0eb5aea2197d5",
-        "entry_hash": "fec205e405a4819b5b981a4d77504affbb80501d65cd217c3a032e156e549b75"
+        "payload_hash": "25b2addaa770f9e849d8250e7ae6840106387623c8005db80ae4ae4f352d9f69",
+        "prev_hash": "70629bbdc5fda65cf905ece6aa8d6d716e2d0c03b1586e93aac0177771198644",
+        "entry_hash": "7fedbce9d03ecfaf63bca3504e382f796392cf6437f8216090d7f126786d2f6b"
       },
       {
         "seq": 46,
-        "as_of": "2026-04-01",
+        "as_of": "2026-02-10",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "1abc68b238f9a6f12ae0172f3e61f286a02c3b17142158c67bfb0d3c5d95ce9e",
-        "prev_hash": "fec205e405a4819b5b981a4d77504affbb80501d65cd217c3a032e156e549b75",
-        "entry_hash": "b69d25bcd8b78d3527e0b205a451e82d7e171f8faed5dbb93ef19cacf5e1acfd"
+        "payload_hash": "2dccc82466feaa8e8f576f767d18c83cbb2cc3e8b6a3c2bc6f8b3bb37bd5646a",
+        "prev_hash": "7fedbce9d03ecfaf63bca3504e382f796392cf6437f8216090d7f126786d2f6b",
+        "entry_hash": "af5ed6585ebe969c460688117ff1627d8c6028bd1ff2c88e9170bc77a6e25281"
       },
       {
         "seq": 47,
-        "as_of": "2026-04-06",
+        "as_of": "2026-02-15",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ed4846e43f3c5760bb5018df1037c47a6e7cef143abb93e0441efae13fe5d318",
-        "prev_hash": "b69d25bcd8b78d3527e0b205a451e82d7e171f8faed5dbb93ef19cacf5e1acfd",
-        "entry_hash": "0a4228c2af31e24d059d12834c9d679deac2d42a5de1e428cb694911896436c3"
+        "payload_hash": "bbcfadd794162c124a26942be7f3148d2172b8b6ebff664cb42808364c0d37e5",
+        "prev_hash": "af5ed6585ebe969c460688117ff1627d8c6028bd1ff2c88e9170bc77a6e25281",
+        "entry_hash": "8ab85254c66783839f1ccde02267d7acdb85079cdcf4ad9af42241807194e83d"
       },
       {
         "seq": 48,
-        "as_of": "2026-04-11",
+        "as_of": "2026-02-20",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a5e0d2538d723f5b42b5bcf021b782b3095193fda898d0efcd2c30345bbf1b3c",
-        "prev_hash": "0a4228c2af31e24d059d12834c9d679deac2d42a5de1e428cb694911896436c3",
-        "entry_hash": "48bda2c8c7de9d58cf90dee47ead904fd68de3659daf38003d78e99944022263"
+        "payload_hash": "fd8f6f275124f768e423097509bb996cea6b859a2312b9119f238dd407bedba5",
+        "prev_hash": "8ab85254c66783839f1ccde02267d7acdb85079cdcf4ad9af42241807194e83d",
+        "entry_hash": "05b7ff41682c63ee837c7b851a14c0f7ee6cce443b445c0be8d4822fa7096249"
       },
       {
         "seq": 49,
-        "as_of": "2026-04-16",
+        "as_of": "2026-02-25",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "355a2fbb3441e46ee2abc84ccb7569784f65f205e927b76552477b25a32f237d",
-        "prev_hash": "48bda2c8c7de9d58cf90dee47ead904fd68de3659daf38003d78e99944022263",
-        "entry_hash": "d96ea5b5f008ff546685132160d808496e73d3cfebf034c60dadb86438c2af86"
+        "payload_hash": "169a7c37b7e00c12cb1ae9444a4d2dc8eb426015ce61377b405ca18e86b97f58",
+        "prev_hash": "05b7ff41682c63ee837c7b851a14c0f7ee6cce443b445c0be8d4822fa7096249",
+        "entry_hash": "66063a1400f0ab90da76e35c383bad6723cf51abbfcc8f6c21d6c72b9ef22283"
       },
       {
         "seq": 50,
-        "as_of": "2026-04-21",
+        "as_of": "2026-03-02",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "f916a0c9fd281f88873029621c83965886ea1e5fed7da817a03d7b06788e4dd7",
-        "prev_hash": "d96ea5b5f008ff546685132160d808496e73d3cfebf034c60dadb86438c2af86",
-        "entry_hash": "6a7e69e5eb382ff404ed1271f2744d24d40dba00a348b73d76206cdf8e126e2c"
+        "payload_hash": "fd78ad14a264a02ad32998de399788d73fc0833fce055e7b79dc3da3f0a4cc09",
+        "prev_hash": "66063a1400f0ab90da76e35c383bad6723cf51abbfcc8f6c21d6c72b9ef22283",
+        "entry_hash": "f75f10b9c4c239adab67106e708280c4b519f22976f4532232551648e6036810"
       },
       {
         "seq": 51,
-        "as_of": "2026-04-26",
+        "as_of": "2026-03-07",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ef62e12506b81610fe59d50f91a3f730a7f203764ada65974d86d73b40e55ba0",
-        "prev_hash": "6a7e69e5eb382ff404ed1271f2744d24d40dba00a348b73d76206cdf8e126e2c",
-        "entry_hash": "8a28c0665d731bc646a488e9c33ea6e3bd23e4dd8729a393de1ce42f82251263"
+        "payload_hash": "435521c16e23f6a520973684466649e2b93b356afa7c57b441755c3d7e06f6f9",
+        "prev_hash": "f75f10b9c4c239adab67106e708280c4b519f22976f4532232551648e6036810",
+        "entry_hash": "3e57c4123c9e8c30a3bff53634425cd45d4e576972f30f3031f880e5d27c2f79"
       },
       {
         "seq": 52,
-        "as_of": "2026-05-01",
+        "as_of": "2026-03-12",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "289174721e9240c3d227939e6c89dfe2cfef133ee3af1613ac2c2cd6ccba2194",
-        "prev_hash": "8a28c0665d731bc646a488e9c33ea6e3bd23e4dd8729a393de1ce42f82251263",
-        "entry_hash": "60162199c88c031cc0eb3a1b174a469a9218f0e8ed67a17e96b7d276cf67d1b5"
+        "payload_hash": "0dba436800ec4725a4fb2b90be5328e1e3a547bfa282f879d1a933a08bbc1d78",
+        "prev_hash": "3e57c4123c9e8c30a3bff53634425cd45d4e576972f30f3031f880e5d27c2f79",
+        "entry_hash": "a930dea73fdeb8042de33ed4621341495ef17381fe0ae3b3817116caf7a295f1"
       },
       {
         "seq": 53,
-        "as_of": "2026-05-06",
+        "as_of": "2026-03-17",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "2e03c4fa3f59c49cca9fb7aee4b1c16dc3f88d8bc83db8eb33224533b9f0f8cb",
-        "prev_hash": "60162199c88c031cc0eb3a1b174a469a9218f0e8ed67a17e96b7d276cf67d1b5",
-        "entry_hash": "a7612cb97af0a37393dc9a9ba019d37281cf37b1792ca46f18d975c9e24e851e"
+        "payload_hash": "0e140a071b0b3ccce88a7ada4bdfd568860406a507c8ba5cb1a8e3c5ab84a209",
+        "prev_hash": "a930dea73fdeb8042de33ed4621341495ef17381fe0ae3b3817116caf7a295f1",
+        "entry_hash": "1e4f1b92cdd145124e47b346ef9847e4c00d88977c4d38b606a2504aa0b70a9a"
       },
       {
         "seq": 54,
-        "as_of": "2026-05-11",
+        "as_of": "2026-03-22",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "e8c06b770822e78ee064d040fa4b5308643acea64e6179898580d13802b49f52",
-        "prev_hash": "a7612cb97af0a37393dc9a9ba019d37281cf37b1792ca46f18d975c9e24e851e",
-        "entry_hash": "8dbbee33f673c0ee22da408eb2d287a9a34af1ae1b9c35518b5284516991fe66"
+        "payload_hash": "b8793519e65421e76d2f7dc6401efd857253fb5100d1f4f74fb5539fa3c6cc98",
+        "prev_hash": "1e4f1b92cdd145124e47b346ef9847e4c00d88977c4d38b606a2504aa0b70a9a",
+        "entry_hash": "77bf571c6e5be6dfaabd5b4ad05c36ad8a0b2c85d969ca3bdf39c8f488fb1be6"
       },
       {
         "seq": 55,
-        "as_of": "2026-05-16",
+        "as_of": "2026-03-27",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a76e739573613e3e7d6d9cb1cf58caa582153e7bf552bc0ff4f1225d0ccf7275",
-        "prev_hash": "8dbbee33f673c0ee22da408eb2d287a9a34af1ae1b9c35518b5284516991fe66",
-        "entry_hash": "5b699504de3c8ae9f96d849c26bb94a93546fa524f4404cb0e79677e8387b8a3"
+        "payload_hash": "8879f0b43d979952a1cd2648333eb9b83603b65493cc1f7f3f212372d3b3ee79",
+        "prev_hash": "77bf571c6e5be6dfaabd5b4ad05c36ad8a0b2c85d969ca3bdf39c8f488fb1be6",
+        "entry_hash": "7f4403ce896d6170b9612708d8a5817f96ceab703b3061cd3dd1ee99734adfc8"
       },
       {
         "seq": 56,
-        "as_of": "2026-05-21",
+        "as_of": "2026-04-01",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "a5ac8e85eabe21e45f1b0c3f1c6706e261798801f93914cfa3f4490db93a5119",
-        "prev_hash": "5b699504de3c8ae9f96d849c26bb94a93546fa524f4404cb0e79677e8387b8a3",
-        "entry_hash": "ec69dc2969d3de4e128d0ddebb703eaad8838084cf1d2a2c15b1de88525f80c2"
+        "payload_hash": "bad5732a7c38fc3537937adb3cfc4925116dea9ede014390e314b3ffe6980369",
+        "prev_hash": "7f4403ce896d6170b9612708d8a5817f96ceab703b3061cd3dd1ee99734adfc8",
+        "entry_hash": "f1ada057b1a6d7c3a08a14307b47593aeb57eec59094cfe9dc7058502776f7ec"
       },
       {
         "seq": 57,
-        "as_of": "2026-05-26",
+        "as_of": "2026-04-06",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "aa64854a5e21abb82af1e4b8c2afd3a3ea014e2ec54d57c283967b498f26affe",
-        "prev_hash": "ec69dc2969d3de4e128d0ddebb703eaad8838084cf1d2a2c15b1de88525f80c2",
-        "entry_hash": "aabc10e1a330ff2097dd89a874d9afe10fa1ebf6fe7235ae2d1b54f3fc8f58ca"
+        "payload_hash": "a7fd95149ab6e262188403c0fa0f7ac58d233c6cdb16fce376364c479edd02f1",
+        "prev_hash": "f1ada057b1a6d7c3a08a14307b47593aeb57eec59094cfe9dc7058502776f7ec",
+        "entry_hash": "73254226cf91581d7a80652e38bcc5bc2847890e8fa54e316c8341653eae067d"
       },
       {
         "seq": 58,
-        "as_of": "2026-05-31",
+        "as_of": "2026-04-11",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "45140da014630243f6f9a57826bf4f12d306790c77bcfd4e8489f88dd0aa39cf",
-        "prev_hash": "aabc10e1a330ff2097dd89a874d9afe10fa1ebf6fe7235ae2d1b54f3fc8f58ca",
-        "entry_hash": "4b0321d6ad31ab7d85ac8368ef3c722aeff0ec0363f831c3e624fd64c7d951b5"
+        "payload_hash": "69a51782ee3b7b01d3f781e92dbf61c2446c69503f89dc29a0738f8489626d86",
+        "prev_hash": "73254226cf91581d7a80652e38bcc5bc2847890e8fa54e316c8341653eae067d",
+        "entry_hash": "8cc183cb927493f50bcc866288a692cc787dfc2adb712df07e5f14662380e4d0"
       },
       {
         "seq": 59,
-        "as_of": "2026-06-05",
+        "as_of": "2026-04-16",
         "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "ab1b1a7d39033849ac0a933de7886ab6dcec55a39390fb6f96a26c83ed5ac131",
-        "prev_hash": "4b0321d6ad31ab7d85ac8368ef3c722aeff0ec0363f831c3e624fd64c7d951b5",
-        "entry_hash": "0faead2d92b6c2dbcfb1f22f654f4a15782e075850b42776d6acabf834137ea0"
+        "payload_hash": "e0da20c39b96c4991ac25b7bb63f3ffa56adaa98747ef22deb671fe907bc39b3",
+        "prev_hash": "8cc183cb927493f50bcc866288a692cc787dfc2adb712df07e5f14662380e4d0",
+        "entry_hash": "daf64c518f3a03bac920196eff6c6e9d75769eb8698d2db15d8fc0aeaa30390a"
       },
       {
         "seq": 60,
-        "as_of": "2025-08-19",
-        "asset_class": "equity",
+        "as_of": "2026-04-21",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "b705127f5ea5ffba8303ddfe0e8bd4a7528ce6e64b2b8e35a6d5c25f42a76d01",
-        "prev_hash": "0faead2d92b6c2dbcfb1f22f654f4a15782e075850b42776d6acabf834137ea0",
-        "entry_hash": "9f841d70804eddc909bf8789c08e3194d12943c527795bf88eae2b74e7a68e1b"
+        "payload_hash": "bd340dc8bcc911e819542c1dc2249014f27c380d5ec914ac57dc3d42cf031855",
+        "prev_hash": "daf64c518f3a03bac920196eff6c6e9d75769eb8698d2db15d8fc0aeaa30390a",
+        "entry_hash": "72a5eef940c145c78312b014d2473ab54319c25866db16da842b9140b8c18657"
       },
       {
         "seq": 61,
-        "as_of": "2025-08-24",
-        "asset_class": "equity",
+        "as_of": "2026-04-26",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "014e65bc967630b1cb31d8411a1e1f5d675927ec4b34ac8e4b6afa816300a13d",
-        "prev_hash": "9f841d70804eddc909bf8789c08e3194d12943c527795bf88eae2b74e7a68e1b",
-        "entry_hash": "db84e65348ce25f079369e294b24f4706df72741b6d37e5352e2cc70e39455ca"
+        "payload_hash": "fce6970b2b07bb9ec29d1f64a6eafbeff4cbcf856c93103081ecf4b716250cdc",
+        "prev_hash": "72a5eef940c145c78312b014d2473ab54319c25866db16da842b9140b8c18657",
+        "entry_hash": "28ecd07f6f1d42def189560d9e7fd9667f2059aec8289b4e4037aed8a8f3d49d"
       },
       {
         "seq": 62,
-        "as_of": "2025-08-29",
-        "asset_class": "equity",
+        "as_of": "2026-05-01",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "39cd42f30b5159b6428c27ce928d0492210f7f69f146541b73b23b6397872c93",
-        "prev_hash": "db84e65348ce25f079369e294b24f4706df72741b6d37e5352e2cc70e39455ca",
-        "entry_hash": "debde4b4b77cd1bcf23a89b3215d91c8826b4b233b8a7c6bda366eefe058e6e4"
+        "payload_hash": "38d46dc0873b65e2b79967e78da9029ab25d7ef28fc274921cd55458f619227f",
+        "prev_hash": "28ecd07f6f1d42def189560d9e7fd9667f2059aec8289b4e4037aed8a8f3d49d",
+        "entry_hash": "09713049a61552bd27268354466123af5118b341662a5cc034e8b43e678971a5"
       },
       {
         "seq": 63,
-        "as_of": "2025-09-03",
-        "asset_class": "equity",
+        "as_of": "2026-05-06",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "83f85ee3854777f720e2ca02523d0f4bcde3d84cf42f4b8041bf0efe51570b46",
-        "prev_hash": "debde4b4b77cd1bcf23a89b3215d91c8826b4b233b8a7c6bda366eefe058e6e4",
-        "entry_hash": "7aada763973a013bb13ffdeab889fa9d7c42bf74effa1ecc43cf562af54ab694"
+        "payload_hash": "7537411e1a1a59533a74ad67a1c91ab09236e0f4027c0f31d1c8802fb47d8fe7",
+        "prev_hash": "09713049a61552bd27268354466123af5118b341662a5cc034e8b43e678971a5",
+        "entry_hash": "eea4e9b788a028cd5e6caf57ecced5767f02cc0b555434b0bcfdaa39c2787e02"
       },
       {
         "seq": 64,
-        "as_of": "2025-09-08",
-        "asset_class": "equity",
+        "as_of": "2026-05-11",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "12abf6bb380220e5c53b9a9644c13a6e65b570a0eb69224f760b4b340b05877a",
-        "prev_hash": "7aada763973a013bb13ffdeab889fa9d7c42bf74effa1ecc43cf562af54ab694",
-        "entry_hash": "3b2aa150d7b74b39955ddaf0dd4c4ea6fec69e52056bb76290984a9c90c750f8"
+        "payload_hash": "135eadfb0f46639aeda998fcc6e5313f06b8bf48fd3aa0607134a66c61c3271b",
+        "prev_hash": "eea4e9b788a028cd5e6caf57ecced5767f02cc0b555434b0bcfdaa39c2787e02",
+        "entry_hash": "a94107cf58ed06ecbc4127098c585ea3ae906902bbd0a5cf4c0e61271e42b9bd"
       },
       {
         "seq": 65,
-        "as_of": "2025-09-13",
-        "asset_class": "equity",
+        "as_of": "2026-05-16",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "8a5d11b6b21455ce39f29e4d263e8780696dcd4c758522824370b8baf4806eaf",
-        "prev_hash": "3b2aa150d7b74b39955ddaf0dd4c4ea6fec69e52056bb76290984a9c90c750f8",
-        "entry_hash": "d6bb6ba63c5d5261ba82df3809abb61749d92770e79a41a003611d7f93054610"
+        "payload_hash": "42b4ca47559d3bf55135fdf65e263e0eb1710eccc084130a18ba2f0fc3be0420",
+        "prev_hash": "a94107cf58ed06ecbc4127098c585ea3ae906902bbd0a5cf4c0e61271e42b9bd",
+        "entry_hash": "d57aadb5b34ea7f3fba4e1964369cefcd56e256e89ce05362ab55e5f52b08417"
       },
       {
         "seq": 66,
-        "as_of": "2025-09-18",
-        "asset_class": "equity",
+        "as_of": "2026-05-21",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "e9c6a913886c6880eb1ae5cb50f5c88a3adac627f6bc0d473616bcb277acf07a",
-        "prev_hash": "d6bb6ba63c5d5261ba82df3809abb61749d92770e79a41a003611d7f93054610",
-        "entry_hash": "c047a28e95e12235eed8bb762cfb58918fecd319315ddf3c1ff1f37089d45d0d"
+        "payload_hash": "8b802dde81373ff4bd9311e5c60b11bf6b92ad2fc05cfd834733e6754997831c",
+        "prev_hash": "d57aadb5b34ea7f3fba4e1964369cefcd56e256e89ce05362ab55e5f52b08417",
+        "entry_hash": "4a3161734f6dc451f593840341a31bd266214eb97c748d1fcc11f7820e971e6e"
       },
       {
         "seq": 67,
-        "as_of": "2025-09-23",
-        "asset_class": "equity",
+        "as_of": "2026-05-26",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "0e80957277b01667f1ee11a6dbee5c5fd938b65482c9754fc2b80cd90c5c2a94",
-        "prev_hash": "c047a28e95e12235eed8bb762cfb58918fecd319315ddf3c1ff1f37089d45d0d",
-        "entry_hash": "dee4ef725c29a5fb524694cbb366b2beec4529c308c95627386b2458fb94c2e8"
+        "payload_hash": "480bfde97b47a5af73362889a096d9793b8d7c8277754e6c0de3dd27a864eb3a",
+        "prev_hash": "4a3161734f6dc451f593840341a31bd266214eb97c748d1fcc11f7820e971e6e",
+        "entry_hash": "5bdcb0ef14dc76d379da87cb072742aa9430a56c18c43024a1c221342f4104e1"
       },
       {
         "seq": 68,
-        "as_of": "2025-09-28",
-        "asset_class": "equity",
+        "as_of": "2026-05-31",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "2403f7d657b7f0149192ec5d5d8f76ad02b5a4dc9a4fae2a50bafc91712f868d",
-        "prev_hash": "dee4ef725c29a5fb524694cbb366b2beec4529c308c95627386b2458fb94c2e8",
-        "entry_hash": "7e7c0abc51a1acfe192400582a25f6a41ff4b6f4425cc9a62a96b9293ffbd567"
+        "payload_hash": "7bbd09e8f71c9fbcb7d8aeaf7ad8dfb8e610d7ac5420a634de8eeafe368ee8c0",
+        "prev_hash": "5bdcb0ef14dc76d379da87cb072742aa9430a56c18c43024a1c221342f4104e1",
+        "entry_hash": "4b5d84106793aece11f84d077c493af8ba6a38e447ee17c658262114ba545fa9"
       },
       {
         "seq": 69,
-        "as_of": "2025-10-03",
-        "asset_class": "equity",
+        "as_of": "2026-06-05",
+        "asset_class": "crypto",
         "n_scores": 18,
-        "payload_hash": "29c44ae56b60ccfcd120b309fcdc9cd354455e41d063d213ecadda3f09d4bd19",
-        "prev_hash": "7e7c0abc51a1acfe192400582a25f6a41ff4b6f4425cc9a62a96b9293ffbd567",
-        "entry_hash": "b063ddc25cf861263f0ce63557ead50f6c078e66cf2fab8fcb7919e7b1fb122c"
+        "payload_hash": "7cb6332b37383dc488308a8118c67add338a7fccea3c771f83fa506c9349b1a8",
+        "prev_hash": "4b5d84106793aece11f84d077c493af8ba6a38e447ee17c658262114ba545fa9",
+        "entry_hash": "c2980554794ae055100553664d88b58b6b76c3937f0e1c156fe3ba1a7928e8b3"
       },
       {
         "seq": 70,
-        "as_of": "2025-10-08",
+        "as_of": "2025-01-22",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "2ba1348a6a7dba4c46e96cdb8a57ea8e955639f6dd11eab6f4652cc931e3c538",
-        "prev_hash": "b063ddc25cf861263f0ce63557ead50f6c078e66cf2fab8fcb7919e7b1fb122c",
-        "entry_hash": "0c85b3af318113e5e950554e96643c66e73096a25376cae3c907ce3f297261a6"
+        "payload_hash": "6403d5e6628cac459a1a615a883e5b4cc128845d2d46156c98af850255c9dcd7",
+        "prev_hash": "c2980554794ae055100553664d88b58b6b76c3937f0e1c156fe3ba1a7928e8b3",
+        "entry_hash": "1cc1eb42c9b959ba815e74a0ac0ac1f9f9391eeca2f1179ed9c56fa4d665dc40"
       },
       {
         "seq": 71,
-        "as_of": "2025-10-13",
+        "as_of": "2025-01-29",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "648c06a19211a0b137f1dfdaf1252f58038f5aebe580b0d7b99b2d168762a783",
-        "prev_hash": "0c85b3af318113e5e950554e96643c66e73096a25376cae3c907ce3f297261a6",
-        "entry_hash": "295825f454a2a40d188fd0497eed3d7caef1c578496901c21cec17e4fac0085a"
+        "payload_hash": "77d2a6b3264f57d4ddf23f471036519cb2632a89be5fc7d40d035c9dfe501c92",
+        "prev_hash": "1cc1eb42c9b959ba815e74a0ac0ac1f9f9391eeca2f1179ed9c56fa4d665dc40",
+        "entry_hash": "5f100fc7cb077718832bfd9a49cc45e3488d773a495c855b43d2de5613f1f75c"
       },
       {
         "seq": 72,
-        "as_of": "2025-10-18",
+        "as_of": "2025-02-05",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "82a062555224beacb0c714bc01a903f548f36aa67a5d16a20426e14ed4f357a5",
-        "prev_hash": "295825f454a2a40d188fd0497eed3d7caef1c578496901c21cec17e4fac0085a",
-        "entry_hash": "75346b897484c559db3c228914d854d57fbf6137580701d23dd66b5b9b36649c"
+        "payload_hash": "7904045c9addb764a59eabfb29d7993b57f79cdf610b144da703036f742bf1aa",
+        "prev_hash": "5f100fc7cb077718832bfd9a49cc45e3488d773a495c855b43d2de5613f1f75c",
+        "entry_hash": "a0314819d94f10ac051686e9527b9a13427fb2163c227652557aa4a34625b6e5"
       },
       {
         "seq": 73,
-        "as_of": "2025-10-23",
+        "as_of": "2025-02-12",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "256c9ad04012591f5f2f195f3e1be7d625cf9c4363222f5a20b5affe45e886b7",
-        "prev_hash": "75346b897484c559db3c228914d854d57fbf6137580701d23dd66b5b9b36649c",
-        "entry_hash": "e10562d2fdbe10d1dcbb2f933fda78d33261d073b20e6d212c169419b9440c22"
+        "payload_hash": "22c57fb0a744358e3860d6f86e7bfc8c46051efa0bd74cdda259f6ab5ed7dac1",
+        "prev_hash": "a0314819d94f10ac051686e9527b9a13427fb2163c227652557aa4a34625b6e5",
+        "entry_hash": "5ea84a8dd91cb5644237e286f2f94239e9d8d9640907e7ff3207e71d6bc9d26e"
       },
       {
         "seq": 74,
-        "as_of": "2025-10-28",
+        "as_of": "2025-02-20",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "94db2c6c7001e959e9018fbae8b8d39e4a993fca84f98efd45c143e069d12da5",
-        "prev_hash": "e10562d2fdbe10d1dcbb2f933fda78d33261d073b20e6d212c169419b9440c22",
-        "entry_hash": "5731b60a665946a0f7bfdee6e385193a0a2df111da9c9670038c30695a1ca4a0"
+        "payload_hash": "d91c502bc4179dda5073167f8bf9ce0620414b08e207e782b54b4c46de0ba19b",
+        "prev_hash": "5ea84a8dd91cb5644237e286f2f94239e9d8d9640907e7ff3207e71d6bc9d26e",
+        "entry_hash": "29a6b6e77f6c26e996f638515e4c1df5be51929422f2db5a2a9096d33c2cd782"
       },
       {
         "seq": 75,
-        "as_of": "2025-11-02",
+        "as_of": "2025-02-27",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "dbd8778cd25f49ef221e9378749c9f5cf4386e01ec73461a57dd36db2093ed51",
-        "prev_hash": "5731b60a665946a0f7bfdee6e385193a0a2df111da9c9670038c30695a1ca4a0",
-        "entry_hash": "019af119e963d48eb59c4940e14489e36d6a7b1816eb8331817e95ee9ae3a97e"
+        "payload_hash": "736c6891280f380bc9a039201e865b276c69db5aba0acb421de687db4bb01ec0",
+        "prev_hash": "29a6b6e77f6c26e996f638515e4c1df5be51929422f2db5a2a9096d33c2cd782",
+        "entry_hash": "89ffe94c6c1741f59c16028ad451b56024c0756ac1651f749f56daa240f01d10"
       },
       {
         "seq": 76,
-        "as_of": "2025-11-07",
+        "as_of": "2025-03-06",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "3bd433e975f25aae3af13c3eb076df9818c7aa3029bee0b147a090b03131975b",
-        "prev_hash": "019af119e963d48eb59c4940e14489e36d6a7b1816eb8331817e95ee9ae3a97e",
-        "entry_hash": "94d1dd6c985cc69b939b43c14107c694ce2cbfde9223a13b9b49d3a82a92c626"
+        "payload_hash": "2c6f78ddf819f7967b3d2484a54cb6b3008e6e6f6893a999c36613392fd44026",
+        "prev_hash": "89ffe94c6c1741f59c16028ad451b56024c0756ac1651f749f56daa240f01d10",
+        "entry_hash": "5f54eb4326b474de305680fe583b9a0048e3bc6bde696dd3b7b17f5e8180cb63"
       },
       {
         "seq": 77,
-        "as_of": "2025-11-12",
+        "as_of": "2025-03-13",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "9eaed1e1931654836f079a53b855e7287c77a6fc65028e0bd36712d430cb2d35",
-        "prev_hash": "94d1dd6c985cc69b939b43c14107c694ce2cbfde9223a13b9b49d3a82a92c626",
-        "entry_hash": "718fb2a1d54a4a2c82d6967b9d08c279fc3633bd2965dd272e57d5edadebd5df"
+        "payload_hash": "1ebaf5ef88254977012323b7892bd2c18e630007338f8dce5dd7e46c4b1543e6",
+        "prev_hash": "5f54eb4326b474de305680fe583b9a0048e3bc6bde696dd3b7b17f5e8180cb63",
+        "entry_hash": "53dac0fc9c209e672c56e73054111455869f33655407be9d2f3fc675c2d729b7"
       },
       {
         "seq": 78,
-        "as_of": "2025-11-17",
+        "as_of": "2025-03-20",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "f56f0e579d51cc537d6ac97b5db95d0c9d26b4bb23c6890b90bb52c72ad50590",
-        "prev_hash": "718fb2a1d54a4a2c82d6967b9d08c279fc3633bd2965dd272e57d5edadebd5df",
-        "entry_hash": "503a5e66a1786163075b6febe74eb9e8474579d3028d82cf55d7fdb1021a5909"
+        "payload_hash": "809d7b1ccd98859d4b35b6cda6b60ee94476d5367b63019b885d79ee9382496d",
+        "prev_hash": "53dac0fc9c209e672c56e73054111455869f33655407be9d2f3fc675c2d729b7",
+        "entry_hash": "cb3a02bd8aecdb45c4805d96ae6a34fa1c965ca9a03e226f069ca9d754864e45"
       },
       {
         "seq": 79,
-        "as_of": "2025-11-22",
+        "as_of": "2025-03-27",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "f9834bc144be2dbf84b8727194b67433841da04dfefc20a829114e26775e284a",
-        "prev_hash": "503a5e66a1786163075b6febe74eb9e8474579d3028d82cf55d7fdb1021a5909",
-        "entry_hash": "19d4bbec4058051a0156888e0861d68a0a7f17625980a13ad985a11b3508cbd6"
+        "payload_hash": "f5f071df364064b1290900789326666837a600feaa8aeffeda3b33d71e0690fb",
+        "prev_hash": "cb3a02bd8aecdb45c4805d96ae6a34fa1c965ca9a03e226f069ca9d754864e45",
+        "entry_hash": "dc62c702f54c3b6482cd58b5c369ba4fc89c8747a4471a080d17cc01cd5ca613"
       },
       {
         "seq": 80,
-        "as_of": "2025-11-27",
+        "as_of": "2025-04-03",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "57fbddd14bb213227eac56f02d47b7b43ab27d80e8ccabd28d64e1860e03ed20",
-        "prev_hash": "19d4bbec4058051a0156888e0861d68a0a7f17625980a13ad985a11b3508cbd6",
-        "entry_hash": "1734dca2068125d18f9cb31f81a60d8c5bb69989e4eb169777abe02fb1ef98ec"
+        "payload_hash": "e21a8c0a00f1c33c608b87dca4753f75125ad8280d858319da5f270a135d17da",
+        "prev_hash": "dc62c702f54c3b6482cd58b5c369ba4fc89c8747a4471a080d17cc01cd5ca613",
+        "entry_hash": "b8928b1f3a510cd7f78de07d94835ba36809a532a0616c289e11c84e087cd666"
       },
       {
         "seq": 81,
-        "as_of": "2025-12-02",
+        "as_of": "2025-04-10",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "e16c64e07ae8d18b6080864d2afbde97d898e8bf0eb85e5247a8e8e1eeb0f02e",
-        "prev_hash": "1734dca2068125d18f9cb31f81a60d8c5bb69989e4eb169777abe02fb1ef98ec",
-        "entry_hash": "e5f434118627c0e1849eddbd2b03e56f2c085c86fde0d183365fc1f379fc9136"
+        "payload_hash": "18f53c544dcb7235aee75c8225b7ffa62cb4d3667831f345dd255e5d8010bbd7",
+        "prev_hash": "b8928b1f3a510cd7f78de07d94835ba36809a532a0616c289e11c84e087cd666",
+        "entry_hash": "a200e382f2bcee6976c7e3333657aa86fcf954275fcd8edb500fb1ab469b74ab"
       },
       {
         "seq": 82,
-        "as_of": "2025-12-07",
+        "as_of": "2025-04-17",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "6ba9d52849cbd7a24b12c7f3398f2d9dd97b7c2f548bc74c92dfb648cba879b8",
-        "prev_hash": "e5f434118627c0e1849eddbd2b03e56f2c085c86fde0d183365fc1f379fc9136",
-        "entry_hash": "97f217ea2b304491f42476995255ffd281b3fe8717a4fdb7629fb1b48e5121ee"
+        "payload_hash": "a61044648e8dc7b44fa52971cf5d8f4d2f8049873e6c3d5dc8e7ebd65d0c3c4c",
+        "prev_hash": "a200e382f2bcee6976c7e3333657aa86fcf954275fcd8edb500fb1ab469b74ab",
+        "entry_hash": "0aba450bc781c8c760f4e15d46f1add758893e5a5a6bcc96485f31843db7e1b0"
       },
       {
         "seq": 83,
-        "as_of": "2025-12-12",
+        "as_of": "2025-04-25",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "2cc97cdcbe167f3fe277093394f1eafde786423ad882a15a090f80fa9fcd418b",
-        "prev_hash": "97f217ea2b304491f42476995255ffd281b3fe8717a4fdb7629fb1b48e5121ee",
-        "entry_hash": "c02197cb9178c1ade5ba5a7df00192e1b5268e616618bb48d408f6e0e722b593"
+        "payload_hash": "a0ec51259e7415d8931dd345425ff04b8daaf420ebf6b896ff14b949aff1e322",
+        "prev_hash": "0aba450bc781c8c760f4e15d46f1add758893e5a5a6bcc96485f31843db7e1b0",
+        "entry_hash": "32f481467da00da7a29bd65be0c05d8dd3534e57d885a816da2e09d5fd1b1357"
       },
       {
         "seq": 84,
-        "as_of": "2025-12-17",
+        "as_of": "2025-05-02",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "13c417dd04c3ed101b0f6c8aea116e3239927d9bdd54f33f31d34d446c24695f",
-        "prev_hash": "c02197cb9178c1ade5ba5a7df00192e1b5268e616618bb48d408f6e0e722b593",
-        "entry_hash": "2f1cb6001c6ae0bf263c29093ca4f7fb8c9a5dc41f93f204e0bf88f277da24e5"
+        "payload_hash": "42ba7dcc4038098e72fa1efd9a223faba06877564af44f67a800a02545e1e11a",
+        "prev_hash": "32f481467da00da7a29bd65be0c05d8dd3534e57d885a816da2e09d5fd1b1357",
+        "entry_hash": "f1f612f89ebaec035e1a546bef6bf75fcd5a567f03b8598f5cea5ab406154121"
       },
       {
         "seq": 85,
-        "as_of": "2025-12-22",
+        "as_of": "2025-05-09",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "67852907d52647a13dbbc7ce2919674cd3f4527579b2a5647dc6a7efb95fdbb2",
-        "prev_hash": "2f1cb6001c6ae0bf263c29093ca4f7fb8c9a5dc41f93f204e0bf88f277da24e5",
-        "entry_hash": "122616ced4dd884d48a2d3c7569c2c3e601d453562c655efd909e0f6d550da01"
+        "payload_hash": "903cc946a3e94fc5f9a549d23c191a7609b3bf93766be5ecc5efa17c633a37a1",
+        "prev_hash": "f1f612f89ebaec035e1a546bef6bf75fcd5a567f03b8598f5cea5ab406154121",
+        "entry_hash": "75a7d41733807321b51ddaa0c2801d34460be7ecb8ae51a248cb12bce597d488"
       },
       {
         "seq": 86,
-        "as_of": "2025-12-27",
+        "as_of": "2025-05-16",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "1745b623087131c4802d1c754dbfa5c4d7f6da2db14eadbf8ab22548cbea9c99",
-        "prev_hash": "122616ced4dd884d48a2d3c7569c2c3e601d453562c655efd909e0f6d550da01",
-        "entry_hash": "95d0cacb900c94ef7414274ec46538ba3ac0b06a2c232bf13c5859096c924eee"
+        "payload_hash": "82245d5adb8ad3f2c0e8d3a6e7d495e943d3057f57ad1a35740eb9b85bb3ab75",
+        "prev_hash": "75a7d41733807321b51ddaa0c2801d34460be7ecb8ae51a248cb12bce597d488",
+        "entry_hash": "14eb56c0fd402241699f8e3cfe1b4e7f3042c67c0f265608db081a56eb268d15"
       },
       {
         "seq": 87,
-        "as_of": "2026-01-01",
+        "as_of": "2025-05-23",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "7a510921902833c7e381769d107b4291693015e92b51c0178eb121a8f1b4ffcd",
-        "prev_hash": "95d0cacb900c94ef7414274ec46538ba3ac0b06a2c232bf13c5859096c924eee",
-        "entry_hash": "1eeaaec03c86d16f4aec63a3bb902dccd2fe59a481e6499beccf39e52eb64f18"
+        "payload_hash": "ed7529a4d7827bebaf04ae91fe217ba70aa33861c0c84266fc247e4ecf963471",
+        "prev_hash": "14eb56c0fd402241699f8e3cfe1b4e7f3042c67c0f265608db081a56eb268d15",
+        "entry_hash": "83d149cd9f744feb1c56ec5c45b74a96383b1b5843d56f6606a4c6e61e762ba5"
       },
       {
         "seq": 88,
-        "as_of": "2026-01-06",
+        "as_of": "2025-06-02",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "f41f3be9f34ebfb5a7bc8cefcfb8471169cf8421faf0ffa9974c0f3bfaf6fdc9",
-        "prev_hash": "1eeaaec03c86d16f4aec63a3bb902dccd2fe59a481e6499beccf39e52eb64f18",
-        "entry_hash": "1761c9048ec7fb243dc66601b8bc320fbe9febc5aab8762e785369693fb2cc17"
+        "payload_hash": "8982a44a0162cedcac62f818eb6b5eaa36cad6221e022eb2a27e11cc26d0f29b",
+        "prev_hash": "83d149cd9f744feb1c56ec5c45b74a96383b1b5843d56f6606a4c6e61e762ba5",
+        "entry_hash": "0271d6be9a1cfdc3ac4cf836c447e30926c3a3266c5cd6a88ac73979c9f1acdf"
       },
       {
         "seq": 89,
-        "as_of": "2026-01-11",
+        "as_of": "2025-06-09",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "d968fe046a6dbfbe334f8bfa5d56bc35a6dcea33d12756f62d50130454fb6eaf",
-        "prev_hash": "1761c9048ec7fb243dc66601b8bc320fbe9febc5aab8762e785369693fb2cc17",
-        "entry_hash": "76b37b63f0f6901fd8415edd6904f291fad62d156a5c45725cd11f0ff7153822"
+        "payload_hash": "9ae20584ef0ae087f1f081954ff582ab1b7cfa8060aa01979b7a85a7730009cc",
+        "prev_hash": "0271d6be9a1cfdc3ac4cf836c447e30926c3a3266c5cd6a88ac73979c9f1acdf",
+        "entry_hash": "4a28c1f5ef1a1e36d8768747b6300c8075e4b30cf2995fc35c2ddf1372fbdb21"
       },
       {
         "seq": 90,
-        "as_of": "2026-01-16",
+        "as_of": "2025-06-16",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "94485d83dcfd0d06b0cc9fe12b052c38f22da6f149cea087cf18dc0833b4fd0e",
-        "prev_hash": "76b37b63f0f6901fd8415edd6904f291fad62d156a5c45725cd11f0ff7153822",
-        "entry_hash": "ee6598b947f1230b78ab9033193a6b2e687a28482feb41466ead1f453eece47a"
+        "payload_hash": "4b51516c1a1e4f4738d92deed8cb3b4233d1dc446d34d16be26a19bb3578d2a9",
+        "prev_hash": "4a28c1f5ef1a1e36d8768747b6300c8075e4b30cf2995fc35c2ddf1372fbdb21",
+        "entry_hash": "9cdcbf4cbca1f3381e76bdd313396de0379038f87d52a676d6a97ac1f09e1b03"
       },
       {
         "seq": 91,
-        "as_of": "2026-01-21",
+        "as_of": "2025-06-24",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "45abd02b2e79967c6c297c514cafe3cd7a61a51959850151b5d82853b622ec79",
-        "prev_hash": "ee6598b947f1230b78ab9033193a6b2e687a28482feb41466ead1f453eece47a",
-        "entry_hash": "841bb9c5085a3b05fa0ea3c6fcc5640f6e85426fb0ba906429543644cd2adacc"
+        "payload_hash": "7002e50a56cd6838c89c2602b842e3b7f5c67e22b1c5af7edfd8194a115ed507",
+        "prev_hash": "9cdcbf4cbca1f3381e76bdd313396de0379038f87d52a676d6a97ac1f09e1b03",
+        "entry_hash": "d5eb74b12e648cd57e53e3403c48ff72adf4a92185eb3e3e716c6836890c3405"
       },
       {
         "seq": 92,
-        "as_of": "2026-01-26",
+        "as_of": "2025-07-01",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "5bbd65b5d9536673f22555716c1ae29b0e2df47b6292569ed4208f38c82f0f16",
-        "prev_hash": "841bb9c5085a3b05fa0ea3c6fcc5640f6e85426fb0ba906429543644cd2adacc",
-        "entry_hash": "841127880142354ab0247e721d98dca8e79ffcb94fe3d73f85cfe4f57174c73d"
+        "payload_hash": "a1f43798fd59ba1fbf06201213b4ef56ef700dc7e00a4a3d382e60621d088b40",
+        "prev_hash": "d5eb74b12e648cd57e53e3403c48ff72adf4a92185eb3e3e716c6836890c3405",
+        "entry_hash": "fc99a53a1ad985278bf6d2199410c32838ddd54912f14d7c88150a1633a48900"
       },
       {
         "seq": 93,
-        "as_of": "2026-01-31",
+        "as_of": "2025-07-09",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "b2d9e894fb8ae6d5278b57d6d29d8f90695e744b89c70c60f477788275f01ff7",
-        "prev_hash": "841127880142354ab0247e721d98dca8e79ffcb94fe3d73f85cfe4f57174c73d",
-        "entry_hash": "6667a18e52c7157b1b4904ced12416e8a80d913a7f197749abdd0cec93a6650e"
+        "payload_hash": "65b586eeabf571b4904ab462a95bc3cbef2a9e2427151b7b5c12c1269c280a2d",
+        "prev_hash": "fc99a53a1ad985278bf6d2199410c32838ddd54912f14d7c88150a1633a48900",
+        "entry_hash": "18345f217527e8515883771b741bcbee7076fa1e33f3f32db9194199bf4a3fda"
       },
       {
         "seq": 94,
-        "as_of": "2026-02-05",
+        "as_of": "2025-07-16",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "d6ed374b75ae0f2dd217d63533ca9928ea25afb825c5b55b26398f50fc6bf74f",
-        "prev_hash": "6667a18e52c7157b1b4904ced12416e8a80d913a7f197749abdd0cec93a6650e",
-        "entry_hash": "59bec0b9a4a9b05e78b81e9b156fb0a3733a3ef29a877bbed025258eaa7c1745"
+        "payload_hash": "bda1c6087f9cae470c03490b2ea25eadda32098309900180d2d2cb8d1a0b2abf",
+        "prev_hash": "18345f217527e8515883771b741bcbee7076fa1e33f3f32db9194199bf4a3fda",
+        "entry_hash": "012d6391fde261bde925c93dccaef56ae314bc4bfe4d351acf8cc24163fc90af"
       },
       {
         "seq": 95,
-        "as_of": "2026-02-10",
+        "as_of": "2025-07-23",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "b6e4ef5bbe6f5e4ae3b53be8c0088595db7cc010a1ea822260a9fdf81d6da4f9",
-        "prev_hash": "59bec0b9a4a9b05e78b81e9b156fb0a3733a3ef29a877bbed025258eaa7c1745",
-        "entry_hash": "698830857063b9302190e6da6a89541c978ebd0641907cf1e03d6c1c9f9a4d22"
+        "payload_hash": "a6bc3d60eddd5cd3080f324926702912e294de3431137875071b6e6c302f6072",
+        "prev_hash": "012d6391fde261bde925c93dccaef56ae314bc4bfe4d351acf8cc24163fc90af",
+        "entry_hash": "76cb5febeca748e9fc428030567b0fd53c1bf4ef625cdf73b83281744a4d6cb3"
       },
       {
         "seq": 96,
-        "as_of": "2026-02-15",
+        "as_of": "2025-07-30",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "a5b747ba79e7ccb7bdf8290f5a176cab463ea96be1fb968448277f4916a40dbe",
-        "prev_hash": "698830857063b9302190e6da6a89541c978ebd0641907cf1e03d6c1c9f9a4d22",
-        "entry_hash": "674fe060b087d3fcf0e9670a399ff08f5954d02da68b793c78b13d820f8d2787"
+        "payload_hash": "c0513100db883bc913b453e536b397be261d5ab6394ab14dd36b177eb9ebcc05",
+        "prev_hash": "76cb5febeca748e9fc428030567b0fd53c1bf4ef625cdf73b83281744a4d6cb3",
+        "entry_hash": "6c32efa1ea8302221fe4248d9f12dbe261c6e84558d61c9bc78e3cf3097c0a03"
       },
       {
         "seq": 97,
-        "as_of": "2026-02-20",
+        "as_of": "2025-08-06",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "fbde404f1eb232108031f155f09b1e369d71dd522ab0c3f2c8d5db1772197639",
-        "prev_hash": "674fe060b087d3fcf0e9670a399ff08f5954d02da68b793c78b13d820f8d2787",
-        "entry_hash": "5cffd208dcc42e27dfb380c647d75038b0d9e29cee7cfc457d1bf61248bb4df9"
+        "payload_hash": "170d303c5a54f77a18aa67784fb946fa32f9e94e7125f906e0feef29c6c23af4",
+        "prev_hash": "6c32efa1ea8302221fe4248d9f12dbe261c6e84558d61c9bc78e3cf3097c0a03",
+        "entry_hash": "e5cea4e15d7a86598ba5861ecb465165a2cee9dff5787e258ea250769f2fecaf"
       },
       {
         "seq": 98,
-        "as_of": "2026-02-25",
+        "as_of": "2025-08-13",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "a14f87032249492af8ee3a7b348d8bc845aba844d7b5c861c31f3c6cc6a5da50",
-        "prev_hash": "5cffd208dcc42e27dfb380c647d75038b0d9e29cee7cfc457d1bf61248bb4df9",
-        "entry_hash": "01b8f39906350d58fa6c05ea957d324facd7678ff86fcb3821d778c030177627"
+        "payload_hash": "5c22fe3ddb7b1ce9cbf504a56767cd8b4c2f5fc214694ff5cd9f83bf3d1292a7",
+        "prev_hash": "e5cea4e15d7a86598ba5861ecb465165a2cee9dff5787e258ea250769f2fecaf",
+        "entry_hash": "db7eaac0a0c3912de941b7b6e7c946064576094dfa0ef3d169e256befb6ac40d"
       },
       {
         "seq": 99,
-        "as_of": "2026-03-02",
+        "as_of": "2025-08-20",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "d0b112001e74816e02f67fe95b306bfe1749c2b3e0412effecc7eb64ea3e4536",
-        "prev_hash": "01b8f39906350d58fa6c05ea957d324facd7678ff86fcb3821d778c030177627",
-        "entry_hash": "259e3f812208d614462e3d6ee90f7daec58aff3ed29243ee6093f2946e473b43"
+        "payload_hash": "d90386590d8c09d5e5f834ede79db803d3b88799ad7e836c30c69247d6e80681",
+        "prev_hash": "db7eaac0a0c3912de941b7b6e7c946064576094dfa0ef3d169e256befb6ac40d",
+        "entry_hash": "9db834e1061d775ab0ac620c617bb25828a91a3f81faaf9751087c228cea02e0"
       },
       {
         "seq": 100,
-        "as_of": "2026-03-07",
+        "as_of": "2025-08-27",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "c41553f710700d61edab442099d69a062d685a253f503b41fd0be2cce1ae3b66",
-        "prev_hash": "259e3f812208d614462e3d6ee90f7daec58aff3ed29243ee6093f2946e473b43",
-        "entry_hash": "ec1e01c476711d6aebe5beffc7904726ddc473599641ed1e4b136ee89affcec6"
+        "payload_hash": "9a76bc417c0b4e017b6638231659a9b1757085b3cb84e90cebca0e1a0927c68d",
+        "prev_hash": "9db834e1061d775ab0ac620c617bb25828a91a3f81faaf9751087c228cea02e0",
+        "entry_hash": "c99a17f0dd8ef96c71561fe84cd0c2916a6931af4a43008f03eb9e7be274ebf4"
       },
       {
         "seq": 101,
-        "as_of": "2026-03-12",
+        "as_of": "2025-09-04",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "1a8b3b5b58a24cc265f14199eabf272cb0196fcbfbfc6bf853e50ffd0fe0a595",
-        "prev_hash": "ec1e01c476711d6aebe5beffc7904726ddc473599641ed1e4b136ee89affcec6",
-        "entry_hash": "6fa8b3daee156059ef193b3c391dc30d4266eb9bb3d7656a1b646d78e6563a05"
+        "payload_hash": "3d7d34f227aff444d1bc3191a47405572a68769ffd6060ce185a9f118a9ac740",
+        "prev_hash": "c99a17f0dd8ef96c71561fe84cd0c2916a6931af4a43008f03eb9e7be274ebf4",
+        "entry_hash": "65b02f0e6795a33167defb358cb954eab3477559030f439357085ef79e11bea6"
       },
       {
         "seq": 102,
-        "as_of": "2026-03-17",
+        "as_of": "2025-09-11",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "f131573c28a12731ba64aa5c38744197213745605f6c2d4798a6231ba03b4caa",
-        "prev_hash": "6fa8b3daee156059ef193b3c391dc30d4266eb9bb3d7656a1b646d78e6563a05",
-        "entry_hash": "f88e4166d8e55cb0a57014268768f8ed8a835ff8bc6b161046f900e2caf7cc8e"
+        "payload_hash": "4c216fbbc75958058213605650f0f909e3dc5f2e0a2d1820a6a373d34aa4fe26",
+        "prev_hash": "65b02f0e6795a33167defb358cb954eab3477559030f439357085ef79e11bea6",
+        "entry_hash": "27dcf6a25cdddd2028708d39e5dc2ed6fc8b55b70bd74c921011e094e93442d0"
       },
       {
         "seq": 103,
-        "as_of": "2026-03-22",
+        "as_of": "2025-09-18",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "56b84c980e3bb1e617c857f2229b6bf460b1c57d823cb8a3ecd607b8a6d7f109",
-        "prev_hash": "f88e4166d8e55cb0a57014268768f8ed8a835ff8bc6b161046f900e2caf7cc8e",
-        "entry_hash": "c5c4fabfc0b3a3e121e9a86e9405fb50cf14e8b736578dbc06ce7c038971d258"
+        "payload_hash": "834cacb706efacf6ab1e6b3dc35ee1788ff044c1fd08a3deb37c4f7a28ec2f80",
+        "prev_hash": "27dcf6a25cdddd2028708d39e5dc2ed6fc8b55b70bd74c921011e094e93442d0",
+        "entry_hash": "a0915970f68cc2fe5d77900d259b48a6932a39cbb134ca139df7ba7f44030db9"
       },
       {
         "seq": 104,
-        "as_of": "2026-03-27",
+        "as_of": "2025-09-25",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "eea37d6bfdd6faf9eeb74e10aaba4cfe261c7f98a8fa2b30bfb76e4cd7cb5248",
-        "prev_hash": "c5c4fabfc0b3a3e121e9a86e9405fb50cf14e8b736578dbc06ce7c038971d258",
-        "entry_hash": "558cdf5871a06eb87294cd773b242105c82177e35ba937bee1259a75347dc5c6"
+        "payload_hash": "d193ff18167d83d8200b3f0a77db773bbf1b9b549d0f8bcc5442ba1cecc7874c",
+        "prev_hash": "a0915970f68cc2fe5d77900d259b48a6932a39cbb134ca139df7ba7f44030db9",
+        "entry_hash": "9ee8c8361617b2672ce984be08becc8d70a1bfac2e0926ef4d7ef65eeb90c81c"
       },
       {
         "seq": 105,
-        "as_of": "2026-04-01",
+        "as_of": "2025-10-02",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "32065ad6743060eac8a86544d945a03db1d93f72323a715a01c3bc058615b2ac",
-        "prev_hash": "558cdf5871a06eb87294cd773b242105c82177e35ba937bee1259a75347dc5c6",
-        "entry_hash": "45d7d4d124e142653095555644f1f8f0d14cf579556cf5fb9d9df30da17784b0"
+        "payload_hash": "4a02cf9c975e65aae9d4f35631e676fdaa933efec515554a9bf823d7645c860c",
+        "prev_hash": "9ee8c8361617b2672ce984be08becc8d70a1bfac2e0926ef4d7ef65eeb90c81c",
+        "entry_hash": "d2805014d9555c6f3fa8434243e9d8a90789cf9f19a4983d98fadb0ab2096776"
       },
       {
         "seq": 106,
-        "as_of": "2026-04-06",
+        "as_of": "2025-10-09",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "4a9e30b7fc0e71b82e2612192a4ab01667bc6bf16eda41cda9347927cfb494f9",
-        "prev_hash": "45d7d4d124e142653095555644f1f8f0d14cf579556cf5fb9d9df30da17784b0",
-        "entry_hash": "0306506bf4a375723dbe1bf09b067a183f307f60a539ee1823010ea23760b361"
+        "payload_hash": "9f0ce312ae08114b08043207dfedc1ec46c201c2755221ad1d972761c4c2fd49",
+        "prev_hash": "d2805014d9555c6f3fa8434243e9d8a90789cf9f19a4983d98fadb0ab2096776",
+        "entry_hash": "ce5262ef87866f508e384a1bbf113df966349470da2e1ceb3ae92c340b0a433c"
       },
       {
         "seq": 107,
-        "as_of": "2026-04-11",
+        "as_of": "2025-10-16",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "6bb30940c2c4b0a34d9e887ec0457c69a9a9b692cdd6352aa2ccdc331d1f11e8",
-        "prev_hash": "0306506bf4a375723dbe1bf09b067a183f307f60a539ee1823010ea23760b361",
-        "entry_hash": "9786e4f3a67d17c2dbf77a32c9a3401b4a399a7402851cf9bc60bb32686e66b4"
+        "payload_hash": "822a85a8dd7c955663043c524a0c733c8266c1084c2be4231d60ff87a5e26f98",
+        "prev_hash": "ce5262ef87866f508e384a1bbf113df966349470da2e1ceb3ae92c340b0a433c",
+        "entry_hash": "df10e150a3044e5f0034b3d10374c7e15468bffe6882858b8798ca3e629a5b7e"
       },
       {
         "seq": 108,
-        "as_of": "2026-04-16",
+        "as_of": "2025-10-23",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "5669c59b39c0364da47a1bc9b713dddb5e65fab0cbe5d373f1bc14c373f652ff",
-        "prev_hash": "9786e4f3a67d17c2dbf77a32c9a3401b4a399a7402851cf9bc60bb32686e66b4",
-        "entry_hash": "b7ce14e9751a2fd023961ff482933494e06e6ce091144714d996d6bd2d552d91"
+        "payload_hash": "b7e1111384416513b522c37fd4e3aa7d519609c1df8cdf44a71da77858305c09",
+        "prev_hash": "df10e150a3044e5f0034b3d10374c7e15468bffe6882858b8798ca3e629a5b7e",
+        "entry_hash": "ed401dbc8e22604a8a4322159e9a30e2808d024835accf4a115d443d988eef83"
       },
       {
         "seq": 109,
-        "as_of": "2026-04-21",
+        "as_of": "2025-10-30",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "8d113f3cd0e7964a10ff2782aa21663ecccbd7e4e06e61e78054e40e857759f3",
-        "prev_hash": "b7ce14e9751a2fd023961ff482933494e06e6ce091144714d996d6bd2d552d91",
-        "entry_hash": "0d30f65aef91b47b8ff8a6dfb2e3e40fd7975a31304510de1a1a74ab142a5e96"
+        "payload_hash": "3139f6683b992f78b0005253cadebc17c6f17262fe9df03abf77a82ba3426876",
+        "prev_hash": "ed401dbc8e22604a8a4322159e9a30e2808d024835accf4a115d443d988eef83",
+        "entry_hash": "8013ba1a277ced131ccb6726f69abd0d746d64136bd6b9e3fce8b1487afd7567"
       },
       {
         "seq": 110,
-        "as_of": "2026-04-26",
+        "as_of": "2025-11-06",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "52cbba180bfac7197562ef4cde7c1a2b2342b8de804517201939bd719c1ba4ea",
-        "prev_hash": "0d30f65aef91b47b8ff8a6dfb2e3e40fd7975a31304510de1a1a74ab142a5e96",
-        "entry_hash": "8466dfadc59a1e170a5ea1ca2288727b7a3c9265efb0b906975d10fe5907d395"
+        "payload_hash": "e9dc68da65ac8a01f602f9e0cc08692b3d903ffb84395954e1edb4196a401ea7",
+        "prev_hash": "8013ba1a277ced131ccb6726f69abd0d746d64136bd6b9e3fce8b1487afd7567",
+        "entry_hash": "e5d0055efcf3f78a37f867f30360b14a37f3584b4747db4792d77c3bd60d7cb2"
       },
       {
         "seq": 111,
-        "as_of": "2026-05-01",
+        "as_of": "2025-11-13",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "ed4d13f20fb6c2aa8a7e55ead93a9df50de574370d3d7ad9a22054f77a8085c5",
-        "prev_hash": "8466dfadc59a1e170a5ea1ca2288727b7a3c9265efb0b906975d10fe5907d395",
-        "entry_hash": "83df4e595019873d11f76f70633576c1bef297624dbeb8adc84c4b3255a67632"
+        "payload_hash": "fa6e5ba285d8fe4e963e3c8b7c0494281816e563ab9536fa2b79fb3eeb8f1d5d",
+        "prev_hash": "e5d0055efcf3f78a37f867f30360b14a37f3584b4747db4792d77c3bd60d7cb2",
+        "entry_hash": "2fb2995f687bd163cbff1095d1757b41b1d8f4148ac6b9f04414dccc1e21eb18"
       },
       {
         "seq": 112,
-        "as_of": "2026-05-06",
+        "as_of": "2025-11-20",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "e317266078527d82ea4a38dc150aabb7ef88672c3ff33ce466beb983d2ecbae2",
-        "prev_hash": "83df4e595019873d11f76f70633576c1bef297624dbeb8adc84c4b3255a67632",
-        "entry_hash": "dad5776fc5efea17f48beaea337dd09982ebc433991a0d628d692838b3149e9e"
+        "payload_hash": "2346878b3176dbcc03487bd3adc68d8c065133794e483930ff702fd4fa058e33",
+        "prev_hash": "2fb2995f687bd163cbff1095d1757b41b1d8f4148ac6b9f04414dccc1e21eb18",
+        "entry_hash": "53db126d7258c8474276a69a095bc518d4d384bb08d18f6eb6fac4de2592c403"
       },
       {
         "seq": 113,
-        "as_of": "2026-05-11",
+        "as_of": "2025-11-28",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "eea51236cc88961b6d304c3f232c28bcfedd8359e289c656315022be00f9cdc7",
-        "prev_hash": "dad5776fc5efea17f48beaea337dd09982ebc433991a0d628d692838b3149e9e",
-        "entry_hash": "2a2e9ec52f23a27def5e71990d78ade4a07004880fd6c2a067a01ed1c2b8c680"
+        "payload_hash": "26ab6eb57f5e5bc8a925bcc2da00c1dfe43ed33b8a64ca18f3540bda10ffa5e4",
+        "prev_hash": "53db126d7258c8474276a69a095bc518d4d384bb08d18f6eb6fac4de2592c403",
+        "entry_hash": "5a40d90274dc865b72cbf55f33665a21240a132878f2164a6d8361f8a12f0b38"
       },
       {
         "seq": 114,
-        "as_of": "2026-05-16",
+        "as_of": "2025-12-05",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "3f399907f769a48a34a4ad9f8f304b9a5ca471f2a11bf206e2ce78a170026084",
-        "prev_hash": "2a2e9ec52f23a27def5e71990d78ade4a07004880fd6c2a067a01ed1c2b8c680",
-        "entry_hash": "2303b37b7bd9f640416092d47fc173fec53b94e4a2a2767ac1fe5c5d2f490d46"
+        "payload_hash": "655fc9ccd44a6611be24dfb8436ae90c4f432e4381e8a9f612280b9bace96761",
+        "prev_hash": "5a40d90274dc865b72cbf55f33665a21240a132878f2164a6d8361f8a12f0b38",
+        "entry_hash": "11353c90f1e5e667be988d212f570819caaffaeca46f91ac22186421a7f5634e"
       },
       {
         "seq": 115,
-        "as_of": "2026-05-21",
+        "as_of": "2025-12-12",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "9b4c3c48b83e400755748f93b0d1f0cf4d9b0af15089e440132ca322eae6af7a",
-        "prev_hash": "2303b37b7bd9f640416092d47fc173fec53b94e4a2a2767ac1fe5c5d2f490d46",
-        "entry_hash": "be55f251f4622889f332f6ada181c0371b362fefcb19f3c814cc3f842f8f6795"
+        "payload_hash": "7bf88e31da7b78c7e066b646524a9fe7a23fc02d377dcaf745636fdf5c998f32",
+        "prev_hash": "11353c90f1e5e667be988d212f570819caaffaeca46f91ac22186421a7f5634e",
+        "entry_hash": "4bc4474cc380aee8741375eeba92164c773c8c623ae527ceb2eb9ab8d2af9e0f"
       },
       {
         "seq": 116,
-        "as_of": "2026-05-26",
+        "as_of": "2025-12-19",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "c6096ec7ce73f2282a1fca406be5b393ce7e797abcbf82ebd86ec882b9291357",
-        "prev_hash": "be55f251f4622889f332f6ada181c0371b362fefcb19f3c814cc3f842f8f6795",
-        "entry_hash": "ed8aeb125835934bd8372cfea594d2525db1ca3f6c73d9d64cf0727cf201bc9a"
+        "payload_hash": "179c28a47f29db7939246e2bac86cb11c6f8bad700b75f642ebb4a112012163a",
+        "prev_hash": "4bc4474cc380aee8741375eeba92164c773c8c623ae527ceb2eb9ab8d2af9e0f",
+        "entry_hash": "64be165de90caceb65f8ccb20dbbacf7bd87675616947d1af08c881f91d3753e"
       },
       {
         "seq": 117,
-        "as_of": "2026-05-31",
+        "as_of": "2025-12-29",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "c424d8ead4fb47b36bf792313e69806cb3b9529d0739171e50a5e5d044fcf0de",
-        "prev_hash": "ed8aeb125835934bd8372cfea594d2525db1ca3f6c73d9d64cf0727cf201bc9a",
-        "entry_hash": "3da35848f1ead14a65c06d28300529021db4f6e0e742b52d03fecbdc240ca6fa"
+        "payload_hash": "8eed0fc7914a7a5b066f3a97be64d925ad190ca60693638128607c2301b00816",
+        "prev_hash": "64be165de90caceb65f8ccb20dbbacf7bd87675616947d1af08c881f91d3753e",
+        "entry_hash": "522de424e456ff893ca703ac0bc9f0fd85dfba3cdd27b00ebf0c2617277d057b"
       },
       {
         "seq": 118,
-        "as_of": "2026-06-05",
+        "as_of": "2026-01-06",
         "asset_class": "equity",
         "n_scores": 18,
-        "payload_hash": "c4973e377cdba020d24e40897b6585e176431486bbe1ca811b2c83fe23ebfc5d",
-        "prev_hash": "3da35848f1ead14a65c06d28300529021db4f6e0e742b52d03fecbdc240ca6fa",
-        "entry_hash": "6a0321689868adbf4797dc9f9187a2ca0404b8ea0feff1a80fefedf7fbc96edf"
+        "payload_hash": "a52a60132a837c33a16f0ac7b99c5449361542e03a9846ad5ae64c95fbeaab10",
+        "prev_hash": "522de424e456ff893ca703ac0bc9f0fd85dfba3cdd27b00ebf0c2617277d057b",
+        "entry_hash": "3350f041bf8de8c5fb8c1c88bc17e261e2d8014cd672ce288a2519e50976eae1"
       },
       {
         "seq": 119,
-        "as_of": "2025-08-19",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "8a2e725bc11c068baf85faab66c37a367d40e853cc0ef725eb88b2accf8e8713",
-        "prev_hash": "6a0321689868adbf4797dc9f9187a2ca0404b8ea0feff1a80fefedf7fbc96edf",
-        "entry_hash": "a659050e97418a61d0a414594185318f5671dac8e572edebdecc062d5b90d4cc"
+        "as_of": "2026-01-13",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "8813e4d0eb83e0c0603d0e68f8779e411b517f1afa558f1eeafd37facd45cbf9",
+        "prev_hash": "3350f041bf8de8c5fb8c1c88bc17e261e2d8014cd672ce288a2519e50976eae1",
+        "entry_hash": "ddcda4fa49835c62f7bdc26eb03057b61bbd75127a0a78f443aa29a09016e701"
       },
       {
         "seq": 120,
-        "as_of": "2025-08-24",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "9c90fcd2dcd1e624ef4e0a875ec8091c8be2de913ec2343680b11fe89e54d3e8",
-        "prev_hash": "a659050e97418a61d0a414594185318f5671dac8e572edebdecc062d5b90d4cc",
-        "entry_hash": "937001099b9c2405f53701022418548d3f7efe22c330ff60744bd8cc346f7874"
+        "as_of": "2026-01-21",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "d16c0ade9c406aed3053259dcc3b14663f48f097c579a832319caca781e4b6a6",
+        "prev_hash": "ddcda4fa49835c62f7bdc26eb03057b61bbd75127a0a78f443aa29a09016e701",
+        "entry_hash": "1396088f84228e6167dd1d9ed4d1adc5f2516afe710844e2da0fee708c5ef2ef"
       },
       {
         "seq": 121,
-        "as_of": "2025-08-29",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "d2b4620196e37cbe29534655ee59668e723a450f8047e40295c69d5611900428",
-        "prev_hash": "937001099b9c2405f53701022418548d3f7efe22c330ff60744bd8cc346f7874",
-        "entry_hash": "92bde479b0afa8c9de62c50a770c60db2c41fe8bdb43e3043ba62231f068a802"
+        "as_of": "2026-01-28",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "558ce182c918b1e0b81594ae9c3494e0fd7ab62ba88310e3cd633dc42a91903a",
+        "prev_hash": "1396088f84228e6167dd1d9ed4d1adc5f2516afe710844e2da0fee708c5ef2ef",
+        "entry_hash": "5908c5ba22200701e63c280493ebc9996c29e7aa2cd7a6488dd070b19967664c"
       },
       {
         "seq": 122,
-        "as_of": "2025-09-03",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "639304769468b08ec6eaced8ca6ec5a1ed6808512604e98e797b152514f55e69",
-        "prev_hash": "92bde479b0afa8c9de62c50a770c60db2c41fe8bdb43e3043ba62231f068a802",
-        "entry_hash": "e46e1e937f5f69a71abaa04b4650a021c8996879bde80646d478a39784cb596e"
+        "as_of": "2026-02-04",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "027cfb038fa39fdd106657f47c52f56a7d55775be36cafef96c087e2c8dfca93",
+        "prev_hash": "5908c5ba22200701e63c280493ebc9996c29e7aa2cd7a6488dd070b19967664c",
+        "entry_hash": "494055aa2ada14868744403edf96535e94ea8df3033676a5939d038f0a329658"
       },
       {
         "seq": 123,
-        "as_of": "2025-09-08",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "1119545b958494a934676b265295da9ccc401115ec32a4e9000ceb683a47f86f",
-        "prev_hash": "e46e1e937f5f69a71abaa04b4650a021c8996879bde80646d478a39784cb596e",
-        "entry_hash": "0c200e225b25a7bb867d4021db615449fac00e8752a83bc15d46068a60057c31"
+        "as_of": "2026-02-11",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "c428768b4eb93455da208460ec0732bcf29c0a13280b347583d6bef96bdcc275",
+        "prev_hash": "494055aa2ada14868744403edf96535e94ea8df3033676a5939d038f0a329658",
+        "entry_hash": "54bf3743b1b9b6e78db2ef85034f4fd5cb7441b4d0291d8c63d5f2f26eba4e32"
       },
       {
         "seq": 124,
-        "as_of": "2025-09-13",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "4e4cc83190b05ec377790ed509a95ad690cdb0f6d5d8cef189816aad7c878d7e",
-        "prev_hash": "0c200e225b25a7bb867d4021db615449fac00e8752a83bc15d46068a60057c31",
-        "entry_hash": "bf72873164ac96a6b2f77b30e58a93f2e810eaa2cbd6ed71bc21987ed47f7215"
+        "as_of": "2026-02-19",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "ffc8c150cfa23a664ad8040c9942734d0c0ea9754eea6e9a508120831eca0bac",
+        "prev_hash": "54bf3743b1b9b6e78db2ef85034f4fd5cb7441b4d0291d8c63d5f2f26eba4e32",
+        "entry_hash": "7319da4f5c2bddd5854553113fab674e1e76e4200231f798046a8ff5da929f91"
       },
       {
         "seq": 125,
-        "as_of": "2025-09-18",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "cd53ff895f8a88c9478d5188342e4595698025a63f858f3acb238e64c3bf422c",
-        "prev_hash": "bf72873164ac96a6b2f77b30e58a93f2e810eaa2cbd6ed71bc21987ed47f7215",
-        "entry_hash": "9d1041ff52f4d7bc9798b02740efdf86ba9ce479a1fca46c8cc38bb8ba9ca6db"
+        "as_of": "2026-02-26",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "7ba5eb7033dd1dab6277cdb734d0e6891a2dde3e698e345bd3c6edc6eb48027f",
+        "prev_hash": "7319da4f5c2bddd5854553113fab674e1e76e4200231f798046a8ff5da929f91",
+        "entry_hash": "1686c4d2e9508bbbe616a9597828dfbaf505ff5713bad3b20823afc693fd8555"
       },
       {
         "seq": 126,
-        "as_of": "2025-09-23",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "66d572950190687236b14fe0ceb39a1717c77099d5a70baddad6b89af453d5fb",
-        "prev_hash": "9d1041ff52f4d7bc9798b02740efdf86ba9ce479a1fca46c8cc38bb8ba9ca6db",
-        "entry_hash": "50285d48b9f8337249c74980c88c252162bd9701a4e1a6a22a8dc3cc959ff382"
+        "as_of": "2026-03-05",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "43f485fd7501029867d2af36248d2f41464caec8f52e7c45ab25a2e3a13a0f4d",
+        "prev_hash": "1686c4d2e9508bbbe616a9597828dfbaf505ff5713bad3b20823afc693fd8555",
+        "entry_hash": "71c1b9a73aa38d9379af8e64cd22aaf39970efa73f86c78c718318674e1816f0"
       },
       {
         "seq": 127,
-        "as_of": "2025-09-28",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "c7d0b1a502bc59b0e331a7d23c44ed195779d4a8902ff63cb385e0a6aecfc635",
-        "prev_hash": "50285d48b9f8337249c74980c88c252162bd9701a4e1a6a22a8dc3cc959ff382",
-        "entry_hash": "0df2bae7261312f623800c5bcc0d2ec855a63bb294e0079833bb00481bd46418"
+        "as_of": "2026-03-12",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "e0fb7d3007f75245947fc7109aed05170b010172ad54345cea1525e5c9cfe05a",
+        "prev_hash": "71c1b9a73aa38d9379af8e64cd22aaf39970efa73f86c78c718318674e1816f0",
+        "entry_hash": "093f7e7eb152661090ddc9cbdb91d348c74146047242103e1fe08d0d00cf1c48"
       },
       {
         "seq": 128,
-        "as_of": "2025-10-03",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "db8ee25ddeb6a7ed9a828a86cf6ab2d7f254233701e2180e77b0a33e0e4628e0",
-        "prev_hash": "0df2bae7261312f623800c5bcc0d2ec855a63bb294e0079833bb00481bd46418",
-        "entry_hash": "310adf47019de3e884c830569a8026b5bbd34fae5aeb02c27c8d80750675c77a"
+        "as_of": "2026-03-19",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "636221c984bd741a53a23ba22a2c81dc3bddf2561463edcd63bc625d0bc56bb4",
+        "prev_hash": "093f7e7eb152661090ddc9cbdb91d348c74146047242103e1fe08d0d00cf1c48",
+        "entry_hash": "846851106a478f1ab982b085f28efde3097839da83d5a07a8ab46f0b4399ed3f"
       },
       {
         "seq": 129,
-        "as_of": "2025-10-08",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "077571b440875ab7054b522db415f1bbf3fbef7fcd69fd3ff3c58428b041bbd7",
-        "prev_hash": "310adf47019de3e884c830569a8026b5bbd34fae5aeb02c27c8d80750675c77a",
-        "entry_hash": "62559b275058b09505743a811534cf014397fb10dcaaa0f4f59b5404880d65e5"
+        "as_of": "2026-03-26",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "de7df7201384e1f9607d2a6e0ffa438185bd7cb4b088282a178744c5482ce3ba",
+        "prev_hash": "846851106a478f1ab982b085f28efde3097839da83d5a07a8ab46f0b4399ed3f",
+        "entry_hash": "89b5ef2267e19f2cab1768038abf3204bf6bdf99acfcf53b6e611748251e61e6"
       },
       {
         "seq": 130,
-        "as_of": "2025-10-13",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "47bbc0baec58579e6e7d22db7e566c09867dd66cf291a5c58cd1264fb7f057b2",
-        "prev_hash": "62559b275058b09505743a811534cf014397fb10dcaaa0f4f59b5404880d65e5",
-        "entry_hash": "fb66dad48ea456c81d5ae5b91dbba1b81c7ec172239794155d3f0609052c4941"
+        "as_of": "2026-04-02",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "77d902d90db2704eb4e324c6011c663ae0d8c6850e1bafd5d71f48bc23d01e19",
+        "prev_hash": "89b5ef2267e19f2cab1768038abf3204bf6bdf99acfcf53b6e611748251e61e6",
+        "entry_hash": "e3ab72f90af963d7f48b4d6e0e9d4e8647c17436e5227013a76a37cb2dd34e3d"
       },
       {
         "seq": 131,
-        "as_of": "2025-10-18",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "2b10d30714e899545cb64185639699fc65cdebd8b7b65f6aabe90c3e1496571e",
-        "prev_hash": "fb66dad48ea456c81d5ae5b91dbba1b81c7ec172239794155d3f0609052c4941",
-        "entry_hash": "c1957a25ccb73a7bce85e17cea7ef28b3e195c207dcf07a719cda0d3996f5657"
+        "as_of": "2026-04-10",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "4d4e04f1c6a64c9f6ad04ef4470ff229588454c26bf251fa1340e82c69a9bdf1",
+        "prev_hash": "e3ab72f90af963d7f48b4d6e0e9d4e8647c17436e5227013a76a37cb2dd34e3d",
+        "entry_hash": "90beb37dd511862d073924b08e731dc98ef3879026e5bbd29dd106ce466775b4"
       },
       {
         "seq": 132,
-        "as_of": "2025-10-23",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "1f43f7efec3e06f99d43606bcff06b95c669f7b315bf845f7aeeba9c7cd6ab34",
-        "prev_hash": "c1957a25ccb73a7bce85e17cea7ef28b3e195c207dcf07a719cda0d3996f5657",
-        "entry_hash": "d69fb7309cdc61d068423edd826115422ac7eb30fced921df513b4434180ff06"
+        "as_of": "2026-04-17",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "b4b8dd618b5d0c604345e338d0cd78bf1f01fd85078b2314cb843b854d3bb82d",
+        "prev_hash": "90beb37dd511862d073924b08e731dc98ef3879026e5bbd29dd106ce466775b4",
+        "entry_hash": "b0e5628f7bc39ef33fccd6f1b1e0188fd8f0d407c4a423bf2c8adad6366a191e"
       },
       {
         "seq": 133,
-        "as_of": "2025-10-28",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "e2040198c55e41f00add6e0eca22bc0331c948669dc5842879b5a03461845758",
-        "prev_hash": "d69fb7309cdc61d068423edd826115422ac7eb30fced921df513b4434180ff06",
-        "entry_hash": "5c6d704d0628bfcd51266859dfdc2052b88522e9f5ef3893315968e7dc1db319"
+        "as_of": "2026-04-24",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "601cea3e54e90c08a677e148f96551f21725bd9a772fa46ebbd4f83bd649cce9",
+        "prev_hash": "b0e5628f7bc39ef33fccd6f1b1e0188fd8f0d407c4a423bf2c8adad6366a191e",
+        "entry_hash": "8c70657422d400cdff0dac6b58044d4d2322464201e0ff89ae8d06369cca89aa"
       },
       {
         "seq": 134,
-        "as_of": "2025-11-02",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "91827538ef81f35fa48b70d8bf7e48563a694d5adc61f6e66ef62474848d7813",
-        "prev_hash": "5c6d704d0628bfcd51266859dfdc2052b88522e9f5ef3893315968e7dc1db319",
-        "entry_hash": "fa2253ce26ba3c9d975b735e484ec1522fcd17f3efe19b18c1026655d50bcaf5"
+        "as_of": "2026-05-01",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "11b6f968de209fe1a38d86c0a1c4249688cf8fc76c138fd6817aff175342895c",
+        "prev_hash": "8c70657422d400cdff0dac6b58044d4d2322464201e0ff89ae8d06369cca89aa",
+        "entry_hash": "8a249afc37fa95c9b53e2bd55eeb64c5fa0581e36b42c7c49fc95b855b7dcf5f"
       },
       {
         "seq": 135,
-        "as_of": "2025-11-07",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "7ad61009e8742a869af389d79386e8733756585a2e4d1fa7170da45da49de453",
-        "prev_hash": "fa2253ce26ba3c9d975b735e484ec1522fcd17f3efe19b18c1026655d50bcaf5",
-        "entry_hash": "ca00b5c3a7e299849fce7648e981c7b8100f3f823ed4cbf68a87ed0e9e5e73e2"
+        "as_of": "2026-05-08",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "bd8ab60a786aa15abb18ded3560b87b88163eefe94d74da5a2ae2699921beb38",
+        "prev_hash": "8a249afc37fa95c9b53e2bd55eeb64c5fa0581e36b42c7c49fc95b855b7dcf5f",
+        "entry_hash": "f7eeae4fd0fbc3ffa06a0f913e351bb98526a9e0c8b1036824e2cb3861aa93b6"
       },
       {
         "seq": 136,
-        "as_of": "2025-11-12",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "06defd179ed7ea3a3435c2aa25cce0fb40bf1d51b931261ad842d791f8051a34",
-        "prev_hash": "ca00b5c3a7e299849fce7648e981c7b8100f3f823ed4cbf68a87ed0e9e5e73e2",
-        "entry_hash": "80e1594d0b9ce935ebd1ce747b800fef9e4608e34b1a902b2a7509bec85433eb"
+        "as_of": "2026-05-15",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "d2405eec1ca579f5feac8bf565a542b7c36bff82c37024ca0df5a1df954a928f",
+        "prev_hash": "f7eeae4fd0fbc3ffa06a0f913e351bb98526a9e0c8b1036824e2cb3861aa93b6",
+        "entry_hash": "883730cc34da5e404423a5679886edb37f2daca008886fc6993ea791cf83e3be"
       },
       {
         "seq": 137,
-        "as_of": "2025-11-17",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "d6bd0ca20f1eeb247e4d96202fb326f145e47f85e294203b8dbf2e13dcbe12da",
-        "prev_hash": "80e1594d0b9ce935ebd1ce747b800fef9e4608e34b1a902b2a7509bec85433eb",
-        "entry_hash": "b94dfdb38047c4065449ab5602cd92ce97e6ab9b70d7435c6a86fed18f1a3424"
+        "as_of": "2026-05-22",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "dfa6febfde15d9682c2a9ac34e06db9da0f5f606d60de56ceb04661999c2e1d0",
+        "prev_hash": "883730cc34da5e404423a5679886edb37f2daca008886fc6993ea791cf83e3be",
+        "entry_hash": "fbfb9dd2ff13c6ac88a7cd1a5db8360dd2d5ca017a878e5d3f88dd061708cd45"
       },
       {
         "seq": 138,
-        "as_of": "2025-11-22",
-        "asset_class": "commodity",
-        "n_scores": 8,
-        "payload_hash": "99ce8d4f72e25448ce5fe5fc2805e39a6441f8f4251c4632c1ebfdf8f9f03164",
-        "prev_hash": "b94dfdb38047c4065449ab5602cd92ce97e6ab9b70d7435c6a86fed18f1a3424",
-        "entry_hash": "c8de5fb24c3255336ddcd84563d71a835952a857526f0a1ee3309d7ea1615390"
+        "as_of": "2026-06-01",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "4c74818e8ef2e83ce9fac781db3efddaf3384dae23fba06d3b37f54c3091827f",
+        "prev_hash": "fbfb9dd2ff13c6ac88a7cd1a5db8360dd2d5ca017a878e5d3f88dd061708cd45",
+        "entry_hash": "eff6d8d91f4fe13c1100d8c637ee54e253d12a302650cb5ca03e68f4e9fecb09"
       },
       {
         "seq": 139,
-        "as_of": "2025-11-27",
+        "as_of": "2025-01-22",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "557a1ee31014daae7a66ada970236bb3160ca00cae14a95efc8c7a3912c359c3",
-        "prev_hash": "c8de5fb24c3255336ddcd84563d71a835952a857526f0a1ee3309d7ea1615390",
-        "entry_hash": "4e18ceeecec31b45d14df76c1eea57403549ad8ff4d11aa0ae48a47391f36568"
+        "payload_hash": "f21a9e2b7519b862c4718879e5f47883f6a468171da0e99da3920ad1392dfb20",
+        "prev_hash": "eff6d8d91f4fe13c1100d8c637ee54e253d12a302650cb5ca03e68f4e9fecb09",
+        "entry_hash": "e09772b850146906e46774de58317b094b41d19003c5872a63798005776e7b54"
       },
       {
         "seq": 140,
-        "as_of": "2025-12-02",
+        "as_of": "2025-01-29",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "b8da180d4ef68461e27501ab45789aded9d67bcc0f2588a2a260c05fab9dfa4a",
-        "prev_hash": "4e18ceeecec31b45d14df76c1eea57403549ad8ff4d11aa0ae48a47391f36568",
-        "entry_hash": "e093c6262ad59820a95828455ba31e8cba0df9c60fdbad4f209265c7fd806a05"
+        "payload_hash": "d8078f131b25d995b553d91b16baac5ac1e71da1499b4d070bddc3e29c7a3086",
+        "prev_hash": "e09772b850146906e46774de58317b094b41d19003c5872a63798005776e7b54",
+        "entry_hash": "42a26504745cf3a0b7b8e3d33297b66e16620a12b447995b8e11236b38b14427"
       },
       {
         "seq": 141,
-        "as_of": "2025-12-07",
+        "as_of": "2025-02-05",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "80a757b5a8b633c00f3fc0d997dd9a0032a06b3ea82495df8ad196b90261299f",
-        "prev_hash": "e093c6262ad59820a95828455ba31e8cba0df9c60fdbad4f209265c7fd806a05",
-        "entry_hash": "702717c8d160a136e1dacdbe9591d7eaef2c07c3e2755dba7b350a647e20e514"
+        "payload_hash": "23845f73ad5538000dfaa319ebf44f5266920831c9df81a2b76566240c3e680e",
+        "prev_hash": "42a26504745cf3a0b7b8e3d33297b66e16620a12b447995b8e11236b38b14427",
+        "entry_hash": "141751bcb3b3451e8366747697d17da9eaf1c794b202693f7b1fd4e0b5ea7578"
       },
       {
         "seq": 142,
-        "as_of": "2025-12-12",
+        "as_of": "2025-02-12",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "881d2da03800fc79c3f2a9fb8db1e595d2546b6e6445c23af2716f0d7524f34d",
-        "prev_hash": "702717c8d160a136e1dacdbe9591d7eaef2c07c3e2755dba7b350a647e20e514",
-        "entry_hash": "03e1731c7da9fc630d057a808f205a293c1e00d30394fe557e543268fa77a82e"
+        "payload_hash": "02161abdf34d484fed8ec770941df6e0a843559f7dce9fbf98824b4fa6ed3e34",
+        "prev_hash": "141751bcb3b3451e8366747697d17da9eaf1c794b202693f7b1fd4e0b5ea7578",
+        "entry_hash": "29ab26c19eb6afbd19bebbb352a62a3f005ef4f0b2b7a94b9237ff365d6c0f77"
       },
       {
         "seq": 143,
-        "as_of": "2025-12-17",
+        "as_of": "2025-02-20",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "666059efb19ee859befad375a3422accc7b2be9450e54ebf05913b9f3336d9e1",
-        "prev_hash": "03e1731c7da9fc630d057a808f205a293c1e00d30394fe557e543268fa77a82e",
-        "entry_hash": "120b05cc02bf9c93ea10074286f192d28de188f0821b5089a5a932521769d38a"
+        "payload_hash": "9d9518eb4934e7108c10d1c0bb9078926713ed08d76f97926197d374ed365b71",
+        "prev_hash": "29ab26c19eb6afbd19bebbb352a62a3f005ef4f0b2b7a94b9237ff365d6c0f77",
+        "entry_hash": "e8231dd7906997bb986405c662f3445005c7924ad701d58b9adb9bbaebf9c5d3"
       },
       {
         "seq": 144,
-        "as_of": "2025-12-22",
+        "as_of": "2025-02-27",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "872d3e6bb4c1e4af0eb60bec04d618da37c136c5fe8a67c25d59d9d700d5b5f7",
-        "prev_hash": "120b05cc02bf9c93ea10074286f192d28de188f0821b5089a5a932521769d38a",
-        "entry_hash": "3256cb5b661f14d3d9d4bf085ee8c4c1824eae83ed398c017c98ddd128c8dd56"
+        "payload_hash": "ee1900b68cc9198c6ee3a07b91331193f71b34cce7ab34ce2ae74f7f8a2dd1f1",
+        "prev_hash": "e8231dd7906997bb986405c662f3445005c7924ad701d58b9adb9bbaebf9c5d3",
+        "entry_hash": "79828889f5d68cec3bb8a75946969be3f911ab80c461a2d10fce1451ef2fabb7"
       },
       {
         "seq": 145,
-        "as_of": "2025-12-27",
+        "as_of": "2025-03-06",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "45aa5cc2df1c8ddb136f823163a52557253b1e05d49fb1aecba7133debeb01da",
-        "prev_hash": "3256cb5b661f14d3d9d4bf085ee8c4c1824eae83ed398c017c98ddd128c8dd56",
-        "entry_hash": "2d4b757071bd7e15878e8ef121be5798c593bf87001278a60607f20b13f483a6"
+        "payload_hash": "14d50a08aad045b0c4bc5ca971549bca2456f452103bd49bb0b84d32491853d7",
+        "prev_hash": "79828889f5d68cec3bb8a75946969be3f911ab80c461a2d10fce1451ef2fabb7",
+        "entry_hash": "f2d0537499767e05721d727b6f51629d2f30b1fc845b45d99fa799cd7ddd5ae7"
       },
       {
         "seq": 146,
-        "as_of": "2026-01-01",
+        "as_of": "2025-03-13",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "941fb335a599beffe50d215005c4f2d8c982b46635e8bb2f43d8fd75f71030ec",
-        "prev_hash": "2d4b757071bd7e15878e8ef121be5798c593bf87001278a60607f20b13f483a6",
-        "entry_hash": "4f0d7a66f1a7c705f589b2f4479fb4c5e1485325f0ba23cef3638f90f29be058"
+        "payload_hash": "2d23d8f27a5bc9482458a4b9ff1753a5b7a24723a2d97bcb0c40d94315e4b7b7",
+        "prev_hash": "f2d0537499767e05721d727b6f51629d2f30b1fc845b45d99fa799cd7ddd5ae7",
+        "entry_hash": "067e3c92b7ea914edc7f039d1b1bf0bddaaf344b6a7a38e7829209a5b01f3501"
       },
       {
         "seq": 147,
-        "as_of": "2026-01-06",
+        "as_of": "2025-03-20",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "fa416627c6c5eb9c89f7fbb62e57c4ca0422ac781d4e2e0703ef6ce6252c3584",
-        "prev_hash": "4f0d7a66f1a7c705f589b2f4479fb4c5e1485325f0ba23cef3638f90f29be058",
-        "entry_hash": "7d3c74a0818569b20f084730a56b5f5d84f9a99ea3ed999d3a275eca9c963ef8"
+        "payload_hash": "188ca0487ead4555994e0f3d51156f5f6025b63c3563c2fc8b4f6fdf8396d089",
+        "prev_hash": "067e3c92b7ea914edc7f039d1b1bf0bddaaf344b6a7a38e7829209a5b01f3501",
+        "entry_hash": "aa34069b84946db6821c78354f296b1f204c1c1a269edc26be10d099cefdc9c7"
       },
       {
         "seq": 148,
-        "as_of": "2026-01-11",
+        "as_of": "2025-03-27",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "8c07aba52b2c08d7a1964ef5e8e7a0f42f7e8207177328767451708ac65d78ef",
-        "prev_hash": "7d3c74a0818569b20f084730a56b5f5d84f9a99ea3ed999d3a275eca9c963ef8",
-        "entry_hash": "d8db40b1c3c4037bc2651b54a4b3e22d27da6865d0dfb331ea4ed99235b7760e"
+        "payload_hash": "7661e7f50175d787c4bf9dc95516620c52f534229378e1f3db400032e48342ee",
+        "prev_hash": "aa34069b84946db6821c78354f296b1f204c1c1a269edc26be10d099cefdc9c7",
+        "entry_hash": "82ca1f90cea0cc657cfe6168ee30b96e7b432c7c4f2fc58a8c220816385dc6c4"
       },
       {
         "seq": 149,
-        "as_of": "2026-01-16",
+        "as_of": "2025-04-03",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "21bfac324dc0395ea707e2d1b53c10698fe69b489b03f91a0e2c29211b75c282",
-        "prev_hash": "d8db40b1c3c4037bc2651b54a4b3e22d27da6865d0dfb331ea4ed99235b7760e",
-        "entry_hash": "8222a6c50d9fe53b23d1e76278be9315de634e57250bd7caf5fa2ca700154fc5"
+        "payload_hash": "660a4f5a271fb7e182b4caa55f493109dc3becbf822b618e3a5202a86160aa97",
+        "prev_hash": "82ca1f90cea0cc657cfe6168ee30b96e7b432c7c4f2fc58a8c220816385dc6c4",
+        "entry_hash": "707034999df1cc33aff4bd119cc00ad2383dc58ffea7aaef34015ebd8611ba25"
       },
       {
         "seq": 150,
-        "as_of": "2026-01-21",
+        "as_of": "2025-04-10",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "ba2d9edbcf85577c8e5cf62a96cbdb26bd5dc4b4573212ca4c12d8f92101e46a",
-        "prev_hash": "8222a6c50d9fe53b23d1e76278be9315de634e57250bd7caf5fa2ca700154fc5",
-        "entry_hash": "7eba24030e034fb642a8d25e1179fd9e25b3bde890a30c4a3736fee52f32e98b"
+        "payload_hash": "6c71ff13af0c2b0264e6c147b26186d1a5d0725ab6aac4b839c4e84fd8ab1044",
+        "prev_hash": "707034999df1cc33aff4bd119cc00ad2383dc58ffea7aaef34015ebd8611ba25",
+        "entry_hash": "67657cdddb56a48a135931e3eba89ee054933c84929ef3aeac9341daa2c13eff"
       },
       {
         "seq": 151,
-        "as_of": "2026-01-26",
+        "as_of": "2025-04-17",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "edd6842218ce07165f3bc9ffbd72d1c555a81868ccfbd5c572a08e004c7db9ed",
-        "prev_hash": "7eba24030e034fb642a8d25e1179fd9e25b3bde890a30c4a3736fee52f32e98b",
-        "entry_hash": "72f434cf062003eb55f7a32a2a0d9b7c8a33b7f49b8a98e60d767f222be01a44"
+        "payload_hash": "00f484da7e4c1e09358f57fbd3eafa01a01c8c47709cbc71c7a8572f15762c65",
+        "prev_hash": "67657cdddb56a48a135931e3eba89ee054933c84929ef3aeac9341daa2c13eff",
+        "entry_hash": "2c427bf72792b4c4cf5785f97d3a2ae1593d620e3e9681904a1ee4ca49b7b7af"
       },
       {
         "seq": 152,
-        "as_of": "2026-01-31",
+        "as_of": "2025-04-25",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "3cd757f6df9c6def5ac2f39b0aabb7ae47b54539a4d00bb1c08cbe4b846759a2",
-        "prev_hash": "72f434cf062003eb55f7a32a2a0d9b7c8a33b7f49b8a98e60d767f222be01a44",
-        "entry_hash": "c6f790ea23774e09095c2ca0d3849f0f7b8a899e2fdcd960ddb6e168dd3ddbff"
+        "payload_hash": "e437c3a2cc15ee08284ef6f586b7bf819a55eb95f5839154e2a2b633e4b83538",
+        "prev_hash": "2c427bf72792b4c4cf5785f97d3a2ae1593d620e3e9681904a1ee4ca49b7b7af",
+        "entry_hash": "e1a8f937a204a3d62bed092e6f3d726a0ac214fa7ef58a329f8d6cc9979b81a4"
       },
       {
         "seq": 153,
-        "as_of": "2026-02-05",
+        "as_of": "2025-05-02",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "d8be63c6530970768c9b94af18c12bdc9164ccd8e3f918890be991f523b79397",
-        "prev_hash": "c6f790ea23774e09095c2ca0d3849f0f7b8a899e2fdcd960ddb6e168dd3ddbff",
-        "entry_hash": "e906c32c8ddf956e64709872cbb7760c095eb35e3813fd11b8d737eb494984d3"
+        "payload_hash": "d7b46203651e11d15753fcd899270fb55fbc76fcddbb5d47928de8dfda034186",
+        "prev_hash": "e1a8f937a204a3d62bed092e6f3d726a0ac214fa7ef58a329f8d6cc9979b81a4",
+        "entry_hash": "6b86643b15e1f49cef12b11f1cc1a16bbc131fc8323a2adc4eaf2d3d9a22bdfb"
       },
       {
         "seq": 154,
-        "as_of": "2026-02-10",
+        "as_of": "2025-05-09",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "ff8dd9a83dd240a6e5dbb463fae6e96c9ee3fc682690daca32e4098bea4f8953",
-        "prev_hash": "e906c32c8ddf956e64709872cbb7760c095eb35e3813fd11b8d737eb494984d3",
-        "entry_hash": "9a1832a2c2fe4ff17abf0d2693fcf4b8d147807bd13c5fbe38f056d38e928136"
+        "payload_hash": "817a39bce0858e57e8479ab5762d876a4dde08e33a824b5d7b4da369c2136161",
+        "prev_hash": "6b86643b15e1f49cef12b11f1cc1a16bbc131fc8323a2adc4eaf2d3d9a22bdfb",
+        "entry_hash": "8dc9f812961a55de09a9cce99b753de58defb787181e1bc7a6e951d39f5d9d11"
       },
       {
         "seq": 155,
-        "as_of": "2026-02-15",
+        "as_of": "2025-05-16",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "1aeb35bfe39c8aab8e6a4f18a2f4723c0d5e37d6addbfa59c3d1abc7b891bf61",
-        "prev_hash": "9a1832a2c2fe4ff17abf0d2693fcf4b8d147807bd13c5fbe38f056d38e928136",
-        "entry_hash": "13328c545ddb3a02981f4a3aba57d743e47ba4a74f6f89966587a5ab21be04da"
+        "payload_hash": "965b980fe432ffa7b56dade64a4c3bc106ef6b4225301e5e28e0818957e24059",
+        "prev_hash": "8dc9f812961a55de09a9cce99b753de58defb787181e1bc7a6e951d39f5d9d11",
+        "entry_hash": "22e38a5bcfd1a7ccd05e7be66dcae43d8aa4fec24e5f37e61756cf90b8ea80fc"
       },
       {
         "seq": 156,
-        "as_of": "2026-02-20",
+        "as_of": "2025-05-23",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "29e47951f7fb90c4cab67683878573c71c996743525c8cbbadcf6623c1e448c2",
-        "prev_hash": "13328c545ddb3a02981f4a3aba57d743e47ba4a74f6f89966587a5ab21be04da",
-        "entry_hash": "0f50a33e5d55848dccbc1a90ad83a4cdc0d8277acdf773c91b3bae8085e549b3"
+        "payload_hash": "3bb94c3780fc11d3a02adbb495e0e92a4788ea28a54d6226e18154b045e3f492",
+        "prev_hash": "22e38a5bcfd1a7ccd05e7be66dcae43d8aa4fec24e5f37e61756cf90b8ea80fc",
+        "entry_hash": "981f4a4601da32070dc7023ee405fdb6594666156f9c9083163c7d10dfd81f6b"
       },
       {
         "seq": 157,
-        "as_of": "2026-02-25",
+        "as_of": "2025-06-02",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "9888f6e153f8808e3a74e22a414ad72a04fd573eb059e61f16fb88c9f80b1c7f",
-        "prev_hash": "0f50a33e5d55848dccbc1a90ad83a4cdc0d8277acdf773c91b3bae8085e549b3",
-        "entry_hash": "212a0bb304959d32254ec6709164b20bf3a1d83e5a10464610997b423f6c886a"
+        "payload_hash": "38f2a6b48fc2d0b548bd1d4c495c4c99f1940f01ce3bcc4c96fc4a682b4337ad",
+        "prev_hash": "981f4a4601da32070dc7023ee405fdb6594666156f9c9083163c7d10dfd81f6b",
+        "entry_hash": "d47197c3174fb5c86bc8f8eefa17b91a2e8b4a7b57aebba3c003c7477557401c"
       },
       {
         "seq": 158,
-        "as_of": "2026-03-02",
+        "as_of": "2025-06-09",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "b269bd38574770b69dacaaea6b56975e6e55abc4c1bfa061238c17b8ebf4698f",
-        "prev_hash": "212a0bb304959d32254ec6709164b20bf3a1d83e5a10464610997b423f6c886a",
-        "entry_hash": "5db929810c482dce1fc63d30fce1e0abea5138494ebd0f4c56f3db1d42846216"
+        "payload_hash": "02e7457d303a7bd4308457c279690521bb852fd20c61393ec1ba99c7a16a47e8",
+        "prev_hash": "d47197c3174fb5c86bc8f8eefa17b91a2e8b4a7b57aebba3c003c7477557401c",
+        "entry_hash": "3f4ab7bdbfd11df0f01637e4d6be2dcf1ff9f1c300f39f085ba039a8e48a294f"
       },
       {
         "seq": 159,
-        "as_of": "2026-03-07",
+        "as_of": "2025-06-16",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "2afd580f5ab63d9676cd3570a8de4af940efe939f61dddd50f08c023e2ce0850",
-        "prev_hash": "5db929810c482dce1fc63d30fce1e0abea5138494ebd0f4c56f3db1d42846216",
-        "entry_hash": "0655c03ec5c28b626c536cc365ce648f19478cbbb64ab88562cc7f76c65cc09e"
+        "payload_hash": "fe0bb79ecd68d3d99258c87168744dabd84273c44d7fff4965fa61803c9e2a0a",
+        "prev_hash": "3f4ab7bdbfd11df0f01637e4d6be2dcf1ff9f1c300f39f085ba039a8e48a294f",
+        "entry_hash": "9cc90b7d99b413f85832f07df760d251e7e1e1a74d42f55684afefe6b6477130"
       },
       {
         "seq": 160,
-        "as_of": "2026-03-12",
+        "as_of": "2025-06-24",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "a9d0efa9ad15756963e0bac583bfc758dd391f488d63310f0c27872b2478dfe6",
-        "prev_hash": "0655c03ec5c28b626c536cc365ce648f19478cbbb64ab88562cc7f76c65cc09e",
-        "entry_hash": "44fc8eba099e209c38bb93b82efac6136a2ac2d57a18c8deb3bd2c4a5fccc35d"
+        "payload_hash": "a535402a4e3e0975422393be5c33588e07ce14a7c77211434076f13f0d101c66",
+        "prev_hash": "9cc90b7d99b413f85832f07df760d251e7e1e1a74d42f55684afefe6b6477130",
+        "entry_hash": "da7def016ac1152080416d4142ba04f38e4f72d75274ffd5a46f4fc6915ea26f"
       },
       {
         "seq": 161,
-        "as_of": "2026-03-17",
+        "as_of": "2025-07-01",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "9894282af745b25e8a290b3d0a36bfd8f3df658693849fd7d11e32958cb1ac15",
-        "prev_hash": "44fc8eba099e209c38bb93b82efac6136a2ac2d57a18c8deb3bd2c4a5fccc35d",
-        "entry_hash": "52e286723a79148c8cdc801e92809e1cf693cb17049c7b2ff1dcbc582127db74"
+        "payload_hash": "ae1bf2671d859e55fcc0eca87db74f377dd5ef37c5c14a86e4ded2f75258c569",
+        "prev_hash": "da7def016ac1152080416d4142ba04f38e4f72d75274ffd5a46f4fc6915ea26f",
+        "entry_hash": "98ad4370eb7e3910a59e534d8db4add87b16e4a353f74b16fe75908d16fa9adf"
       },
       {
         "seq": 162,
-        "as_of": "2026-03-22",
+        "as_of": "2025-07-08",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "e9a38223748b799a60afd822526649cb07566357f66ded40a6621c5df37f030e",
-        "prev_hash": "52e286723a79148c8cdc801e92809e1cf693cb17049c7b2ff1dcbc582127db74",
-        "entry_hash": "de08438f969f1f059a1a68c56bd6f18aba4cfa9cad9b32be2a82a4fd2e2129ac"
+        "payload_hash": "91e7614c48a0d78b3630d9ec5ccd743b895c5864be0e838e54554f7cc2571b44",
+        "prev_hash": "98ad4370eb7e3910a59e534d8db4add87b16e4a353f74b16fe75908d16fa9adf",
+        "entry_hash": "10eb3dc25f2550819cff120a97e3e9619651ff9423276ffd2548137cbc3b3c25"
       },
       {
         "seq": 163,
-        "as_of": "2026-03-27",
+        "as_of": "2025-07-15",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "5f4e92fc48d367b2174bed48a9d16edfe0e7dec289725876d227f110cef5d774",
-        "prev_hash": "de08438f969f1f059a1a68c56bd6f18aba4cfa9cad9b32be2a82a4fd2e2129ac",
-        "entry_hash": "00127717d736164e16d10c3e0e299763ae4734c0acec8bbb03ba118defa57575"
+        "payload_hash": "b079fadf94b31b8c3e5c49dcc43349e96aab7dce782d862b37610dca7fefcfad",
+        "prev_hash": "10eb3dc25f2550819cff120a97e3e9619651ff9423276ffd2548137cbc3b3c25",
+        "entry_hash": "b54b8e14bc4c790825dc327d14392fce48c00fbf78d863c897194914df9b5ba8"
       },
       {
         "seq": 164,
-        "as_of": "2026-04-01",
+        "as_of": "2025-07-22",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "7d222bc9951062d02cb7fc10082e4a513c9cce7c08980dd32215000a946a81b3",
-        "prev_hash": "00127717d736164e16d10c3e0e299763ae4734c0acec8bbb03ba118defa57575",
-        "entry_hash": "82a51cfc71e0b433d1de6935a57d2be1a607feacf60c2e85180cb722a0dbbec0"
+        "payload_hash": "01bf54c85154799b7ee48e784f4e768b5d8652cf0886c79bec3e01c4b557f7ee",
+        "prev_hash": "b54b8e14bc4c790825dc327d14392fce48c00fbf78d863c897194914df9b5ba8",
+        "entry_hash": "7bf7a9186ee1238b76b5fb49f6214742760bba506b07702c1c4eb5cc27d3983e"
       },
       {
         "seq": 165,
-        "as_of": "2026-04-06",
+        "as_of": "2025-07-29",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "42fec5884d70d43f39a3754517a80d44cc94bd53933340535d42df44ba445e8b",
-        "prev_hash": "82a51cfc71e0b433d1de6935a57d2be1a607feacf60c2e85180cb722a0dbbec0",
-        "entry_hash": "684e43a2a6a011fcbe7da2bc3bebbda662eed779d837f95af0b9bc2b7876cc15"
+        "payload_hash": "e399710d4b43d73f2d7f6577bc9dd9b2e51d40ab876f8007a26dbc64592f5d23",
+        "prev_hash": "7bf7a9186ee1238b76b5fb49f6214742760bba506b07702c1c4eb5cc27d3983e",
+        "entry_hash": "4c3696c120bb9cac77837b49e7a4d519fe5be8616548df0710f80ec8969e0aff"
       },
       {
         "seq": 166,
-        "as_of": "2026-04-11",
+        "as_of": "2025-08-05",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "5cb1fc2b8eceb6253539a8a9a8bf12de925759eb80aa9119607a4f9abee588d9",
-        "prev_hash": "684e43a2a6a011fcbe7da2bc3bebbda662eed779d837f95af0b9bc2b7876cc15",
-        "entry_hash": "8e07be961479156c89522f1d831f6911b4e9bbbab0ff03fefe0b22c60b22100d"
+        "payload_hash": "63933d05d05dbe3ce0d6279c1c3af27a8e6853ca5a5f7f25d1b9cfaf417386da",
+        "prev_hash": "4c3696c120bb9cac77837b49e7a4d519fe5be8616548df0710f80ec8969e0aff",
+        "entry_hash": "4212da0c0acf62f42de0c43c18096996934f1382e585ba4c00a2f351fdf94d49"
       },
       {
         "seq": 167,
-        "as_of": "2026-04-16",
+        "as_of": "2025-08-12",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "eeff62cda98a60f44b4a89806f3834299a82cba506050d32b915a0f518ddd11b",
-        "prev_hash": "8e07be961479156c89522f1d831f6911b4e9bbbab0ff03fefe0b22c60b22100d",
-        "entry_hash": "11a96ea5cc8ebdb0eb6659b679317bea05d45139a194b0d52434e24b02e65365"
+        "payload_hash": "0fff71aa83b080ad621f6257689f41bba2ad6d49ff468f07093eba2586966536",
+        "prev_hash": "4212da0c0acf62f42de0c43c18096996934f1382e585ba4c00a2f351fdf94d49",
+        "entry_hash": "d39e1f9eba1e6ace1d0b838a611d6a82140a5c5544897b3c442585ec785f8693"
       },
       {
         "seq": 168,
-        "as_of": "2026-04-21",
+        "as_of": "2025-08-19",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "42948b6ca7dced3a7039ac1f453a5512780eac371d9c828b23b54da6b863093a",
-        "prev_hash": "11a96ea5cc8ebdb0eb6659b679317bea05d45139a194b0d52434e24b02e65365",
-        "entry_hash": "018ef546d5341b4d802dca3e76e05882afc133e95642b071f6ae81cde63dfad5"
+        "payload_hash": "e89a30fbba7b128be4a6235624c50c655044a2044778d74e0bbf68dee2e19501",
+        "prev_hash": "d39e1f9eba1e6ace1d0b838a611d6a82140a5c5544897b3c442585ec785f8693",
+        "entry_hash": "073522461130cd0406cbfe8f9584d633cd8ec9b902afb486932bc7cfa214b18d"
       },
       {
         "seq": 169,
-        "as_of": "2026-04-26",
+        "as_of": "2025-08-26",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "26d161b3d06ee6f69f497b31b27dc49d53b466add7bb9d41abf0cefcc9f46c13",
-        "prev_hash": "018ef546d5341b4d802dca3e76e05882afc133e95642b071f6ae81cde63dfad5",
-        "entry_hash": "bf127be77ad54f0c2cc111267cd2e5fa9d924f25f8281bf87902744fa64d17e7"
+        "payload_hash": "285f706bc4f95fdf6cc45d3e82d280f7c7782f00e837717367bd685a0dd89091",
+        "prev_hash": "073522461130cd0406cbfe8f9584d633cd8ec9b902afb486932bc7cfa214b18d",
+        "entry_hash": "e70912b87a558592f9ddb35f894019f1b585fc7509b499e30a84a666a3d8c1ef"
       },
       {
         "seq": 170,
-        "as_of": "2026-05-01",
+        "as_of": "2025-09-03",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "b3afc29a248374091d86de9a52ed20e346b0bdf3c1f6e472f5ecc4834611339a",
-        "prev_hash": "bf127be77ad54f0c2cc111267cd2e5fa9d924f25f8281bf87902744fa64d17e7",
-        "entry_hash": "1e28787354bb2e8ecb90d87079ee08935b8f299e662cda46a5b632fb7e3a59ca"
+        "payload_hash": "a1b1b2f2f55293c855061eaf5121f741aed0bec49a8a8881fcd69793dee1b4b9",
+        "prev_hash": "e70912b87a558592f9ddb35f894019f1b585fc7509b499e30a84a666a3d8c1ef",
+        "entry_hash": "cfcae657aee0b3952259cd35f8944c0c2f8f8713c577326646e35f1c1d1c1c52"
       },
       {
         "seq": 171,
-        "as_of": "2026-05-06",
+        "as_of": "2025-09-10",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "2e606a0f2eef64dedc27b24033fd2373c1f999bc06fb98ff5a5257a1c0411b11",
-        "prev_hash": "1e28787354bb2e8ecb90d87079ee08935b8f299e662cda46a5b632fb7e3a59ca",
-        "entry_hash": "4ae4e9d1a7a9ddf19830f301c370240f6ec25040ae6c961f7e0dbd0505809095"
+        "payload_hash": "0534f7b1c4301b89ae2200e517612d39ea6d4731b83884ddc104358829b3e56d",
+        "prev_hash": "cfcae657aee0b3952259cd35f8944c0c2f8f8713c577326646e35f1c1d1c1c52",
+        "entry_hash": "352f7de30ddf710985366c7c98deb68aaedc00079c3ae56f2bde9e5db38e12c5"
       },
       {
         "seq": 172,
-        "as_of": "2026-05-11",
+        "as_of": "2025-09-17",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "55c92e1ee8de7a54bdd8cecf64bc7e3e2d661a0053d841131b30f69f9f21d605",
-        "prev_hash": "4ae4e9d1a7a9ddf19830f301c370240f6ec25040ae6c961f7e0dbd0505809095",
-        "entry_hash": "51b875fd87b5b0e30b0c83c55e622edd11741aa8f31121fd1acdac3b56ec17e0"
+        "payload_hash": "9ecc00843021291662343bf0c8e030898d027299d13dcc92002e6443c54f0b9a",
+        "prev_hash": "352f7de30ddf710985366c7c98deb68aaedc00079c3ae56f2bde9e5db38e12c5",
+        "entry_hash": "0b5471143865589c729330b5fa965813cb303de0040886868bf5e823079263ea"
       },
       {
         "seq": 173,
-        "as_of": "2026-05-16",
+        "as_of": "2025-09-24",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "769dad69c9f95c65676688fbb7a11120c71dc5264dcf01a23e4f0adff88ec138",
-        "prev_hash": "51b875fd87b5b0e30b0c83c55e622edd11741aa8f31121fd1acdac3b56ec17e0",
-        "entry_hash": "9284913f5538f6d643518fc1a5dbc404daf7f5ae6dbb15114593d176746d20c8"
+        "payload_hash": "fc3b59da2cc8ce64b7901410c8d2bbeb26ac8dc53232a6ad902c2097585d7b50",
+        "prev_hash": "0b5471143865589c729330b5fa965813cb303de0040886868bf5e823079263ea",
+        "entry_hash": "94ba5094b154f8b4bc64c558c47ccf9579657bc4db3e3b7737f633bd8b98f914"
       },
       {
         "seq": 174,
-        "as_of": "2026-05-21",
+        "as_of": "2025-10-01",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "880dae37ec736717659bcf4363bbdab96e61217c471c71d383cea165401d15b9",
-        "prev_hash": "9284913f5538f6d643518fc1a5dbc404daf7f5ae6dbb15114593d176746d20c8",
-        "entry_hash": "965892e3d44c07d7b166499edf24bf4c1934eda114d1c1d1c4a37ceb9844d97a"
+        "payload_hash": "947ae597db715feb1d8387a3e96727ad8bcb577a8a835e1c76cb31291ffb3237",
+        "prev_hash": "94ba5094b154f8b4bc64c558c47ccf9579657bc4db3e3b7737f633bd8b98f914",
+        "entry_hash": "a6e5b3d28d2c20be7fa969f8c958b3f2eccee9cd0b1d7ea01c5c1747d3bf1907"
       },
       {
         "seq": 175,
-        "as_of": "2026-05-26",
+        "as_of": "2025-10-08",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "ac10439ac52247b971dbec20063f7c267b37df43c1c1f1ae8ce115f7f90bab59",
-        "prev_hash": "965892e3d44c07d7b166499edf24bf4c1934eda114d1c1d1c4a37ceb9844d97a",
-        "entry_hash": "16ce337e6e6a11c8d5a42db8f83f566d8120e7dd599ffae961280a9b99dfe64e"
+        "payload_hash": "f4d66b1eb825a0e23b9270b9b8c2c7c8830e1fe9d1fe895ad2526ab97f3f3824",
+        "prev_hash": "a6e5b3d28d2c20be7fa969f8c958b3f2eccee9cd0b1d7ea01c5c1747d3bf1907",
+        "entry_hash": "2945b68f9122c7cff2bbe20e9630ea86733e7700d0422903675b1696bef87b84"
       },
       {
         "seq": 176,
-        "as_of": "2026-05-31",
+        "as_of": "2025-10-15",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "ddcd12d1d4b53c11ed9f2bc71f0ac2b9303bfd5f5589b0cf073e660ce6ad8e82",
-        "prev_hash": "16ce337e6e6a11c8d5a42db8f83f566d8120e7dd599ffae961280a9b99dfe64e",
-        "entry_hash": "f50b8c6dbb30e62ccd6a190f5de21572a426c682ab4d317b09c28ff449027339"
+        "payload_hash": "92507fd3277d8ef721a846ec14dfbcfdf1a295b0ec420cfc58369d455506f4e6",
+        "prev_hash": "2945b68f9122c7cff2bbe20e9630ea86733e7700d0422903675b1696bef87b84",
+        "entry_hash": "9c5a94d14c78291fec89d26915a0ff6a27e9bf938fe77f62e14577ec5128e37e"
       },
       {
         "seq": 177,
+        "as_of": "2025-10-22",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "88cf2fd172f795e2bbe1440b5ff1b28f1e1b65649148280b3adda09c65bba409",
+        "prev_hash": "9c5a94d14c78291fec89d26915a0ff6a27e9bf938fe77f62e14577ec5128e37e",
+        "entry_hash": "3069287d1b528015e1e423db45ad13373b8422621fc77c4d7aa200601ea8e6a6"
+      },
+      {
+        "seq": 178,
+        "as_of": "2025-10-29",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "db0021d9a5017075c6137a48fe2899f1740d66d555ac5a6c40572fc4c4908183",
+        "prev_hash": "3069287d1b528015e1e423db45ad13373b8422621fc77c4d7aa200601ea8e6a6",
+        "entry_hash": "eb1c4aca058756d33fed54d4b480a855bf785aff33c6de1288596fa8e3f5f0d0"
+      },
+      {
+        "seq": 179,
+        "as_of": "2025-11-05",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "84cb809210d751863aa0ade8cd697f825b35ae41854dca81b4f92e95f03fb35a",
+        "prev_hash": "eb1c4aca058756d33fed54d4b480a855bf785aff33c6de1288596fa8e3f5f0d0",
+        "entry_hash": "fd77f287758008546a543bc6ab18baaf18a37f404e549d3d8bd5cd6db650b174"
+      },
+      {
+        "seq": 180,
+        "as_of": "2025-11-12",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "e2ff0741516035c5dd63b918c864d08b2965d36d0141b54cb9c3cfaaaed8b004",
+        "prev_hash": "fd77f287758008546a543bc6ab18baaf18a37f404e549d3d8bd5cd6db650b174",
+        "entry_hash": "5c3fee61cf7ddd5d4c5e5fd099fb6c174bf430fd68b37b0d67d7baac70ee1001"
+      },
+      {
+        "seq": 181,
+        "as_of": "2025-11-19",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "c45facf8f5c47167e730cdc3fbe536cd26c29f9270da9e83493e9fbbdb92d3fa",
+        "prev_hash": "5c3fee61cf7ddd5d4c5e5fd099fb6c174bf430fd68b37b0d67d7baac70ee1001",
+        "entry_hash": "36d894b7b6248357243f3c7ad4044e980f965bd497aa30d7ff51391e8d09f5c9"
+      },
+      {
+        "seq": 182,
+        "as_of": "2025-11-26",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "f204a29a6ad1c33f8876fc4f33bfa7e1b9c5a2c4d0c0b5f87efeb1722cde9369",
+        "prev_hash": "36d894b7b6248357243f3c7ad4044e980f965bd497aa30d7ff51391e8d09f5c9",
+        "entry_hash": "4f859283114e8e78998c9b56bb5f8a6f1549efbf0098109ef8190d6126ff4d7f"
+      },
+      {
+        "seq": 183,
+        "as_of": "2025-12-04",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "5a7868b146281f7e5ef97456168d6430036a51a92a4dc2e3e4897561d56c1835",
+        "prev_hash": "4f859283114e8e78998c9b56bb5f8a6f1549efbf0098109ef8190d6126ff4d7f",
+        "entry_hash": "928653c9e15e2d5cc7f273e1feb70604da3bf99cb7190ceca60211a97447e0af"
+      },
+      {
+        "seq": 184,
+        "as_of": "2025-12-11",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "2eb7473559f964232802a74629d95033e5270f634358e18c548f91e482e1d2f5",
+        "prev_hash": "928653c9e15e2d5cc7f273e1feb70604da3bf99cb7190ceca60211a97447e0af",
+        "entry_hash": "3c4071eb6092632deb4c310abea29e0632a87ba527b9d9b2bc9983ecdd58d8e7"
+      },
+      {
+        "seq": 185,
+        "as_of": "2025-12-18",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "2e90e2c69d9801c7ff55bf5db5275e51562df0a7de9210639b76d0755449153c",
+        "prev_hash": "3c4071eb6092632deb4c310abea29e0632a87ba527b9d9b2bc9983ecdd58d8e7",
+        "entry_hash": "579e48534c91f80481553cc26d7e363e62f3fa5c3032a84a34b0586dd75b3f56"
+      },
+      {
+        "seq": 186,
+        "as_of": "2025-12-26",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "aed9a7992db2e78948d194a20fce8f5c08b0fe857974422498d3466734276c22",
+        "prev_hash": "579e48534c91f80481553cc26d7e363e62f3fa5c3032a84a34b0586dd75b3f56",
+        "entry_hash": "1d926a043c051168be66e4db241c90f55b5db4f3999d39227017c347127bf6ac"
+      },
+      {
+        "seq": 187,
+        "as_of": "2026-01-05",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "3b4510a7eeb421ca5fb0081d23ab622b5761ddaab4d9fe43eb35fafef3c2d960",
+        "prev_hash": "1d926a043c051168be66e4db241c90f55b5db4f3999d39227017c347127bf6ac",
+        "entry_hash": "9c72373443e320a53f1cbe31f2680f52d1668bc10639a3862810e32e0dae6c33"
+      },
+      {
+        "seq": 188,
+        "as_of": "2026-01-12",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "ae65c0818d79cb7ea62e2880e6838e740251680a21949fefa86c22d58d4b0155",
+        "prev_hash": "9c72373443e320a53f1cbe31f2680f52d1668bc10639a3862810e32e0dae6c33",
+        "entry_hash": "d3bca0018059ea2c5254a2c1aea3d0cf4fc4f7022f3ba71efcb79777bb4f5dd2"
+      },
+      {
+        "seq": 189,
+        "as_of": "2026-01-20",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "10ec725631a234303b78cc7d107306ba358d4dad39e6234c64d7c1a4bc8325ca",
+        "prev_hash": "d3bca0018059ea2c5254a2c1aea3d0cf4fc4f7022f3ba71efcb79777bb4f5dd2",
+        "entry_hash": "491e0cc21fbb25dab74bdab5e1c640e5bb5b52dce521041a7b975eeef55e8b75"
+      },
+      {
+        "seq": 190,
+        "as_of": "2026-01-27",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "a68e9a3da39594c47fff20753dd13beeae213c4de8f5ec841e23c167db01360e",
+        "prev_hash": "491e0cc21fbb25dab74bdab5e1c640e5bb5b52dce521041a7b975eeef55e8b75",
+        "entry_hash": "c143221197029edf9c7c6cd46093ea619214399fb93c62e6d89a7f1fdffed7e1"
+      },
+      {
+        "seq": 191,
+        "as_of": "2026-02-03",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "7f1940b4c18946acd1f093a51c4d1c351aee14534df1a0e4ed2aef6b12ba5376",
+        "prev_hash": "c143221197029edf9c7c6cd46093ea619214399fb93c62e6d89a7f1fdffed7e1",
+        "entry_hash": "43576a4b1d2035a3cc7a3722de8a24d2e93c9f90aaa4a8e861ef78201f994ce8"
+      },
+      {
+        "seq": 192,
+        "as_of": "2026-02-10",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "14bbd56ba5caabc615d7f6b3e07949784671591dae86423ac39a2b686568baa8",
+        "prev_hash": "43576a4b1d2035a3cc7a3722de8a24d2e93c9f90aaa4a8e861ef78201f994ce8",
+        "entry_hash": "9751241c4b1c8f8db7ca016c3c504760199927eab6822bd76f07c4526406adb5"
+      },
+      {
+        "seq": 193,
+        "as_of": "2026-02-18",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "57e2838eccd195fca627779ad7453dedfa605f7acb901f44f36b8d3cd2db56ad",
+        "prev_hash": "9751241c4b1c8f8db7ca016c3c504760199927eab6822bd76f07c4526406adb5",
+        "entry_hash": "e25b1a4515c42782a8cd9c814086f7df98f98d5842b1f4729b3a754f3b6b4856"
+      },
+      {
+        "seq": 194,
+        "as_of": "2026-02-25",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "9217023496ef099245d1c81df79d779cd7dcde946020c7ebad90660b8da1c7ad",
+        "prev_hash": "e25b1a4515c42782a8cd9c814086f7df98f98d5842b1f4729b3a754f3b6b4856",
+        "entry_hash": "d55f582719c14d1bb05750ff8a865e40edee7ac16d0e38bd35cfe5c43ec2c3ae"
+      },
+      {
+        "seq": 195,
+        "as_of": "2026-03-04",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "dc71fe4d151c5446476e419c92e6fce5553f5e362af95d2dfc6ab75ed2530684",
+        "prev_hash": "d55f582719c14d1bb05750ff8a865e40edee7ac16d0e38bd35cfe5c43ec2c3ae",
+        "entry_hash": "8dabf5edbdced5256dd2d97e4265798a056f619df165bf5730842f5051e52ab1"
+      },
+      {
+        "seq": 196,
+        "as_of": "2026-03-11",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "52d0e0c4fe1b58823dd8d0bdaf19252741819d7fc4279304ea76eb18e2ddaf90",
+        "prev_hash": "8dabf5edbdced5256dd2d97e4265798a056f619df165bf5730842f5051e52ab1",
+        "entry_hash": "c5039c1ddd8565bb49a9851f82ab7febf085f1e5c81bf0c89aebb4345ce04034"
+      },
+      {
+        "seq": 197,
+        "as_of": "2026-03-18",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "662c304a489e17f69ab302c967a9658b290b4694edf621fceaa0126fd72b3102",
+        "prev_hash": "c5039c1ddd8565bb49a9851f82ab7febf085f1e5c81bf0c89aebb4345ce04034",
+        "entry_hash": "2536b373c2bd85439906123df13ab965ace448ffa2e8f2d79f809f48971107b8"
+      },
+      {
+        "seq": 198,
+        "as_of": "2026-03-25",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "3ffd6bb2df2281c1094892eb76eee78f10388050a1880e767a261a5fc0935a0f",
+        "prev_hash": "2536b373c2bd85439906123df13ab965ace448ffa2e8f2d79f809f48971107b8",
+        "entry_hash": "ef399b86ead78526d490e985ea597de42b10679bc4d360a55425e915741f5239"
+      },
+      {
+        "seq": 199,
+        "as_of": "2026-04-01",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "2943f5da55da23b72fe7b4c026a8138aca4b768762f51414989e2eeeda75e9dc",
+        "prev_hash": "ef399b86ead78526d490e985ea597de42b10679bc4d360a55425e915741f5239",
+        "entry_hash": "782d1628009ca0415d7a099148318f8fd5ebd96918921ed309d31cc93aaec894"
+      },
+      {
+        "seq": 200,
+        "as_of": "2026-04-09",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "e6cec1bf6f95ede87debe2967520c9d9616c4361aef51e17c92f09e81211829b",
+        "prev_hash": "782d1628009ca0415d7a099148318f8fd5ebd96918921ed309d31cc93aaec894",
+        "entry_hash": "b7095fd49f3baa1383df323a8121a84c310e3686611d5c1cf3af7b7e3b0bddfe"
+      },
+      {
+        "seq": 201,
+        "as_of": "2026-04-16",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "2f6547f31b7995e16163222f9f7c6e0a3d37333a8613db05ef23a5faa3b88055",
+        "prev_hash": "b7095fd49f3baa1383df323a8121a84c310e3686611d5c1cf3af7b7e3b0bddfe",
+        "entry_hash": "449f776971b00b980e72c781d66358ad0ded67046cf550c02cbc5c9cb30f69dc"
+      },
+      {
+        "seq": 202,
+        "as_of": "2026-04-23",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "fd74d74aadd0a5a5c63b59b859e5eb665dc7fd86175f4753a013c13607e6b34c",
+        "prev_hash": "449f776971b00b980e72c781d66358ad0ded67046cf550c02cbc5c9cb30f69dc",
+        "entry_hash": "cbc0ec259497e60cfa4299c67bdf53ecf0b8023b221c7a72198809bfc4e71fcc"
+      },
+      {
+        "seq": 203,
+        "as_of": "2026-04-30",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "e5371038b91518a84cb38a5dcf6f0bb9eaba0bc8ddcba6c7963bfd5b4c329399",
+        "prev_hash": "cbc0ec259497e60cfa4299c67bdf53ecf0b8023b221c7a72198809bfc4e71fcc",
+        "entry_hash": "6b770a6f91c7337358a512578688bc7870a1d331aead79ed04fa1a4f9c354dc2"
+      },
+      {
+        "seq": 204,
+        "as_of": "2026-05-07",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "a2f6f0876da3434dd19adb57d244c52ba8e8ad0837a99bd0e0a155a7acaaaad6",
+        "prev_hash": "6b770a6f91c7337358a512578688bc7870a1d331aead79ed04fa1a4f9c354dc2",
+        "entry_hash": "8e12b7e49d0272a1fd8951b1295ad60e6c3f8d6da27a7b55e37c8086efc1197e"
+      },
+      {
+        "seq": 205,
+        "as_of": "2026-05-14",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "60b9a2d4d4a636b74417add2111fea73d1519961046a50474bb8ec73baad351c",
+        "prev_hash": "8e12b7e49d0272a1fd8951b1295ad60e6c3f8d6da27a7b55e37c8086efc1197e",
+        "entry_hash": "9d6f8c6b9b7686d788978d7f4a95ff94eddbff38979c5f2f5c8bce1f7893b180"
+      },
+      {
+        "seq": 206,
+        "as_of": "2026-05-21",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "ac0b8a950773586ca362a9d82bed9fd1fd3557d3495505239a559b29203cfe47",
+        "prev_hash": "9d6f8c6b9b7686d788978d7f4a95ff94eddbff38979c5f2f5c8bce1f7893b180",
+        "entry_hash": "e9c792c849e21e7228f6f373fb182d5ad4bfaf164e5768dd41fc9d1b4e711365"
+      },
+      {
+        "seq": 207,
+        "as_of": "2026-05-29",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "9c53ad73b246d8385a83f98edafd693e3fdfb7d602b56b01792d6616ce32d4d6",
+        "prev_hash": "e9c792c849e21e7228f6f373fb182d5ad4bfaf164e5768dd41fc9d1b4e711365",
+        "entry_hash": "753423cd5733bb33b721a57d50bd28a42b6accfdc1161475cb5eae3f0bfba375"
+      },
+      {
+        "seq": 208,
         "as_of": "2026-06-05",
         "asset_class": "commodity",
         "n_scores": 8,
-        "payload_hash": "126be7edbd10872523d780e9f396f7b3ebebe190cac1eb0d800e34d3940e9c6a",
-        "prev_hash": "f50b8c6dbb30e62ccd6a190f5de21572a426c682ab4d317b09c28ff449027339",
-        "entry_hash": "2281595725884d06ef474caf2b92f2ef0a73cf2f2857ec85fe0ecb450eafa877"
+        "payload_hash": "e413fddca159214ee82334ec22e11dfea9520dee58662708ca18969c2b1e0da9",
+        "prev_hash": "753423cd5733bb33b721a57d50bd28a42b6accfdc1161475cb5eae3f0bfba375",
+        "entry_hash": "bacda527cc72a462007c86e834aa3df48035a3555dd4df6737e1fbc1c528bcec"
+      },
+      {
+        "seq": 209,
+        "as_of": "2026-06-14",
+        "asset_class": "crypto",
+        "n_scores": 18,
+        "payload_hash": "aed56b1fc92cb371cd844b06b3f642c6f136f2d24ff446058d8264c0b9a67575",
+        "prev_hash": "bacda527cc72a462007c86e834aa3df48035a3555dd4df6737e1fbc1c528bcec",
+        "entry_hash": "80fd836cc921f034025d81b413cda1737b35e8c61dc3dda575628fed74e92e43"
+      },
+      {
+        "seq": 210,
+        "as_of": "2026-06-12",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "036e36e580ea18471f708d2ae97aa9176a1944f6d2729d936967b1f4274b24a7",
+        "prev_hash": "80fd836cc921f034025d81b413cda1737b35e8c61dc3dda575628fed74e92e43",
+        "entry_hash": "9ee740d4042f2e223d3e402d0eed1dc43859ef233fb6a6b41156440c11640c23"
+      },
+      {
+        "seq": 211,
+        "as_of": "2026-06-12",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "b8fe09c3a6eb7b97b7279f079abbb387a62255acc755bc09b1c3264b888b4e96",
+        "prev_hash": "9ee740d4042f2e223d3e402d0eed1dc43859ef233fb6a6b41156440c11640c23",
+        "entry_hash": "b7990e4d22a26c2a1d296fd48cb31433cd8652c2fd2cb4e1024871479c1701db"
       }
     ]
   },
@@ -1604,389 +1910,451 @@
     "commodity": {
       "asset_class": "commodity",
       "horizon": 5,
-      "generated_at": "2026-06-14T12:40:41",
-      "as_of_first": "2025-08-19",
-      "as_of_last": "2026-06-05",
-      "n_dates": 59,
-      "n_calls": 472,
-      "n_matured": 472,
-      "n_pending": 0,
-      "actionable_accuracy": 0.5729,
-      "favored_mean_return": 0.00892,
-      "avoid_mean_return": -0.01317,
-      "benchmark_mean_return": 0.00986,
-      "favored_minus_benchmark": -0.00094,
-      "abstention_rate": 0.7966,
+      "generated_at": "2026-06-14T15:02:20",
+      "as_of_first": "2025-01-22",
+      "as_of_last": "2026-06-12",
+      "n_dates": 71,
+      "n_calls": 568,
+      "n_matured": 560,
+      "n_pending": 8,
+      "actionable_accuracy": 0.5,
+      "favored_mean_return": -0.00718,
+      "avoid_mean_return": 0.03945,
+      "benchmark_mean_return": 0.00458,
+      "favored_minus_benchmark": -0.01175,
+      "abstention_rate": 0.9208,
       "by_call": [
         {
           "call": "FAVORED",
-          "n": 86,
-          "mean_forward_return": 0.00892,
-          "win_rate": 0.5698
+          "n": 20,
+          "mean_forward_return": -0.00718,
+          "win_rate": 0.5
         },
         {
           "call": "NEUTRAL",
-          "n": 137,
-          "mean_forward_return": 0.01129,
-          "win_rate": 0.5474
+          "n": 62,
+          "mean_forward_return": 0.00143,
+          "win_rate": 0.5323
         },
         {
           "call": "AVOID",
-          "n": 10,
-          "mean_forward_return": -0.01317,
+          "n": 20,
+          "mean_forward_return": 0.03945,
+          "win_rate": 0.5
+        },
+        {
+          "call": "AVOID-BUBBLE",
+          "n": 5,
+          "mean_forward_return": 0.01035,
           "win_rate": 0.4
         },
         {
           "call": "NO-EDGE",
-          "n": 239,
-          "mean_forward_return": 0.01035,
-          "win_rate": 0.6025
+          "n": 453,
+          "mean_forward_return": 0.00392,
+          "win_rate": 0.5364
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 207,
-          "hit_rate": 0.4106,
-          "mean_forward_return": 0.00955
+          "n": 316,
+          "hit_rate": 0.5063,
+          "mean_forward_return": 0.00721
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 32,
-          "hit_rate": 0.4062,
-          "mean_forward_return": 0.01555
+          "n": 142,
+          "hit_rate": 0.5141,
+          "mean_forward_return": -0.00318
         },
         {
           "confidence_bucket": "0.55-0.60",
-          "n": 64,
-          "hit_rate": 0.5156,
-          "mean_forward_return": 0.00329
+          "n": 68,
+          "hit_rate": 0.5,
+          "mean_forward_return": 0.00883
         },
         {
           "confidence_bucket": "0.60-0.70",
-          "n": 87,
-          "hit_rate": 0.5402,
-          "mean_forward_return": 0.00354
+          "n": 25,
+          "hit_rate": 0.56,
+          "mean_forward_return": 0.0072
         },
         {
           "confidence_bucket": "0.70-1.00",
-          "n": 82,
-          "hit_rate": 0.5976,
-          "mean_forward_return": 0.02028
+          "n": 9,
+          "hit_rate": 0.7778,
+          "mean_forward_return": -0.00516
         }
       ],
       "detector": {
-        "flagged_n": 0,
-        "flagged_mean_forward_return": null,
-        "calm_mean_forward_return": 0.00986,
-        "calm_crash_rate": 0.0
+        "flagged_n": 5,
+        "flagged_mean_forward_return": 0.01035,
+        "calm_mean_forward_return": 0.00452,
+        "flagged_crash_rate": 0.0,
+        "calm_crash_rate": 0.0108
       },
       "follow_favored": {
-        "n_periods": 59,
-        "total_return": 0.4831,
-        "mean_period_return": 0.00703,
-        "sharpe_like": 2.093
+        "n_periods": 70,
+        "total_return": -0.1117,
+        "mean_period_return": -0.00158,
+        "sharpe_like": -0.884
       },
       "ledger": {
         "ok": true,
-        "entries": 177,
-        "head": "2281595725884d06ef474caf2b92f2ef0a73cf2f2857ec85fe0ecb450eafa877"
+        "entries": 211,
+        "head": "b7990e4d22a26c2a1d296fd48cb31433cd8652c2fd2cb4e1024871479c1701db"
       },
       "equity_curve": [
         {
+          "as_of": "2025-01-22",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-01-29",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-02-05",
+          "equity": 1.01302,
+          "period_return": 0.01302
+        },
+        {
+          "as_of": "2025-02-12",
+          "equity": 1.03003,
+          "period_return": 0.01678
+        },
+        {
+          "as_of": "2025-02-20",
+          "equity": 0.97064,
+          "period_return": -0.05765
+        },
+        {
+          "as_of": "2025-02-27",
+          "equity": 0.96761,
+          "period_return": -0.00312
+        },
+        {
+          "as_of": "2025-03-06",
+          "equity": 0.96761,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-13",
+          "equity": 0.9356,
+          "period_return": -0.03308
+        },
+        {
+          "as_of": "2025-03-20",
+          "equity": 0.9356,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-27",
+          "equity": 0.89586,
+          "period_return": -0.04248
+        },
+        {
+          "as_of": "2025-04-03",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-10",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-17",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-25",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-02",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-09",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-16",
+          "equity": 0.89586,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-23",
+          "equity": 0.90567,
+          "period_return": 0.01096
+        },
+        {
+          "as_of": "2025-06-02",
+          "equity": 0.90567,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-09",
+          "equity": 0.90567,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-16",
+          "equity": 0.90567,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-24",
+          "equity": 0.90567,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-01",
+          "equity": 0.90567,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-08",
+          "equity": 0.93949,
+          "period_return": 0.03734
+        },
+        {
+          "as_of": "2025-07-15",
+          "equity": 0.93949,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-22",
+          "equity": 0.90996,
+          "period_return": -0.03143
+        },
+        {
+          "as_of": "2025-07-29",
+          "equity": 0.90996,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-08-05",
+          "equity": 0.90996,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-08-12",
+          "equity": 0.90996,
+          "period_return": 0.0
+        },
+        {
           "as_of": "2025-08-19",
-          "equity": 1.0,
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-08-24",
-          "equity": 1.0,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-08-29",
-          "equity": 1.0,
+          "as_of": "2025-08-26",
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
           "as_of": "2025-09-03",
-          "equity": 0.99722,
-          "period_return": -0.00278
-        },
-        {
-          "as_of": "2025-09-08",
-          "equity": 1.06386,
-          "period_return": 0.06683
-        },
-        {
-          "as_of": "2025-09-13",
-          "equity": 1.13407,
-          "period_return": 0.06599
-        },
-        {
-          "as_of": "2025-09-18",
-          "equity": 1.13407,
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-09-23",
-          "equity": 1.14131,
-          "period_return": 0.00638
-        },
-        {
-          "as_of": "2025-09-28",
-          "equity": 1.14131,
+          "as_of": "2025-09-10",
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-10-03",
-          "equity": 1.14131,
+          "as_of": "2025-09-17",
+          "equity": 0.90996,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-09-24",
+          "equity": 0.90996,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-10-01",
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-08",
-          "equity": 1.14131,
+          "equity": 0.90996,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-10-13",
-          "equity": 1.16414,
-          "period_return": 0.02001
+          "as_of": "2025-10-15",
+          "equity": 0.90996,
+          "period_return": 0.0
         },
         {
-          "as_of": "2025-10-18",
-          "equity": 1.15335,
-          "period_return": -0.00927
+          "as_of": "2025-10-22",
+          "equity": 0.96144,
+          "period_return": 0.05658
         },
         {
-          "as_of": "2025-10-23",
-          "equity": 1.21113,
-          "period_return": 0.0501
+          "as_of": "2025-10-29",
+          "equity": 0.96144,
+          "period_return": 0.0
         },
         {
-          "as_of": "2025-10-28",
-          "equity": 1.25046,
-          "period_return": 0.03248
-        },
-        {
-          "as_of": "2025-11-02",
-          "equity": 1.271,
-          "period_return": 0.01642
-        },
-        {
-          "as_of": "2025-11-07",
-          "equity": 1.24111,
-          "period_return": -0.02351
+          "as_of": "2025-11-05",
+          "equity": 0.96144,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-12",
-          "equity": 1.29223,
-          "period_return": 0.04119
+          "equity": 0.96279,
+          "period_return": 0.0014
         },
         {
-          "as_of": "2025-11-17",
-          "equity": 1.39004,
-          "period_return": 0.07569
+          "as_of": "2025-11-19",
+          "equity": 0.94889,
+          "period_return": -0.01444
         },
         {
-          "as_of": "2025-11-22",
-          "equity": 1.35834,
-          "period_return": -0.0228
-        },
-        {
-          "as_of": "2025-11-27",
-          "equity": 1.37451,
-          "period_return": 0.0119
-        },
-        {
-          "as_of": "2025-12-02",
-          "equity": 1.39763,
-          "period_return": 0.01682
-        },
-        {
-          "as_of": "2025-12-07",
-          "equity": 1.39763,
+          "as_of": "2025-11-26",
+          "equity": 0.94889,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-12-12",
-          "equity": 1.32693,
-          "period_return": -0.05059
-        },
-        {
-          "as_of": "2025-12-17",
-          "equity": 1.32693,
+          "as_of": "2025-12-04",
+          "equity": 0.94889,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-12-22",
-          "equity": 1.32693,
+          "as_of": "2025-12-11",
+          "equity": 0.94889,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-12-27",
-          "equity": 1.32693,
+          "as_of": "2025-12-18",
+          "equity": 0.94889,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-01-01",
-          "equity": 1.32864,
-          "period_return": 0.00129
+          "as_of": "2025-12-26",
+          "equity": 0.93729,
+          "period_return": -0.01222
         },
         {
-          "as_of": "2026-01-06",
-          "equity": 1.40661,
-          "period_return": 0.05869
-        },
-        {
-          "as_of": "2026-01-11",
-          "equity": 1.37155,
-          "period_return": -0.02493
-        },
-        {
-          "as_of": "2026-01-16",
-          "equity": 1.37788,
-          "period_return": 0.00462
-        },
-        {
-          "as_of": "2026-01-21",
-          "equity": 1.37788,
+          "as_of": "2026-01-05",
+          "equity": 0.93729,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-01-26",
-          "equity": 1.35508,
-          "period_return": -0.01655
+          "as_of": "2026-01-12",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-01-31",
-          "equity": 1.39249,
-          "period_return": 0.02761
+          "as_of": "2026-01-20",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-02-05",
-          "equity": 1.40982,
-          "period_return": 0.01245
+          "as_of": "2026-01-27",
+          "equity": 0.93729,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2026-02-03",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-10",
-          "equity": 1.4413,
-          "period_return": 0.02232
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-02-15",
-          "equity": 1.53929,
-          "period_return": 0.06799
-        },
-        {
-          "as_of": "2026-02-20",
-          "equity": 1.52669,
-          "period_return": -0.00819
+          "as_of": "2026-02-18",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-25",
-          "equity": 1.49742,
-          "period_return": -0.01917
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-02",
-          "equity": 1.48988,
-          "period_return": -0.00503
+          "as_of": "2026-03-04",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-07",
-          "equity": 1.43233,
-          "period_return": -0.03863
+          "as_of": "2026-03-11",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-12",
-          "equity": 1.41154,
-          "period_return": -0.01452
+          "as_of": "2026-03-18",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-17",
-          "equity": 1.40572,
-          "period_return": -0.00413
-        },
-        {
-          "as_of": "2026-03-22",
-          "equity": 1.45712,
-          "period_return": 0.03657
-        },
-        {
-          "as_of": "2026-03-27",
-          "equity": 1.48709,
-          "period_return": 0.02056
+          "as_of": "2026-03-25",
+          "equity": 0.93729,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-04-01",
-          "equity": 1.48709,
+          "equity": 0.93729,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-04-06",
-          "equity": 1.48709,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2026-04-11",
-          "equity": 1.48709,
-          "period_return": 0.0
+          "as_of": "2026-04-09",
+          "equity": 0.90683,
+          "period_return": -0.03249
         },
         {
           "as_of": "2026-04-16",
-          "equity": 1.48709,
+          "equity": 0.8706,
+          "period_return": -0.03996
+        },
+        {
+          "as_of": "2026-04-23",
+          "equity": 0.88828,
+          "period_return": 0.02031
+        },
+        {
+          "as_of": "2026-04-30",
+          "equity": 0.88828,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-04-21",
-          "equity": 1.48709,
+          "as_of": "2026-05-07",
+          "equity": 0.88828,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-04-26",
-          "equity": 1.48709,
+          "as_of": "2026-05-14",
+          "equity": 0.88828,
           "period_return": 0.0
-        },
-        {
-          "as_of": "2026-05-01",
-          "equity": 1.48709,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2026-05-06",
-          "equity": 1.48709,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2026-05-11",
-          "equity": 1.48709,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2026-05-16",
-          "equity": 1.43818,
-          "period_return": -0.03289
         },
         {
           "as_of": "2026-05-21",
-          "equity": 1.4001,
-          "period_return": -0.02648
+          "equity": 0.88828,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-05-26",
-          "equity": 1.41775,
-          "period_return": 0.01261
-        },
-        {
-          "as_of": "2026-05-31",
-          "equity": 1.43709,
-          "period_return": 0.01364
+          "as_of": "2026-05-29",
+          "equity": 0.88828,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-06-05",
-          "equity": 1.48305,
-          "period_return": 0.03199
+          "equity": 0.88828,
+          "period_return": 0.0
         }
       ],
       "note": ""
@@ -1994,388 +2362,438 @@
     "crypto": {
       "asset_class": "crypto",
       "horizon": 5,
-      "generated_at": "2026-06-14T12:40:42",
-      "as_of_first": "2025-08-19",
-      "as_of_last": "2026-06-05",
-      "n_dates": 59,
-      "n_calls": 1062,
-      "n_matured": 1062,
-      "n_pending": 0,
-      "actionable_accuracy": 0.4886,
-      "favored_mean_return": 0.01131,
-      "avoid_mean_return": 0.00891,
-      "benchmark_mean_return": 0.00465,
-      "favored_minus_benchmark": 0.00666,
-      "abstention_rate": 0.9171,
+      "generated_at": "2026-06-14T15:02:49",
+      "as_of_first": "2025-06-30",
+      "as_of_last": "2026-06-14",
+      "n_dates": 70,
+      "n_calls": 1260,
+      "n_matured": 1242,
+      "n_pending": 18,
+      "actionable_accuracy": 0.3864,
+      "favored_mean_return": -0.02031,
+      "avoid_mean_return": 0.00262,
+      "benchmark_mean_return": -0.002,
+      "favored_minus_benchmark": -0.01831,
+      "abstention_rate": 0.9603,
       "by_call": [
         {
           "call": "FAVORED",
-          "n": 58,
-          "mean_forward_return": 0.01131,
-          "win_rate": 0.5517
+          "n": 7,
+          "mean_forward_return": -0.02031,
+          "win_rate": 0.2857
         },
         {
           "call": "NEUTRAL",
-          "n": 206,
-          "mean_forward_return": 0.00596,
-          "win_rate": 0.5534
+          "n": 127,
+          "mean_forward_return": 0.00222,
+          "win_rate": 0.4803
         },
         {
           "call": "AVOID",
-          "n": 30,
-          "mean_forward_return": 0.00891,
-          "win_rate": 0.6333
+          "n": 37,
+          "mean_forward_return": 0.00262,
+          "win_rate": 0.5946
         },
         {
           "call": "NO-EDGE",
-          "n": 768,
-          "mean_forward_return": 0.00363,
-          "win_rate": 0.5169
+          "n": 1071,
+          "mean_forward_return": -0.00254,
+          "win_rate": 0.4977
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 492,
-          "hit_rate": 0.4593,
-          "mean_forward_return": 0.00531
+          "n": 689,
+          "hit_rate": 0.5109,
+          "mean_forward_return": -0.00347
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 276,
-          "hit_rate": 0.471,
-          "mean_forward_return": 0.00064
+          "n": 382,
+          "hit_rate": 0.5497,
+          "mean_forward_return": -0.00086
         },
         {
           "confidence_bucket": "0.55-0.60",
-          "n": 204,
-          "hit_rate": 0.5098,
-          "mean_forward_return": 0.0067
+          "n": 116,
+          "hit_rate": 0.4828,
+          "mean_forward_return": -0.00196
         },
         {
           "confidence_bucket": "0.60-0.70",
-          "n": 65,
-          "hit_rate": 0.5077,
-          "mean_forward_return": 0.00718
+          "n": 44,
+          "hit_rate": 0.3864,
+          "mean_forward_return": 0.00739
         },
         {
           "confidence_bucket": "0.70-1.00",
-          "n": 25,
-          "hit_rate": 0.64,
-          "mean_forward_return": 0.01268
+          "n": 11,
+          "hit_rate": 0.5455,
+          "mean_forward_return": 0.01262
         }
       ],
       "detector": {
         "flagged_n": 0,
         "flagged_mean_forward_return": null,
-        "calm_mean_forward_return": 0.00465,
-        "calm_crash_rate": 0.0009
+        "calm_mean_forward_return": -0.002,
+        "calm_crash_rate": 0.0362
       },
       "follow_favored": {
-        "n_periods": 59,
-        "total_return": 0.2567,
-        "mean_period_return": 0.00464,
-        "sharpe_like": 0.903
+        "n_periods": 69,
+        "total_return": -0.0626,
+        "mean_period_return": -0.00088,
+        "sharpe_like": -0.689
       },
       "ledger": {
         "ok": true,
-        "entries": 177,
-        "head": "2281595725884d06ef474caf2b92f2ef0a73cf2f2857ec85fe0ecb450eafa877"
+        "entries": 211,
+        "head": "b7990e4d22a26c2a1d296fd48cb31433cd8652c2fd2cb4e1024871479c1701db"
       },
       "equity_curve": [
         {
+          "as_of": "2025-06-30",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-05",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-10",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-15",
+          "equity": 1.0,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-20",
+          "equity": 0.9289,
+          "period_return": -0.0711
+        },
+        {
+          "as_of": "2025-07-25",
+          "equity": 0.9289,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-07-30",
+          "equity": 0.9289,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-08-04",
+          "equity": 0.9289,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-08-09",
+          "equity": 0.89303,
+          "period_return": -0.03861
+        },
+        {
+          "as_of": "2025-08-14",
+          "equity": 0.89303,
+          "period_return": 0.0
+        },
+        {
           "as_of": "2025-08-19",
-          "equity": 1.00326,
-          "period_return": 0.00326
+          "equity": 0.89303,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-08-24",
-          "equity": 0.99405,
-          "period_return": -0.00918
+          "equity": 0.89303,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-08-29",
-          "equity": 1.04847,
-          "period_return": 0.05475
+          "equity": 0.89303,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-09-03",
-          "equity": 1.04847,
+          "equity": 0.89303,
           "period_return": 0.0
         },
         {
           "as_of": "2025-09-08",
-          "equity": 1.04847,
+          "equity": 0.89303,
           "period_return": 0.0
         },
         {
           "as_of": "2025-09-13",
-          "equity": 1.04847,
-          "period_return": 0.0
+          "equity": 0.91177,
+          "period_return": 0.02099
         },
         {
           "as_of": "2025-09-18",
-          "equity": 1.04847,
+          "equity": 0.91177,
           "period_return": 0.0
         },
         {
           "as_of": "2025-09-23",
-          "equity": 1.04847,
-          "period_return": 0.0
+          "equity": 0.93744,
+          "period_return": 0.02815
         },
         {
           "as_of": "2025-09-28",
-          "equity": 1.04847,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-03",
-          "equity": 1.04847,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-08",
-          "equity": 1.04847,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-13",
-          "equity": 1.0786,
-          "period_return": 0.02874
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-10-18",
-          "equity": 1.1151,
-          "period_return": 0.03384
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-10-23",
-          "equity": 1.12372,
-          "period_return": 0.00773
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-10-28",
-          "equity": 1.12119,
-          "period_return": -0.00226
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-02",
-          "equity": 1.1393,
-          "period_return": 0.01615
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-07",
-          "equity": 1.11505,
-          "period_return": -0.02129
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-12",
-          "equity": 0.97295,
-          "period_return": -0.12744
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-17",
-          "equity": 0.99254,
-          "period_return": 0.02013
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-22",
-          "equity": 0.91075,
-          "period_return": -0.0824
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2025-11-27",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-02",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-07",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-12",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-17",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-22",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-27",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-01",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-06",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-11",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-16",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-21",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-26",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-31",
-          "equity": 0.91075,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-05",
-          "equity": 0.9944,
-          "period_return": 0.09185
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-10",
-          "equity": 1.06169,
-          "period_return": 0.06767
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-15",
-          "equity": 1.11559,
-          "period_return": 0.05076
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-20",
-          "equity": 1.08821,
-          "period_return": -0.02454
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-02-25",
-          "equity": 1.0465,
-          "period_return": -0.03833
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-03-02",
-          "equity": 1.12121,
-          "period_return": 0.07139
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-03-07",
-          "equity": 1.12121,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-12",
-          "equity": 1.12121,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-17",
-          "equity": 1.12121,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-22",
-          "equity": 1.12121,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-27",
-          "equity": 1.09115,
-          "period_return": -0.02681
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-04-01",
-          "equity": 1.09115,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-06",
-          "equity": 1.09115,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-11",
-          "equity": 1.13134,
-          "period_return": 0.03684
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-04-16",
-          "equity": 1.13134,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-21",
-          "equity": 1.13134,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-26",
-          "equity": 1.34121,
-          "period_return": 0.1855
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-01",
-          "equity": 1.34121,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-06",
-          "equity": 1.26467,
-          "period_return": -0.05706
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-11",
-          "equity": 1.30114,
-          "period_return": 0.02883
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-16",
-          "equity": 1.28569,
-          "period_return": -0.01187
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-21",
-          "equity": 1.25675,
-          "period_return": -0.02251
+          "equity": 0.93744,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-26",
-          "equity": 1.25675,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-31",
-          "equity": 1.25675,
+          "equity": 0.93744,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-05",
-          "equity": 1.25675,
+          "equity": 0.93744,
           "period_return": 0.0
         }
       ],
@@ -2384,389 +2802,439 @@
     "equity": {
       "asset_class": "equity",
       "horizon": 5,
-      "generated_at": "2026-06-14T12:40:42",
-      "as_of_first": "2025-08-19",
-      "as_of_last": "2026-06-05",
-      "n_dates": 59,
-      "n_calls": 1062,
-      "n_matured": 1062,
-      "n_pending": 0,
-      "actionable_accuracy": 0.6039,
-      "favored_mean_return": 0.01508,
-      "avoid_mean_return": 0.00375,
-      "benchmark_mean_return": 0.01208,
-      "favored_minus_benchmark": 0.003,
-      "abstention_rate": 0.855,
+      "generated_at": "2026-06-14T15:02:58",
+      "as_of_first": "2025-01-22",
+      "as_of_last": "2026-06-12",
+      "n_dates": 70,
+      "n_calls": 1260,
+      "n_matured": 1242,
+      "n_pending": 18,
+      "actionable_accuracy": 0.3714,
+      "favored_mean_return": -0.009,
+      "avoid_mean_return": 0.02428,
+      "benchmark_mean_return": 0.00437,
+      "favored_minus_benchmark": -0.01337,
+      "abstention_rate": 0.9159,
       "by_call": [
         {
           "call": "FAVORED",
-          "n": 145,
-          "mean_forward_return": 0.01508,
-          "win_rate": 0.6138
+          "n": 84,
+          "mean_forward_return": -0.009,
+          "win_rate": 0.381
         },
         {
           "call": "NEUTRAL",
-          "n": 205,
-          "mean_forward_return": 0.00934,
-          "win_rate": 0.5268
+          "n": 187,
+          "mean_forward_return": 1e-05,
+          "win_rate": 0.5027
         },
         {
           "call": "AVOID",
-          "n": 9,
-          "mean_forward_return": 0.00375,
-          "win_rate": 0.5556
+          "n": 21,
+          "mean_forward_return": 0.02428,
+          "win_rate": 0.6667
         },
         {
           "call": "NO-EDGE",
-          "n": 703,
-          "mean_forward_return": 0.01237,
-          "win_rate": 0.596
+          "n": 950,
+          "mean_forward_return": 0.00597,
+          "win_rate": 0.5611
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 539,
-          "hit_rate": 0.397,
-          "mean_forward_return": 0.01255
+          "n": 651,
+          "hit_rate": 0.4916,
+          "mean_forward_return": 0.0033
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 164,
-          "hit_rate": 0.5488,
-          "mean_forward_return": 0.01176
+          "n": 299,
+          "hit_rate": 0.5318,
+          "mean_forward_return": 0.01178
         },
         {
           "confidence_bucket": "0.55-0.60",
-          "n": 258,
-          "hit_rate": 0.562,
-          "mean_forward_return": 0.01103
+          "n": 207,
+          "hit_rate": 0.4444,
+          "mean_forward_return": -0.00044
         },
         {
           "confidence_bucket": "0.60-0.70",
-          "n": 77,
-          "hit_rate": 0.5584,
-          "mean_forward_return": 0.01898
+          "n": 62,
+          "hit_rate": 0.5,
+          "mean_forward_return": 0.0037
         },
         {
           "confidence_bucket": "0.70-1.00",
-          "n": 24,
-          "hit_rate": 0.5,
-          "mean_forward_return": -0.00718
+          "n": 23,
+          "hit_rate": 0.3478,
+          "mean_forward_return": -0.01667
         }
       ],
       "detector": {
         "flagged_n": 0,
         "flagged_mean_forward_return": null,
-        "calm_mean_forward_return": 0.01208,
-        "calm_crash_rate": 0.0028
+        "calm_mean_forward_return": 0.00437,
+        "calm_crash_rate": 0.0145
       },
       "follow_favored": {
-        "n_periods": 59,
-        "total_return": 0.937,
-        "mean_period_return": 0.01181,
-        "sharpe_like": 2.708
+        "n_periods": 69,
+        "total_return": -0.2621,
+        "mean_period_return": -0.00394,
+        "sharpe_like": -1.071
       },
       "ledger": {
         "ok": true,
-        "entries": 177,
-        "head": "2281595725884d06ef474caf2b92f2ef0a73cf2f2857ec85fe0ecb450eafa877"
+        "entries": 211,
+        "head": "b7990e4d22a26c2a1d296fd48cb31433cd8652c2fd2cb4e1024871479c1701db"
       },
       "equity_curve": [
         {
-          "as_of": "2025-08-19",
-          "equity": 0.95746,
-          "period_return": -0.04254
-        },
-        {
-          "as_of": "2025-08-24",
-          "equity": 0.95746,
+          "as_of": "2025-01-22",
+          "equity": 1.0,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-08-29",
-          "equity": 0.96524,
-          "period_return": 0.00812
-        },
-        {
-          "as_of": "2025-09-03",
-          "equity": 1.00036,
-          "period_return": 0.03639
-        },
-        {
-          "as_of": "2025-09-08",
-          "equity": 1.00036,
+          "as_of": "2025-01-29",
+          "equity": 1.0,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-09-13",
-          "equity": 1.00036,
+          "as_of": "2025-02-05",
+          "equity": 1.0,
           "period_return": 0.0
+        },
+        {
+          "as_of": "2025-02-12",
+          "equity": 1.00951,
+          "period_return": 0.00951
+        },
+        {
+          "as_of": "2025-02-20",
+          "equity": 0.99283,
+          "period_return": -0.01651
+        },
+        {
+          "as_of": "2025-02-27",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-06",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-13",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-20",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-03-27",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-03",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-10",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-17",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-04-25",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-02",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-09",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-16",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-05-23",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-02",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-09",
+          "equity": 0.99283,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2025-06-16",
+          "equity": 0.96691,
+          "period_return": -0.02611
+        },
+        {
+          "as_of": "2025-06-24",
+          "equity": 0.9403,
+          "period_return": -0.02752
+        },
+        {
+          "as_of": "2025-07-01",
+          "equity": 0.92125,
+          "period_return": -0.02027
+        },
+        {
+          "as_of": "2025-07-09",
+          "equity": 0.91697,
+          "period_return": -0.00464
+        },
+        {
+          "as_of": "2025-07-16",
+          "equity": 0.90599,
+          "period_return": -0.01197
+        },
+        {
+          "as_of": "2025-07-23",
+          "equity": 0.89028,
+          "period_return": -0.01735
+        },
+        {
+          "as_of": "2025-07-30",
+          "equity": 0.8585,
+          "period_return": -0.0357
+        },
+        {
+          "as_of": "2025-08-06",
+          "equity": 0.88098,
+          "period_return": 0.02619
+        },
+        {
+          "as_of": "2025-08-13",
+          "equity": 0.83215,
+          "period_return": -0.05543
+        },
+        {
+          "as_of": "2025-08-20",
+          "equity": 0.82113,
+          "period_return": -0.01325
+        },
+        {
+          "as_of": "2025-08-27",
+          "equity": 0.86897,
+          "period_return": 0.05826
+        },
+        {
+          "as_of": "2025-09-04",
+          "equity": 0.8671,
+          "period_return": -0.00215
+        },
+        {
+          "as_of": "2025-09-11",
+          "equity": 0.89214,
+          "period_return": 0.02888
         },
         {
           "as_of": "2025-09-18",
-          "equity": 1.06733,
-          "period_return": 0.06694
+          "equity": 0.89353,
+          "period_return": 0.00155
         },
         {
-          "as_of": "2025-09-23",
-          "equity": 1.0882,
-          "period_return": 0.01956
+          "as_of": "2025-09-25",
+          "equity": 0.89406,
+          "period_return": 0.00059
         },
         {
-          "as_of": "2025-09-28",
-          "equity": 1.11749,
-          "period_return": 0.02691
+          "as_of": "2025-10-02",
+          "equity": 0.89833,
+          "period_return": 0.00478
         },
         {
-          "as_of": "2025-10-03",
-          "equity": 1.04979,
-          "period_return": -0.06058
+          "as_of": "2025-10-09",
+          "equity": 0.89744,
+          "period_return": -0.00099
         },
         {
-          "as_of": "2025-10-08",
-          "equity": 1.04143,
-          "period_return": -0.00797
-        },
-        {
-          "as_of": "2025-10-13",
-          "equity": 1.15876,
-          "period_return": 0.11267
-        },
-        {
-          "as_of": "2025-10-18",
-          "equity": 1.15876,
-          "period_return": 0.0
+          "as_of": "2025-10-16",
+          "equity": 0.91706,
+          "period_return": 0.02186
         },
         {
           "as_of": "2025-10-23",
-          "equity": 1.15876,
+          "equity": 0.8909,
+          "period_return": -0.02853
+        },
+        {
+          "as_of": "2025-10-30",
+          "equity": 0.85827,
+          "period_return": -0.03663
+        },
+        {
+          "as_of": "2025-11-06",
+          "equity": 0.84323,
+          "period_return": -0.01752
+        },
+        {
+          "as_of": "2025-11-13",
+          "equity": 0.84323,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-10-28",
-          "equity": 1.15876,
+          "as_of": "2025-11-20",
+          "equity": 0.84323,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-11-02",
-          "equity": 1.15876,
+          "as_of": "2025-11-28",
+          "equity": 0.84323,
           "period_return": 0.0
         },
         {
-          "as_of": "2025-11-07",
-          "equity": 1.15876,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-11-12",
-          "equity": 1.15876,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-11-17",
-          "equity": 1.15876,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-11-22",
-          "equity": 1.15876,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-11-27",
-          "equity": 1.16036,
-          "period_return": 0.00138
-        },
-        {
-          "as_of": "2025-12-02",
-          "equity": 1.16036,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-12-07",
-          "equity": 1.16036,
+          "as_of": "2025-12-05",
+          "equity": 0.84323,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-12",
-          "equity": 1.16036,
-          "period_return": 0.0
+          "equity": 0.82864,
+          "period_return": -0.01731
         },
         {
-          "as_of": "2025-12-17",
-          "equity": 1.30005,
-          "period_return": 0.12039
+          "as_of": "2025-12-19",
+          "equity": 0.83972,
+          "period_return": 0.01337
         },
         {
-          "as_of": "2025-12-22",
-          "equity": 1.30005,
-          "period_return": 0.0
-        },
-        {
-          "as_of": "2025-12-27",
-          "equity": 1.29189,
-          "period_return": -0.00628
-        },
-        {
-          "as_of": "2026-01-01",
-          "equity": 1.32481,
-          "period_return": 0.02548
+          "as_of": "2025-12-29",
+          "equity": 0.82706,
+          "period_return": -0.01507
         },
         {
           "as_of": "2026-01-06",
-          "equity": 1.32481,
-          "period_return": 0.0
+          "equity": 0.80924,
+          "period_return": -0.02155
         },
         {
-          "as_of": "2026-01-11",
-          "equity": 1.36202,
-          "period_return": 0.02809
-        },
-        {
-          "as_of": "2026-01-16",
-          "equity": 1.47311,
-          "period_return": 0.08156
+          "as_of": "2026-01-13",
+          "equity": 0.79073,
+          "period_return": -0.02286
         },
         {
           "as_of": "2026-01-21",
-          "equity": 1.59394,
-          "period_return": 0.08202
-        },
-        {
-          "as_of": "2026-01-26",
-          "equity": 1.59394,
+          "equity": 0.79073,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-01-31",
-          "equity": 1.59394,
+          "as_of": "2026-01-28",
+          "equity": 0.68001,
+          "period_return": -0.14002
+        },
+        {
+          "as_of": "2026-02-04",
+          "equity": 0.68001,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-02-05",
-          "equity": 1.66225,
-          "period_return": 0.04286
-        },
-        {
-          "as_of": "2026-02-10",
-          "equity": 1.65647,
-          "period_return": -0.00348
-        },
-        {
-          "as_of": "2026-02-15",
-          "equity": 1.6339,
-          "period_return": -0.01363
-        },
-        {
-          "as_of": "2026-02-20",
-          "equity": 1.6339,
+          "as_of": "2026-02-11",
+          "equity": 0.68001,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-02-25",
-          "equity": 1.64161,
-          "period_return": 0.00472
+          "as_of": "2026-02-19",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-02",
-          "equity": 1.63052,
-          "period_return": -0.00676
+          "as_of": "2026-02-26",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-03-07",
-          "equity": 1.64217,
-          "period_return": 0.00715
+          "as_of": "2026-03-05",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-03-12",
-          "equity": 1.64217,
+          "equity": 0.68001,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-03-17",
-          "equity": 1.64217,
+          "as_of": "2026-03-19",
+          "equity": 0.68001,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-03-22",
-          "equity": 1.6075,
-          "period_return": -0.02111
-        },
-        {
-          "as_of": "2026-03-27",
-          "equity": 1.6075,
+          "as_of": "2026-03-26",
+          "equity": 0.68001,
           "period_return": 0.0
         },
         {
-          "as_of": "2026-04-01",
-          "equity": 1.58643,
-          "period_return": -0.01311
+          "as_of": "2026-04-02",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-04-06",
-          "equity": 1.60497,
-          "period_return": 0.01169
+          "as_of": "2026-04-10",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-04-11",
-          "equity": 1.53371,
-          "period_return": -0.0444
+          "as_of": "2026-04-17",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-04-16",
-          "equity": 1.48817,
-          "period_return": -0.02969
-        },
-        {
-          "as_of": "2026-04-21",
-          "equity": 1.53125,
-          "period_return": 0.02895
-        },
-        {
-          "as_of": "2026-04-26",
-          "equity": 1.48215,
-          "period_return": -0.03207
+          "as_of": "2026-04-24",
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
           "as_of": "2026-05-01",
-          "equity": 1.54629,
-          "period_return": 0.04328
+          "equity": 0.68001,
+          "period_return": 0.0
         },
         {
-          "as_of": "2026-05-06",
-          "equity": 1.60723,
-          "period_return": 0.03941
+          "as_of": "2026-05-08",
+          "equity": 0.67319,
+          "period_return": -0.01003
         },
         {
-          "as_of": "2026-05-11",
-          "equity": 1.68661,
-          "period_return": 0.04939
+          "as_of": "2026-05-15",
+          "equity": 0.65953,
+          "period_return": -0.0203
         },
         {
-          "as_of": "2026-05-16",
-          "equity": 1.72383,
-          "period_return": 0.02207
+          "as_of": "2026-05-22",
+          "equity": 0.76768,
+          "period_return": 0.16399
         },
         {
-          "as_of": "2026-05-21",
-          "equity": 1.73569,
-          "period_return": 0.00688
-        },
-        {
-          "as_of": "2026-05-26",
-          "equity": 1.74346,
-          "period_return": 0.00448
-        },
-        {
-          "as_of": "2026-05-31",
-          "equity": 1.83687,
-          "period_return": 0.05358
-        },
-        {
-          "as_of": "2026-06-05",
-          "equity": 1.93702,
-          "period_return": 0.05452
+          "as_of": "2026-06-01",
+          "equity": 0.73789,
+          "period_return": -0.03881
         }
       ],
       "note": ""
