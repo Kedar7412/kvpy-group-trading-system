@@ -44,13 +44,24 @@ class WeightConfig:
     Weights start from `priors` and are blended toward each factor's measured
     Information Coefficient (predictive power). `prior_strength` is the
     pseudo-count that keeps weights stable when history is short.
+
+    The priors are deliberately tilted toward fundamentals + orderflow (the
+    'real value' factors) and away from pure momentum/indicators (which tend to
+    chase what already moved). This prevents the model from becoming a
+    momentum-chasing buy-the-top system.
     """
 
-    # Neutral starting priors (renormalized internally).
+    # Neutral starting priors -- tilted toward value/flow, away from momentum.
     priors: dict[str, float] = field(
-        default_factory=lambda: {f: 1.0 for f in FACTORS}
+        default_factory=lambda: {
+            "news": 0.12,
+            "technicals": 0.10,      # de-emphasized: avoids buying the top
+            "fundamentals": 0.35,    # the core 'real value' signal
+            "orderflow": 0.30,       # genuine demand confirmation
+            "indicators": 0.13,
+        }
     )
-    prior_strength: float = 0.5  # 0 => pure IC, large => stick to priors
+    prior_strength: float = 0.6  # stronger prior anchoring (was 0.5)
     ic_floor: float = 0.0  # negative ICs are clamped (don't bet against a factor)
     min_weight: float = 0.02  # never let a factor go fully to zero
     regime_conditional: bool = True   # estimate weights from same-regime history
@@ -77,9 +88,9 @@ class BubbleConfig:
 
     # Predictive crash model
     crash_lookahead: int = 20      # bars ahead to look for a drawdown
-    crash_drawdown: float = 0.15   # peak-to-trough drop that counts as a "crash"
+    crash_drawdown: float = 0.10   # lowered from 0.15: catch smaller drops too
     min_train_samples: int = 250   # below this -> heuristic probability
-    bubble_flag_prob: float = 0.60  # P(crash) above this -> bubble-risk label
+    bubble_flag_prob: float = 0.35  # lowered from 0.60: was never triggering on real data
 
 
 @dataclass(frozen=True)
@@ -92,14 +103,14 @@ class RegimeConfig:
     are only allowed in risk_on/neutral.
     """
 
-    index_fast: int = 50          # fast SMA on the equal-weight index
-    index_slow: int = 100         # slow SMA (trend filter)
-    breadth_lookback: int = 50    # SMA each asset is compared against for breadth
-    vol_lookback: int = 30        # realized-vol window on index returns
-    vol_z_window: int = 120       # window for the vol z-score
-    vol_hot_z: float = 1.25       # vol z above this = stress
-    breadth_weak: float = 0.40    # breadth below this = risk_off
-    breadth_strong: float = 0.55  # breadth above this (+trend) = risk_on
+    index_fast: int = 30          # tighter fast SMA (was 50)
+    index_slow: int = 80          # tighter slow SMA (was 100)
+    breadth_lookback: int = 40    # SMA each asset is compared against for breadth
+    vol_lookback: int = 20        # realized-vol window on index returns
+    vol_z_window: int = 90        # window for the vol z-score
+    vol_hot_z: float = 1.0        # lowered from 1.25 -- trigger earlier
+    breadth_weak: float = 0.45    # raised from 0.40 -- less tolerant
+    breadth_strong: float = 0.60  # raised from 0.55 -- only trust broad rallies
 
 
 @dataclass(frozen=True)
@@ -109,12 +120,16 @@ class AbstentionConfig:
     A high-quality call requires real conviction. Below the confidence floor the
     engine abstains ('NO-EDGE') rather than emit a noisy score. High crash
     probability forces an AVOID regardless of score.
+
+    The AVOID side is the stronger signal (assets to stay away from are more
+    predictable than assets to buy). The FAVORED threshold is deliberately
+    cautious while AVOID fires more readily.
     """
 
-    min_confidence: float = 0.55     # below this -> NO-EDGE (abstain)
-    favored_score: float = 58.0      # score at/above -> candidate FAVORED
-    avoid_score: float = 42.0        # score at/below -> AVOID/underweight
-    bubble_avoid_prob: float = 0.60  # crash prob at/above -> AVOID-BUBBLE
+    min_confidence: float = 0.50     # lowered from 0.55 -- was over-abstaining
+    favored_score: float = 55.0      # lowered from 58 -- give it room to call
+    avoid_score: float = 45.0        # widened from 42 -- AVOID is the strong side
+    bubble_avoid_prob: float = 0.35  # lowered from 0.60 -- was never triggering
 
 
 @dataclass(frozen=True)

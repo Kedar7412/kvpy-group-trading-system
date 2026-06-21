@@ -1,16 +1,17 @@
-"""Fundamentals factor (crypto proxy): real-value / quality, anti-bubble tilt.
+"""Fundamentals factor: real-value / quality, anti-momentum tilt.
 
-True crypto fundamentals need on-chain & protocol-revenue data (pluggable via a
-provider). The MVP proxies "realness" from market structure:
+This factor is deliberately **contrarian to momentum**: it rewards assets that
+are cheap relative to their history (drawdown from highs), have organic/steady
+volume (not FOMO spikes), and penalizes overextension (price stretched far above
+anchor). The goal is to find things with real value that *haven't already run*.
 
-  * Liquidity / depth  -> deep, tradable markets are higher quality.
-  * Organic volume     -> steady volume is healthier than FOMO volume spikes.
-  * Valuation anchor   -> price far above its long-run anchor (e.g. 200-bar SMA)
-                          is an overextension penalty (the core "real not bubble"
-                          tilt). Reasonable premiums are fine; blow-offs are not.
-  * Accumulation       -> sustained money flow confirms genuine demand.
+When real fundamentals (CoinGecko snapshot or yfinance financials) are present,
+they directly contribute to today's score with heavy weight.
 
-Exposes ``overextension`` so reporting can show *why* a hot asset is discounted.
+The key insight from the live scorecard failure: the old version rewarded
+liquidity + accumulation, which are *momentum proxies* (things going up).
+This made FAVORED = "buy what already ran" = guaranteed mean-reversion trap.
+Now FAVORED = "real value at a fair/cheap price."
 """
 
 from __future__ import annotations
@@ -32,39 +33,49 @@ class Fundamentals:
         o = data.ohlcv
         close, volume = o["close"], o["volume"]
 
-        # Liquidity: traded value in quote currency.
-        quote_volume = close * volume
-        liquidity = np.log1p(quote_volume).rolling(
-            cfg.liquidity_lookback, min_periods=5
-        ).mean()
+        # 1. VALUATION: drawdown from rolling high = how "cheap" vs recent peak.
+        #    Deep drawdown = potential value; at-or-above high = extended.
+        rolling_high = close.rolling(200, min_periods=40).max()
+        drawdown = close / rolling_high - 1.0  # in [-1, 0], deeper = cheaper
+        # Invert: deeper drawdown -> higher score (undervalued).
+        cheapness = -drawdown  # in [0, 1], higher = more undervalued
 
-        # Organic volume: penalize bursts (std/mean of volume); lower = healthier.
+        # 2. OVEREXTENSION PENALTY: price stretched above a long-run anchor.
+        anchor = ta.sma(close, min(200, max(50, cfg.liquidity_lookback * 4)))
+        premium = (close / anchor - 1.0).clip(lower=0.0)
+        overextension = premium
+
+        # 3. ORGANIC VOLUME: penalize volume bursts (FOMO spikes).
         vol_mean = volume.rolling(cfg.liquidity_lookback, min_periods=5).mean()
         vol_std = volume.rolling(cfg.liquidity_lookback, min_periods=5).std(ddof=0)
         burstiness = vol_std / vol_mean.replace(0, np.nan)
 
-        # Valuation anchor: premium of price over a long-run mean.
-        anchor = ta.sma(close, min(200, max(50, cfg.liquidity_lookback * 4)))
-        premium = close / anchor - 1.0
-        overextension = premium.clip(lower=0.0)  # only premiums are penalized
+        # 4. MEAN-REVERSION SETUP: RSI-like oversold detection.
+        roc_20 = ta.roc(close, 20)
+        oversold = (-roc_20).clip(lower=0.0)  # positive when price fell recently
 
-        # Accumulation: sustained money flow.
-        cmf = ta.chaikin_money_flow(o["high"], o["low"], close, volume, 30)
-
-        liq_z = ta.rolling_zscore(liquidity, Z_WIN)
-        organic_z = -ta.rolling_zscore(burstiness.fillna(0.0), Z_WIN)
+        # Combine: reward cheap + organic + not overextended + oversold.
+        cheap_z = ta.rolling_zscore(cheapness, Z_WIN)
         overext_z = -ta.rolling_zscore(overextension.fillna(0.0), Z_WIN)
-        accum_z = ta.rolling_zscore(cmf, Z_WIN)
+        organic_z = -ta.rolling_zscore(burstiness.fillna(0.0), Z_WIN)
+        oversold_z = ta.rolling_zscore(oversold.fillna(0.0), Z_WIN)
 
-        score = 0.30 * liq_z + 0.20 * organic_z + 0.30 * overext_z + 0.20 * accum_z
+        score = (
+            0.35 * cheap_z +        # undervalued vs history
+            0.30 * overext_z +       # not stretched above anchor
+            0.15 * organic_z +       # steady, not spiky volume
+            0.20 * oversold_z        # recent pullback = potential entry
+        )
 
-        # Blend the real fundamentals snapshot (CoinGecko) into today's value.
+        # Blend the real fundamentals snapshot (CoinGecko/yfinance) into today.
+        # Real fundamentals get HEAVY weight because they're the actual signal.
         snap = (data.fundamentals or {}).get("snapshot_score")
         if snap is not None and len(score):
             valid = score.dropna()
             if len(valid):
                 score = score.copy()
-                score.iloc[-1] = valid.iloc[-1] + 0.75 * float(snap)
+                # Real fundamentals dominate: weight 1.5x the OHLCV proxy.
+                score.iloc[-1] = 0.4 * valid.iloc[-1] + 1.5 * float(snap)
 
         return {
             "score": score,
