@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-11T00:03:04+00:00",
+  "generated_at": "2026-08-12T00:09:15+00:00",
   "ledger": {
     "ok": true,
-    "entries": 385,
-    "head": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14",
+    "entries": 388,
+    "head": "73d1908efaecb376f201242e57771fd314b273df0edf21f3008427dabfdf1bcb",
     "chain": [
       {
         "seq": 1,
@@ -3469,6 +3469,33 @@
         "payload_hash": "c38bd09c5109315c0dfc4f66d0be1d15ad42077b45c9f33ff0993ddf6c1062d2",
         "prev_hash": "93441dc2345e621f0cbb30edbdfc3ba22521c18c58f7b9d368b240b9109968cf",
         "entry_hash": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14"
+      },
+      {
+        "seq": 386,
+        "as_of": "2026-08-12",
+        "asset_class": "crypto",
+        "n_scores": 18,
+        "payload_hash": "dedeb75c50ef981dfabcf7d1bbab49c5204d9ae13ee615e134193e94077e64ce",
+        "prev_hash": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14",
+        "entry_hash": "340ecec4d58c2965ca41229a1c637f521309bea85cabf240e0bb80332a605fe0"
+      },
+      {
+        "seq": 387,
+        "as_of": "2026-08-11",
+        "asset_class": "equity",
+        "n_scores": 18,
+        "payload_hash": "db6580dbb27100ea4483d4774f658f50a366f72ba619bcda8ed88804910b9373",
+        "prev_hash": "340ecec4d58c2965ca41229a1c637f521309bea85cabf240e0bb80332a605fe0",
+        "entry_hash": "5875db7e0b4522ac9515c232fc6f0924d2d3f9bc68a39452b765b2be1a540e21"
+      },
+      {
+        "seq": 388,
+        "as_of": "2026-08-11",
+        "asset_class": "commodity",
+        "n_scores": 8,
+        "payload_hash": "518612e690ebf30ba97e441926d604927d0e811c289eb26e72202ba18db7974c",
+        "prev_hash": "5875db7e0b4522ac9515c232fc6f0924d2d3f9bc68a39452b765b2be1a540e21",
+        "entry_hash": "73d1908efaecb376f201242e57771fd314b273df0edf21f3008427dabfdf1bcb"
       }
     ]
   },
@@ -3476,19 +3503,19 @@
     "commodity": {
       "asset_class": "commodity",
       "horizon": 5,
-      "generated_at": "2026-08-11T00:03:09",
+      "generated_at": "2026-08-12T00:09:18",
       "as_of_first": "2025-01-22",
-      "as_of_last": "2026-08-10",
-      "n_dates": 120,
-      "n_calls": 960,
-      "n_matured": 912,
+      "as_of_last": "2026-08-11",
+      "n_dates": 121,
+      "n_calls": 968,
+      "n_matured": 920,
       "n_pending": 48,
       "actionable_accuracy": 0.5333,
       "favored_mean_return": -0.00718,
       "avoid_mean_return": 0.03103,
-      "benchmark_mean_return": 0.00291,
-      "favored_minus_benchmark": -0.01008,
-      "abstention_rate": 0.9448,
+      "benchmark_mean_return": 0.00313,
+      "favored_minus_benchmark": -0.0103,
+      "abstention_rate": 0.9442,
       "by_call": [
         {
           "call": "FAVORED",
@@ -3516,23 +3543,23 @@
         },
         {
           "call": "NO-EDGE",
-          "n": 764,
-          "mean_forward_return": 0.0038,
-          "win_rate": 0.5314
+          "n": 772,
+          "mean_forward_return": 0.00405,
+          "win_rate": 0.5337
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 486,
-          "hit_rate": 0.5041,
-          "mean_forward_return": 0.00532
+          "n": 489,
+          "hit_rate": 0.5051,
+          "mean_forward_return": 0.00545
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 283,
-          "hit_rate": 0.4912,
-          "mean_forward_return": 0.0013
+          "n": 288,
+          "hit_rate": 0.4931,
+          "mean_forward_return": 0.00178
         },
         {
           "confidence_bucket": "0.55-0.60",
@@ -3556,20 +3583,20 @@
       "detector": {
         "flagged_n": 5,
         "flagged_mean_forward_return": 0.01035,
-        "calm_mean_forward_return": 0.00287,
+        "calm_mean_forward_return": 0.00309,
         "flagged_crash_rate": 0.0,
-        "calm_crash_rate": 0.0088
+        "calm_crash_rate": 0.0087
       },
       "follow_favored": {
-        "n_periods": 114,
+        "n_periods": 115,
         "total_return": -0.1117,
-        "mean_period_return": -0.00097,
+        "mean_period_return": -0.00096,
         "sharpe_like": -0.882
       },
       "ledger": {
         "ok": true,
-        "entries": 385,
-        "head": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14"
+        "entries": 388,
+        "head": "73d1908efaecb376f201242e57771fd314b273df0edf21f3008427dabfdf1bcb"
       },
       "equity_curve": [
         {
@@ -4141,6 +4168,11 @@
           "as_of": "2026-08-03",
           "equity": 0.88828,
           "period_return": 0.0
+        },
+        {
+          "as_of": "2026-08-04",
+          "equity": 0.88828,
+          "period_return": 0.0
         }
       ],
       "note": ""
@@ -4148,93 +4180,93 @@
     "crypto": {
       "asset_class": "crypto",
       "horizon": 5,
-      "generated_at": "2026-08-11T00:03:37",
+      "generated_at": "2026-08-12T00:09:46",
       "as_of_first": "2025-06-30",
-      "as_of_last": "2026-08-11",
-      "n_dates": 127,
-      "n_calls": 2286,
-      "n_matured": 2178,
+      "as_of_last": "2026-08-12",
+      "n_dates": 128,
+      "n_calls": 2304,
+      "n_matured": 2196,
       "n_pending": 108,
-      "actionable_accuracy": 0.5686,
-      "favored_mean_return": -0.02521,
-      "avoid_mean_return": -0.00338,
-      "benchmark_mean_return": -0.00124,
-      "favored_minus_benchmark": -0.02397,
-      "abstention_rate": 0.8819,
+      "actionable_accuracy": 0.5637,
+      "favored_mean_return": -0.02674,
+      "avoid_mean_return": -0.00237,
+      "benchmark_mean_return": -0.00118,
+      "favored_minus_benchmark": -0.02555,
+      "abstention_rate": 0.8806,
       "by_call": [
         {
           "call": "FAVORED",
           "n": 7,
-          "mean_forward_return": -0.02521,
+          "mean_forward_return": -0.02674,
           "win_rate": 0.2857
         },
         {
           "call": "NEUTRAL",
-          "n": 275,
-          "mean_forward_return": 0.00271,
-          "win_rate": 0.4873
+          "n": 278,
+          "mean_forward_return": 0.00113,
+          "win_rate": 0.482
         },
         {
           "call": "AVOID",
-          "n": 248,
-          "mean_forward_return": -0.00338,
-          "win_rate": 0.4234
+          "n": 252,
+          "mean_forward_return": -0.00237,
+          "win_rate": 0.4286
         },
         {
           "call": "NO-EDGE",
-          "n": 1648,
-          "mean_forward_return": -0.00148,
-          "win_rate": 0.4818
+          "n": 1659,
+          "mean_forward_return": -0.00128,
+          "win_rate": 0.4846
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 993,
-          "hit_rate": 0.5186,
-          "mean_forward_return": -0.00467
+          "n": 1000,
+          "hit_rate": 0.522,
+          "mean_forward_return": -0.00485
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 655,
-          "hit_rate": 0.516,
-          "mean_forward_return": 0.00336
+          "n": 659,
+          "hit_rate": 0.522,
+          "mean_forward_return": 0.00414
         },
         {
           "confidence_bucket": "0.55-0.60",
-          "n": 414,
-          "hit_rate": 0.5628,
-          "mean_forward_return": -0.00385
+          "n": 416,
+          "hit_rate": 0.5673,
+          "mean_forward_return": -0.00367
         },
         {
           "confidence_bucket": "0.60-0.70",
-          "n": 104,
-          "hit_rate": 0.5192,
-          "mean_forward_return": 0.01294
+          "n": 109,
+          "hit_rate": 0.5413,
+          "mean_forward_return": 0.01026
         },
         {
           "confidence_bucket": "0.70-1.00",
           "n": 12,
-          "hit_rate": 0.5833,
-          "mean_forward_return": -0.00166
+          "hit_rate": 0.75,
+          "mean_forward_return": -0.00514
         }
       ],
       "detector": {
         "flagged_n": 0,
         "flagged_mean_forward_return": null,
-        "calm_mean_forward_return": -0.00124,
-        "calm_crash_rate": 0.0216
+        "calm_mean_forward_return": -0.00118,
+        "calm_crash_rate": 0.0214
       },
       "follow_favored": {
-        "n_periods": 121,
-        "total_return": -0.0782,
-        "mean_period_return": -0.00064,
-        "sharpe_like": -0.925
+        "n_periods": 122,
+        "total_return": -0.0831,
+        "mean_period_return": -0.00068,
+        "sharpe_like": -0.996
       },
       "ledger": {
         "ok": true,
-        "entries": 385,
-        "head": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14"
+        "entries": 388,
+        "head": "73d1908efaecb376f201242e57771fd314b273df0edf21f3008427dabfdf1bcb"
       },
       "equity_curve": [
         {
@@ -4314,532 +4346,537 @@
         },
         {
           "as_of": "2025-09-23",
-          "equity": 0.9218,
-          "period_return": 0.011
+          "equity": 0.91692,
+          "period_return": 0.00564
         },
         {
           "as_of": "2025-09-28",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-03",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-08",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-13",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-18",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-23",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-10-28",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-02",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-07",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-12",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-17",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-22",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-11-27",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-02",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-07",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-12",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-17",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-22",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2025-12-27",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-01",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-06",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-11",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-16",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-21",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-26",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-01-31",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-05",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-10",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-15",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-20",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-02-25",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-02",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-07",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-12",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-17",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-22",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-03-27",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-01",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-06",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-11",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-16",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-21",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-04-26",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-01",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-06",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-11",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-16",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-21",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-26",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-05-31",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-05",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-14",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-15",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-16",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-17",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-18",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-19",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-20",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-21",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-22",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-23",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-24",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-25",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-26",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-27",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-28",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-29",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-06-30",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-01",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-02",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-03",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-04",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-05",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-06",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-07",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-08",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-09",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-10",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-11",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-12",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-13",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-14",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-15",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-16",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-17",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-18",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-19",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-20",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-21",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-22",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-23",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-24",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-25",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-26",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-27",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-28",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-29",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-30",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-07-31",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-01",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-02",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-03",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-04",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-05",
-          "equity": 0.9218,
+          "equity": 0.91692,
           "period_return": 0.0
         },
         {
           "as_of": "2026-08-06",
-          "equity": 0.9218,
+          "equity": 0.91692,
+          "period_return": 0.0
+        },
+        {
+          "as_of": "2026-08-07",
+          "equity": 0.91692,
           "period_return": 0.0
         }
       ],
@@ -4848,25 +4885,25 @@
     "equity": {
       "asset_class": "equity",
       "horizon": 5,
-      "generated_at": "2026-08-11T00:03:46",
+      "generated_at": "2026-08-12T00:09:54",
       "as_of_first": "2025-01-22",
-      "as_of_last": "2026-08-10",
-      "n_dates": 109,
-      "n_calls": 1962,
-      "n_matured": 1872,
+      "as_of_last": "2026-08-11",
+      "n_dates": 110,
+      "n_calls": 1980,
+      "n_matured": 1890,
       "n_pending": 90,
-      "actionable_accuracy": 0.3932,
-      "favored_mean_return": -0.00747,
+      "actionable_accuracy": 0.3898,
+      "favored_mean_return": -0.0074,
       "avoid_mean_return": 0.02059,
-      "benchmark_mean_return": 0.0057,
-      "favored_minus_benchmark": -0.01318,
-      "abstention_rate": 0.9393,
+      "benchmark_mean_return": 0.00574,
+      "favored_minus_benchmark": -0.01314,
+      "abstention_rate": 0.9399,
       "by_call": [
         {
           "call": "FAVORED",
-          "n": 92,
-          "mean_forward_return": -0.00747,
-          "win_rate": 0.3913
+          "n": 93,
+          "mean_forward_return": -0.0074,
+          "win_rate": 0.3871
         },
         {
           "call": "NEUTRAL",
@@ -4882,29 +4919,29 @@
         },
         {
           "call": "NO-EDGE",
-          "n": 1508,
-          "mean_forward_return": 0.00717,
-          "win_rate": 0.559
+          "n": 1525,
+          "mean_forward_return": 0.0072,
+          "win_rate": 0.5607
         }
       ],
       "by_confidence": [
         {
           "confidence_bucket": "0.00-0.50",
-          "n": 1013,
-          "hit_rate": 0.4729,
-          "mean_forward_return": 0.00604
+          "n": 1024,
+          "hit_rate": 0.4746,
+          "mean_forward_return": 0.00599
         },
         {
           "confidence_bucket": "0.50-0.55",
-          "n": 495,
-          "hit_rate": 0.5414,
-          "mean_forward_return": 0.00949
+          "n": 501,
+          "hit_rate": 0.5469,
+          "mean_forward_return": 0.00968
         },
         {
           "confidence_bucket": "0.55-0.60",
-          "n": 268,
-          "hit_rate": 0.4552,
-          "mean_forward_return": 0.00057
+          "n": 269,
+          "hit_rate": 0.4535,
+          "mean_forward_return": 0.00056
         },
         {
           "confidence_bucket": "0.60-0.70",
@@ -4922,19 +4959,19 @@
       "detector": {
         "flagged_n": 0,
         "flagged_mean_forward_return": null,
-        "calm_mean_forward_return": 0.0057,
-        "calm_crash_rate": 0.0155
+        "calm_mean_forward_return": 0.00574,
+        "calm_crash_rate": 0.0153
       },
       "follow_favored": {
-        "n_periods": 104,
-        "total_return": -0.2304,
-        "mean_period_return": -0.00211,
-        "sharpe_like": -0.75
+        "n_periods": 105,
+        "total_return": -0.2311,
+        "mean_period_return": -0.0021,
+        "sharpe_like": -0.753
       },
       "ledger": {
         "ok": true,
-        "entries": 385,
-        "head": "4a056665074b56aed44801fb4f663f3e151bcaaf90c88a33c776c2855e1aac14"
+        "entries": 388,
+        "head": "73d1908efaecb376f201242e57771fd314b273df0edf21f3008427dabfdf1bcb"
       },
       "equity_curve": [
         {
@@ -5456,6 +5493,11 @@
           "as_of": "2026-08-03",
           "equity": 0.76958,
           "period_return": 0.0
+        },
+        {
+          "as_of": "2026-08-04",
+          "equity": 0.76887,
+          "period_return": -0.00092
         }
       ],
       "note": ""
